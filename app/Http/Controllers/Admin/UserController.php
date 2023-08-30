@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
+class AdminController extends Controller
+{
+    public function index()
+    {
+
+    }
+
+    
+}
