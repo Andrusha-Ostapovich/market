@@ -4,17 +4,17 @@
 
 @include('admin.parts.content-header', [
     'page_title' => 'Користувачі',
-    'url_back' => route('users.index'),
+    'url_back' => route('products.index'),
 ])
 
     <section class="content">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Редагувати {{  $user->name }}</h3>
+                <h3 class="card-title">Редагувати {{  $products->title }}</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('users.update', $user->id), 'model' => $user, 'method' => 'PUT']) !!}
-    @include('admin.users.inc.form', ['user' => $user])
+            {!! Lte3::formOpen(['action' => route('products.update', $products->id), 'model' => $products, 'method' => 'PUT']) !!}
+    @include('admin.products.inc.form', ['products' => $products])
             {!! Lte3::formClose() !!}
             </div>
           

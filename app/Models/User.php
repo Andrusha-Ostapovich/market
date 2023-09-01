@@ -8,11 +8,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
-    use HasApiTokens, HasFactory, Notifiable;
-    
+use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
+use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 
+class User extends Authenticatable implements HasMedia
+{
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
+    
+    protected $mediaSingleCollections = ['avatar']; 
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +26,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'chat_id',
+       
     ];
 
     /**

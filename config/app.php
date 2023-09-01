@@ -182,6 +182,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

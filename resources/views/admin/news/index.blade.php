@@ -3,15 +3,15 @@
 @section('content')
 
 @include('admin.parts.content-header', [
-'page_title' => 'Користувачі',
-'url_create' => route('users.create')
+'page_title' => 'Новини',
+'url_create' => route('news.create')
 ])
 
 <!-- Main content -->
 <section class="content">
 
     <!-- FILTER -->
-    @include('admin.examples.inc.filter')
+    @include('admin.news.inc.filter')
 
     <!-- Default box -->
     <div class="card">
@@ -31,53 +31,47 @@
                             №
                         </th>
                         <th style="width: 20%">
+                            Назва
+                        </th>
+                        <th style="width: 20%">
                             Фото
                         </th>
-                        <th style="width: 20%">
-                            Ім'я
-                        </th>
 
-                        <th style="width: 20%">
-                            Email
+                        <th style="width: 30%">
+                            Опис
                         </th>
-                        <th>
-                            Роль
+                        <th >
+                            Час створення
                         </th>
-
                     </tr>
                 </thead>
                 <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                    @foreach($users as $user)
+                    @foreach($news as $new)
                     <tr id="{{ $loop->index }}" class="va-center">
                         <td>
-                            {{ $user->id }}
+                            {{ $new->id }}
+                        </td>
+
+                        <td>
+                            {{ $new->title }}
                         </td>
                         <td>
-                            @if($user->hasMedia('avatar'))
-                            <img src="{{ $user->getFirstMediaUrl('avatar') }}" width="150px">
+                        @if($new->hasMedia('photo'))
+                            <img src="{{ $new->getFirstMediaUrl('photo') }}" width="150px">
                             @else
-                            <p>Аватар не був доданий</p>
+                            <p>Фото не було додано</p>
                             @endif
                         </td>
                         <td>
-                            {{ $user->name }}
+                            {{ $new->content }}
                         </td>
                         <td>
-                            {{ $user->email }}
+                            {{ $new->publication_date }}
                         </td>
-                        <td>
-                            {{ $user->role }}
-                        </td>
-
 
                         <td class="text-right">
-                            
-                            <a href="{{ route('users.update',$user->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-
-                            <a href="{{ route('users.destroy',$user->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
-                            {!! Lte3::formOpen(['action' => route('users.destroy', $user->id), 'model' => null, 'method' => 'DELETE']) !!}
-
-                            {!! Lte3::formClose() !!}
+                            <a href="{{ route('news.update', $new->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('news.destroy', $new->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach

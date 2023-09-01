@@ -1,5 +1,7 @@
 <?php
-
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ProductsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -21,5 +23,8 @@ require __DIR__ . '/admin.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('users', UserController::class);
+Route::resource('news', NewsController::class);
+Route::resource('products', ProductsController::class);
 Auth::routes();
 
