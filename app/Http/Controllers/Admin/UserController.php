@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -21,7 +21,7 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $user = User::create([
             'name' => $request->input('name'),
@@ -50,7 +50,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         return view('admin.users.edit', compact('user'));
     }
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         /** @var User $user */
         $user = User::findOrFail($id);

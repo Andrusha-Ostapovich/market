@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use App\Models\Attribut;
+use App\Models\Attribute;
 use App\Models\News;
 use App\Models\Product;
 use App\Models\Seller;
@@ -18,7 +18,7 @@ class DummySeeder extends Seeder
      */
     public function run(): void
     {
-        
+        // Attribute::factory(10)->create();
     //       Seller::factory(1)->create()->each(function(Seller $seller) {
            
     //           $products = Product::factory(rand(4, 10))->create([

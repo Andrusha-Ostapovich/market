@@ -4,14 +4,14 @@
 
 @include('admin.parts.content-header', [
 'page_title' => 'Товари',
-'url_create' => route('products.create')
+'url_create' => route('product.create')
 ])
 
 <!-- Main content -->
 <section class="content">
 
     <!-- FILTER -->
-    @include('admin.products.inc.filter')
+    @include('admin.product.inc.filter')
 
     <!-- Default box -->
     <div class="card">
@@ -63,7 +63,7 @@
                     </tr>
                 </thead>
                 <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                    @foreach($products as $product)
+                    @foreach($product as $product)
                     <tr id="{{ $loop->index }}" class="va-center">
                         <td>
                             {{ $product->id }}
@@ -103,8 +103,8 @@
 
 
                         <td class="text-right">
-                            <a href="{{ route('products.update', $product->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="{{ route('products.destroy', $product->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('product.update', $product->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('product.destroy', $product->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach

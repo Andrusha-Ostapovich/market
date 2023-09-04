@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\NewsRequest;
 use App\Models\News;
 
 class NewsController extends Controller
@@ -22,7 +22,7 @@ class NewsController extends Controller
         return view('admin.news.create');
     }
 
-    public function store(Request $request)
+    public function store(NewsRequest $request)
     {
         $news = News::create([
             'title' => $request->input('title'),
@@ -47,7 +47,7 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
         return view('admin.news.edit', compact('news'));
     }
-    public function update(Request $request, $id)
+    public function update(NewsRequest $request, $id)
     {
         $news = News::findOrFail($id);
         $news->update([
