@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Seller;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ProductCategory;
 
 class DummySeeder extends Seeder
 {
@@ -18,14 +19,26 @@ class DummySeeder extends Seeder
     public function run(): void
     {
         
-    //    News::factory(10)->create();
-        Seller::factory(5)->create()->each(function(Seller $seller) {
-            Product::factory(rand(4, 10))->create([
-                'seller_id' => $seller->id
-            ]);
-
-
-            
-        });
-    }
+    //       Seller::factory(1)->create()->each(function(Seller $seller) {
+           
+    //           $products = Product::factory(rand(4, 10))->create([
+    //               'seller_id' => $seller->id
+    //           ]);
+  
+    //           // Створюємо категорії та пов'язуємо їх з продуктами
+    //           $categories = Category::factory(rand(2, 5))->create();
+    //           foreach ($products as $product) {
+    //               $product->categories()->attach($categories->random());
+    //           }
+    //       });
+  
+    //       // Створюємо зв'язки між продуктами та категоріями
+    //       ProductCategory::factory(10)->create();
+    //       $existingSellers = Seller::all();
+    //       foreach ($existingSellers as $seller) {
+    //           Product::factory(rand(2, 5))->create([
+    //               'seller_id' => $seller->id  
+    //             ]);
+    // }
+}
 }

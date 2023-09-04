@@ -22,7 +22,7 @@ class SellerFactory extends Factory
    */
   public function definition()
   {
-    $sellerUser = User::whre('role', 'seller')->inRandomOrder()->first();
+    $sellerUser = User::where('role', 'seller')->inRandomOrder()->first();
 
     return [
       'user_id' => $sellerUser->id,

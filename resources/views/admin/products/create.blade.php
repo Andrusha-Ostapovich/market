@@ -3,7 +3,7 @@
 @section('content')
 
 @include('admin.parts.content-header', [
-    'page_title' => 'Користувачі',
+    'page_title' => 'Товари',
     'url_back' => route('products.index'),
 ])
 <section class="content">
@@ -13,11 +13,9 @@
             </div>
             <div class="card-body">
             {!! Lte3::formOpen(['action' => route('products.store'), 'model' => null, 'method' => 'POST']) !!}
-    @include('admin.products.inc.form')
+                @include('admin.products.inc.form')
             {!! Lte3::formClose() !!}
             </div>
-          
         </div>
-
-        </section>
+</section>
 @endsection

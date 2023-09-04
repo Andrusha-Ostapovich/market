@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
             $table->string('store_name');
-
             $table->text('description');
             $table->string('contact_info');
             $table->timestamps();

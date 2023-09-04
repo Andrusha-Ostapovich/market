@@ -14,4 +14,8 @@ class Seller extends Model
         'contact_info',
         'user_id',
     ];
+    public function products()
+{
+    return $this->hasMany(Product::class, 'seller_id', 'id','name');
+}
 }
