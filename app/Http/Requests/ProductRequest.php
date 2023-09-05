@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use App\Rules\imagerule;
 class ProductRequest extends FormRequest
 {
     /**
@@ -19,7 +19,8 @@ class ProductRequest extends FormRequest
                 'price' => 'required|max:7',
                 'description' => 'required|max:255',
                 'main_category_id' => 'required',
-                'product_photo' => 'required',
+                'product_photo' => [new Imagerule],
+                'product_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:10048'
            
             
         ];

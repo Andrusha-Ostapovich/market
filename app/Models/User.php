@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Events\UserCreated;
 
 use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
@@ -14,9 +15,12 @@ use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
-    
-    protected $mediaSingleCollections = ['avatar']; 
-    
+
+    protected $mediaSingleCollections = ['avatar'];
+    // protected $dispatchesEvents = [
+    //     'created' => UserCreated::class,
+    // ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -28,7 +32,7 @@ class User extends Authenticatable implements HasMedia
         'password',
         'role',
         'chat_id',
-       
+
     ];
 
     /**
@@ -54,10 +58,20 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Product::class, 'seller_id', 'id');
     }
+    public function seller()
+    {
+        return $this->hasMany(Seller::class);
+    }
 
     public function orders()
     {
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
-
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //     static::created(function ($user) {
+    //         dd('для user', $user);
+    //     });
+    // }
 }

@@ -3,11 +3,7 @@
 {!! Lte3::email('email') !!}
 
 {!! Lte3::password('password') !!}
-<!-- 
-{!! Lte3::file('image', null, [
-    'label' => 'Аватар',
- 
-]) !!} -->
+
 
 
 {!! Lte3::mediaFile('avatar', $user ?? null, [

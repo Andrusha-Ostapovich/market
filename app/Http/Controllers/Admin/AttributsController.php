@@ -3,53 +3,56 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\AttributRequest;
 use App\Models\Attribute;
+
 use App\Models\Category;
 
 class AttributsController extends Controller
 {
     public function index()
     {
-        $attribut = Category::all();
-        $attribut = Attribute::all();
-        return view('admin.attribut.index', ['attribut' => $attribut]);
+
+        $attribute = Attribute::all();
+        return view('admin.attribut.index',compact('attribute'));
     }
 
     public function create()
     {
-        return view('admin.attribut.create');
+        $category = Category::all()->pluck('name', 'id')->toArray();
+        return view('admin.attribut.create',compact('category'));
     }
 
-    public function store(Request $request)
+    public function store(AttributRequest $request)
     {
         $attribute = Attribute::create([
             'name' => $request->input('name'),
+            'category_id' => $request->input('category_id'),
         ]);
+        return redirect()->route('attribut.index');
     }
     public function show($id)
     {
         $attribute = Attribute::findOrFail($id);
-        return view('admin.attribut.edit', compact('attribute'));
+        $category = Category::all()->pluck('name', 'id')->toArray();
+        
+        return view('admin.attribut.edit', compact('attribute', 'category'));
     }
 
     public function edit()
     {
-// 
+        // 
     }
-    public function update(Request $request, $id)
+    public function update(AttributRequest $request, $id)
     {
         $attribute = Attribute::findOrFail($id);
         $attribute->update([
-            'title' => $request->input('title'),
-            'content' => $request->input('content'),
+            'name' => $request->input('name'),
+            'category_id' => $request->input('category_id'),
+        ]);
 
-            
-        ]);       
 
-    
         return redirect()->route('attribut.index');
-
     }
 
     public function destroy($id)
@@ -59,4 +62,3 @@ class AttributsController extends Controller
         return redirect()->route('attribut.index');
     }
 }
-

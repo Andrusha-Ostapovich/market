@@ -42,9 +42,7 @@
                         <th >
                             Фото
                         </th>
-                        <th style="width: 20%">
-                            Опис
-                        </th>
+
                         <th>
                             Ціна
                         </th>
@@ -84,9 +82,7 @@
                             <p>Фото не було додано</p>
                             @endif
                         </td>
-                        <td>
-                            {{ $product->description }}
-                        </td>
+
                         <td>
                             {{ $product->price }}
                         </td>
@@ -94,7 +90,7 @@
                             {{ $product->old_price }}
                         </td>
                         <td>
-                            {{ $product->seller_id }}
+                        {{ $seller[$product->seller_id] }}
                         </td>
                         <td>
                             {{ $product->article }}

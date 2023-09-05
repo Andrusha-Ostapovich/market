@@ -11,8 +11,8 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
-    public function attributes()
+    public function attribute()
     {
-        return $this->hasMany(Attribute::class, 'category_id', 'id');
+        return $this->hasMany(Attribute::class);
     }
 }

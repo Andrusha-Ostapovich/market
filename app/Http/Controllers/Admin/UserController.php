@@ -6,9 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
-class UserController extends Controller 
+class UserController extends Controller
 {
     public function index()
     {
@@ -34,8 +35,8 @@ class UserController extends Controller
         // if ($request->hasFile('image')) {
         //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
         // }
- 
-     
+
+
         return redirect()->route('users.index');
     }
 
@@ -47,8 +48,6 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
     }
     public function update(UserRequest $request, $id)
     {
@@ -59,15 +58,15 @@ class UserController extends Controller
             'email' => $request->input('email'),
             'role' => $request->input('role'),
             // Додайте інші поля, які ви хочете оновити
-            
-        ]);      
-        $user->mediaManage($request); 
+
+        ]);
+        $user->mediaManage($request);
         // if ($request->hasFile('image')) {
         //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
         // }
-    
+
         return redirect()->route('users.index');
-    // Перенаправте користувача на список користувачів
+        // Перенаправте користувача на список користувачів
     }
 
     public function destroy($id)
@@ -75,5 +74,25 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('users.index');
+    }
+    public function showProfile(User $user)
+    {
+        $user = Auth::user();
+
+        return view('admin.profile.index', compact('user'));
+    }
+
+
+    public function updateProfile(UserRequest $request, $id)
+    {
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ]);
+
+        $user->mediaManage($request);
+        return redirect()->route('admin.profile');
     }
 }

@@ -30,28 +30,30 @@
                         <th style="width: 1%">
                             №
                         </th>
-                        <th style="width: 20%">
+                        <th >
                             Назва
                         </th>
-                        <th style="width: 20%">
+                        <th >
                             Категорія
                         </th>
+
+                        
 
                     </tr>
                 </thead>
                 <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                    @foreach($attribut as $attributs)
+                    @foreach($attribute as $attributs)
                     <tr id="{{ $loop->index }}" class="va-center">
                         <td>
                             {{ $attributs->id }}
                         </td>
-
                         <td>
                             {{ $attributs->name }}
                         </td>
                         <td>
-                            {{ $attributs->categories->category_id }}
+                            {{ $attributs->category->name}}
                         </td>
+
 
 
                         <td class="text-right">

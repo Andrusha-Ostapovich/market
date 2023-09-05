@@ -9,10 +9,15 @@ class AttributeValue extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['value', 'attribute_id'];
+    protected $fillable = ['value', 'attribute_id','category_id'];
 
     public function attribute()
     {
-        return $this->belongsTo(Attribute::class, 'attribute_id', 'id');
+        return $this->belongsTo(Attribute::class);
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 }

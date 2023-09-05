@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
     use HasFactory;
-    protected $fillable = ['name'];
+    protected $fillable = ['name','category_id'];
 
-    public function attributeValue()
+    public function category()
     {
-        return $this->hasOne(AttributeValue::class, 'attribute_id', 'id');
+        return $this->belongsTo(Category::class);
     }
 }

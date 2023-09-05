@@ -10,11 +10,11 @@
     <section class="content">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Редагувати {{  $attribut->name }}</h3>
+                <h3 class="card-title">Редагувати {{  $attribute->name }}</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('attribut.update', $attribut->id), 'model' => $attribut, 'method' => 'PUT']) !!}
-    @include('admin.attribut.inc.form', ['attribut' => $attribut])
+            {!! Lte3::formOpen(['action' => route('attribut.update', $attribute->id), 'model' => $attribute, 'method' => 'PUT']) !!}
+    @include('admin.attribut.inc.form', ['attribute' => $attribute])
             {!! Lte3::formClose() !!}
             </div>
           

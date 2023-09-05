@@ -16,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $seller = User::where('role', 'seller')->pluck('name', 'id')->toArray();
+        $seller= User::where('role', 'seller')->pluck('name', 'id');
+       
         $product = Product::all();
 
         return view('admin.product.index', compact('product','seller'));

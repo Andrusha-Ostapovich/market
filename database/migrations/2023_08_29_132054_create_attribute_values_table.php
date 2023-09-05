@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('attribute_values', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('product_id');
             $table->string('value');
             $table->timestamps();
 
             $table->foreign('attribute_id')->references('id')->on('attributes');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
