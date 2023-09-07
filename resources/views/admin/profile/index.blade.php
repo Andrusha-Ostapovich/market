@@ -16,7 +16,11 @@
         <div class="card-header">
 
             <div class="card-body">
-
+                @if($user->hasMedia('avatar'))
+                <img src="{{ $user->getFirstMediaUrl('avatar') }}" width="150px">
+                @else
+                <p>Аватар не був доданий</p>
+                @endif
                 <h4>Ім'я: {{ $user->name }}</h4>
                 <h4>Емайл: {{ $user->email }}</h4>
                 <h4>Пароль: {{ $user->password }}</h4>

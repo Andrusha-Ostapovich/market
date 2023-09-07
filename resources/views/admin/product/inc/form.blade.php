@@ -3,6 +3,7 @@
 {!! Lte3::text('article') !!}
 {!! Lte3::number('old_price') !!}
 {!! Lte3::number('price') !!}
+{!! Lte3::text('slug') !!}
 {!! Lte3::textarea('description', null, [
 'label' => 'Опис',
 'rows' => 3,

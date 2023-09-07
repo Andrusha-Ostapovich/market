@@ -90,7 +90,7 @@
                             {{ $product->old_price }}
                         </td>
                         <td>
-                        {{ $seller[$product->seller_id] }}
+                        {{ $product->seller->user->name }}
                         </td>
                         <td>
                             {{ $product->article }}

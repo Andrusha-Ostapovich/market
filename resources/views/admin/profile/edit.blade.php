@@ -3,7 +3,8 @@
 @section('content')
 
 @include('admin.parts.content-header', [
-'page_title' => 'Профіль'
+'page_title' => 'Профіль',
+'url_back' => route('admin.profile')
 ])
 
 <!-- Main content -->

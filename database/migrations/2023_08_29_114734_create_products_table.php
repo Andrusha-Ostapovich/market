@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('article');
             $table->unsignedBigInteger('main_category_id');
             $table->string('brand');
-
+            $table->string('slug');
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('sellers');

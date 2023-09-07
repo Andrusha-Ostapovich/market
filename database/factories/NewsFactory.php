@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 Use App\Models\News;
 /**
@@ -17,9 +18,11 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word,
+            'name' => $this->faker->word,
+            'slug' => Str::slug($this->faker->word, '-'),
             'content' => $this->faker->text,
             'publication_date'=>now(),
+            
             
         ];
     }

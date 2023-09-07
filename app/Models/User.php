@@ -8,13 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Events\UserCreated;
+use Spatie\Permission\Traits\HasRoles;
 
 use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia,HasRoles;
 
     protected $mediaSingleCollections = ['avatar'];
     // protected $dispatchesEvents = [
@@ -56,7 +57,7 @@ class User extends Authenticatable implements HasMedia
     ];
     public function products()
     {
-        return $this->hasMany(Product::class, 'seller_id', 'id');
+        return $this->hasMany(Product::class);
     }
     public function seller()
     {
@@ -71,7 +72,7 @@ class User extends Authenticatable implements HasMedia
     // {
     //     parent::boot();
     //     static::created(function ($user) {
-    //         dd('для user', $user);
+    //         dd('create', $user);
     //     });
     // }
 }

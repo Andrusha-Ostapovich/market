@@ -7,23 +7,19 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               class="nav-link dropdown-toggle"><i class="far fa-clock"></i></a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow"
-                style="left: 0px; right: inherit;">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle"><i class="far fa-clock"></i></a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
                 <li><a href="#" class="dropdown-item">UTC: {{ now()->timezone(config('app.timezone')) }} </a></li>
                 @if(config('app.timezone_client'))
-                    <li><a href="#" class="dropdown-item">{{ config('app.timezone_client') }}: {{ now()->timezone(config('app.timezone_client')) }}</a>
-                    </li>
+                <li><a href="#" class="dropdown-item">{{ config('app.timezone_client') }}: {{ now()->timezone(config('app.timezone_client')) }}</a>
+                </li>
                 @endif
             </ul>
         </li>
 
         <li class="nav-item dropdown">
-            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-               class="nav-link dropdown-toggle">Domain: Laravel</a>
-            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow"
-                style="left: 0px; right: inherit;">
+            <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">Domain: Laravel</a>
+            <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
                 <li><a href="#" class="dropdown-item">Laravel</a></li>
 
             </ul>
@@ -76,8 +72,7 @@
             <div class="navbar-search-block">
                 <form class="form-inline">
                     <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                               aria-label="Search">
+                        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-navbar" type="submit">
                                 <i class="fas fa-search"></i>
@@ -101,8 +96,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="/vendor/adminlte/dist/img/user1-128x128.jpg" alt="User Avatar"
-                             class="img-size-50 mr-3 img-circle">
+                        <img src="/vendor/adminlte/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
@@ -118,8 +112,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="/vendor/adminlte/dist/img/user8-128x128.jpg" alt="User Avatar"
-                             class="img-size-50 img-circle mr-3">
+                        <img src="/vendor/adminlte/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 John Pierce
@@ -135,8 +128,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="/vendor/adminlte/dist/img/user3-128x128.jpg" alt="User Avatar"
-                             class="img-size-50 img-circle mr-3">
+                        <img src="/vendor/adminlte/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Nora Silvester
@@ -191,17 +183,26 @@
         </li>
 
         @auth
+        @php
+        $user = auth()->user();
+        @endphp
         <li class="nav-item dropdown user-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                <img src="/vendor/adminlte/dist/img/user2-160x160.jpg" class="user-image img-circle elevation-2"
-                     alt="User Image">
+                @if($user->hasMedia('avatar'))
+                <img src="{{ $user->getFirstMediaUrl('avatar') }}" class="img-circle elevation-2" width="40px">
+                @else
+                <p>Аватар не був доданий</p>
+                @endif
                 <span class="d-none d-md-inline">{{ Lte3::user('name') }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <!-- User image -->
                 <li class="user-header bg-primary">
-                    <img src="/vendor/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
-                         alt="User Image">
+                    @if($user->hasMedia('avatar'))
+                    <img src="{{ $user->getFirstMediaUrl('avatar') }}" class="img-circle elevation-2" width="150px">
+                    @else
+                    <p>Аватар не був доданий</p>
+                    @endif
 
                     <p>
                         {{ Lte3::user('name') }}
@@ -226,8 +227,7 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <a href="/admin/profile" class="btn btn-default btn-flat">Profile</a>
-                    <a href="/logout" class="btn btn-default btn-flat float-right js-click-submit"
-                       data-confirm="Logout?">Sign out</a>
+                    <a href="/logout" class="btn btn-default btn-flat float-right js-click-submit" data-confirm="Logout?">Sign out</a>
                 </li>
             </ul>
         </li>

@@ -6,10 +6,12 @@ use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\SlugTrait;
+use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, SlugTrait;
     protected $mediaMultipleCollections = ['product_photo'];
     protected $fillable = [
         'name',
@@ -19,18 +21,20 @@ class Product extends Model implements HasMedia
         'article',
         'brand',
         'main_category_id',
-        'seller_id'
+        'seller_id',
+        'slug'
     ];
+  
     public function mainCategory()
     {
-        return $this->belongsTo(Category::class, 'main_category_id', 'id','name');
+        return $this->belongsTo(Category::class, 'main_category_id', 'id', 'name');
     }
 
     public function additionalCategories()
     {
         return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
     }
-    public function sellers()
+    public function seller()
     {
         return $this->belongsTo(Seller::class);
     }

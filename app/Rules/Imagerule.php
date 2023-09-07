@@ -15,7 +15,7 @@ class Imagerule implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         
-        if (count($value) < 3) {
+        if (count($value) > 3) {
             $fail(" Не більше ніж 3 фотографії.");
             return;
         }

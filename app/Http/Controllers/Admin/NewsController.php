@@ -25,9 +25,10 @@ class NewsController extends Controller
     public function store(NewsRequest $request)
     {
         $news = News::create([
-            'title' => $request->input('title'),
+            'name' => $request->input('name'),
             'content' => $request->input('content'),
             'publication_date'=>now(),
+            'slug'=> $request->input('slug'),
         ]);
     
         $news->mediaManage($request); 
@@ -51,9 +52,9 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
         $news->update([
-            'title' => $request->input('title'),
+            'name' => $request->input('name'),
             'content' => $request->input('content'),
-
+            'slug'=> $request->input('slug'),
             // Додайте інші поля, які ви хочете оновити
             
         ]);       

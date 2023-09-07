@@ -27,6 +27,7 @@ class CategoryController extends Controller
     {
         $category = Category::create([
             'name' => $request->input('name'),
+            'slug'=> $request->input('slug'),
         ]);     
         return redirect()->route('category.index');
     }
@@ -46,7 +47,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         $category->update([
             'name' => $request->input('name'),
-
+            'slug'=> $request->input('slug'),
             
         ]);       
        

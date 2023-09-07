@@ -53,7 +53,7 @@
                         </td>
 
                         <td>
-                            {{ $new->title }}
+                            {{ $new->name}}
                         </td>
                         <td>
                         @if($new->hasMedia('photo'))

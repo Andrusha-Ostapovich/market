@@ -82,7 +82,11 @@ class UserController extends Controller
         return view('admin.profile.index', compact('user'));
     }
 
-
+    public function editProfile()
+    {
+        $user = Auth::user();
+        return view('admin.profile.edit', compact('user'));
+    }
     public function updateProfile(UserRequest $request, $id)
     {
         $user = User::find($id);

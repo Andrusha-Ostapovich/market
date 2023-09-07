@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Product;
-
+use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\Seller;
 
@@ -26,6 +26,7 @@ class ProductFactory extends Factory
         $oldPrice = $this->faker->randomFloat(2, $currentPrice + 1, $currentPrice + 20);
         return [
             'name' => $this->faker->word,
+            'slug' => Str::slug($this->faker->word, '-'),
             'description' => $this->faker->paragraph,
             'price' => $currentPrice,
             'old_price' => $oldPrice,
