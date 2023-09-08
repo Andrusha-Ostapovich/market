@@ -12,7 +12,7 @@ class Category extends Model
 {
     use HasFactory, SlugTrait, NestedsetNodeTrait, SlugTrait;
 
-    protected $fillable = ['name', 'slug'];
+    protected $guarded = ['id'];
 
     public function attribute()
     {

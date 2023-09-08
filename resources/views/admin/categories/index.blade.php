@@ -3,21 +3,17 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Категорії',
-        'url_create' => route('category.create'),
+        'url_create' => route('categories.create'),
     ])
 
 
     <!-- Main content -->
     <section class="content">
-        <div class="container">
-           <a class="btn btn-success" href="{{ route('tree') }}">Дерево</a>
 
-        </div><br>
-        <!-- FILTER -->
-        @include('admin.category.inc.filter')
+        @include('admin.categories.inc.filter')
 
-        <!-- Default box -->
-        <div class="card">
+
+        <div hidden class="card">
             <div class="card-header">
                 <h3 class="card-title"></h3>
 
@@ -39,20 +35,20 @@
                         </tr>
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                        @foreach ($category as $categor)
+                        @foreach ($categories as $category)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>
-                                    {{ $categor->id }}
+                                    {{ $category->id }}
                                 </td>
 
                                 <td>
-                                    {{ $categor->name }}
+                                    {{ $category->name }}
                                 </td>
 
                                 <td class="text-right">
-                                    <a href="{{ route('category.update', $categor->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ route('categories.update', $category->id) }}" class="btn btn-info btn-sm"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('category.destroy', $categor->id) }}"
+                                    <a href="{{ route('categories.destroy', $category->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -65,7 +61,22 @@
             </div>
 
         </div>
-        <!-- /.card -->
+{{-- @dd($categories); --}}
+
+        {!! Lte3::nestedset($categories, [
+            'label' => 'Категорії',
+            'has_nested' => true,
+            'routes' => [
+                'edit' => 'categories.show',
+                'create' => 'categories.create',
+                'delete' => 'categories.destroy',
+                'order' => 'categories.order',
+                'params' => [],
+            ],
+        ]) !!}
+
+    {!! Lte3::pagination($categories) !!}
+
 
     </section>
     <!-- /.content -->

@@ -6,16 +6,16 @@
             <a href="/admin/users" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Користувачі<i class="right fas fa-angle"></i></p>
-            </a>   
-       
+            </a>
+
         </li>
         <li class="nav-item">
-            <a href="/admin/category" class="nav-link">
+            <a href="/admin/categories" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>
                 <p>Категорії</p>
             </a>
         </li>
-  
+
         <li class="nav-item">
             <a href="/admin/product" class="nav-link">
                 <i class="nav-icon fas fa-cubes"></i>
@@ -29,7 +29,7 @@
             </a>
         </li>
 
-  
+
 
         <li class="nav-item">
             <a href="/admin/attribut" class="nav-link">
@@ -39,5 +39,5 @@
         </li>
 
 
-  
+
 <!-- /.sidebar-menu -->
