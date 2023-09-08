@@ -8,14 +8,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Events\UserCreated;
-use Spatie\Permission\Traits\HasRoles;
+
 
 use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia,HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
     protected $mediaSingleCollections = ['avatar'];
     // protected $dispatchesEvents = [

@@ -27,8 +27,8 @@ class CategoryController extends Controller
     {
         $category = Category::create([
             'name' => $request->input('name'),
-            'slug'=> $request->input('slug'),
-        ]);     
+            'slug' => $request->input('slug'),
+        ]);
         return redirect()->route('category.index');
     }
 
@@ -40,20 +40,19 @@ class CategoryController extends Controller
 
     public function edit()
     {
-  
     }
     public function update(CategoryRequest $request, $id)
     {
         $category = Category::findOrFail($id);
         $category->update([
             'name' => $request->input('name'),
-            'slug'=> $request->input('slug'),
-            
-        ]);       
-       
-    
+            'slug' => $request->input('slug'),
+
+        ]);
+
+
         return redirect()->route('category.index');
-    // Перенаправте користувача на список користувачів
+        // Перенаправте користувача на список користувачів
     }
 
     public function destroy($id)
@@ -62,5 +61,5 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('category.index');
     }
-}
 
+}

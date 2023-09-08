@@ -12,12 +12,12 @@ use Illuminate\Support\Str;
 class News extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia,SlugTrait;
-    protected $mediaSingleCollections = ['photo']; 
+    protected $mediaSingleCollections = ['photo'];
     protected $fillable = [
         'name',
         'content',
-        'publication_date',
-        'slug',       
+        'created_at',
+        'slug',
     ];
 
 }

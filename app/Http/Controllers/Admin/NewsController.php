@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Actions\NewsCreateAction;
+use App\Actions\NewsUpdateAction;
 
 class NewsController extends Controller
 {
@@ -24,16 +26,17 @@ class NewsController extends Controller
 
     public function store(NewsRequest $request)
     {
-        $news = News::create([
-            'name' => $request->input('name'),
-            'content' => $request->input('content'),
-            'publication_date'=>now(),
-            'slug'=> $request->input('slug'),
-        ]);
-    
-        $news->mediaManage($request); 
- 
-     
+        // $news = News::create([
+        //     'name' => $request->input('name'),
+        //     'content' => $request->input('content'),
+        //     'publication_date'=>now(),
+        //     'slug'=> $request->input('slug'),
+        // ]);
+
+        $news = NewsCreateAction::run($request->all());
+        $news->mediaManage($request);
+
+
         return redirect()->route('news.index');
     }
 
@@ -50,18 +53,15 @@ class NewsController extends Controller
     }
     public function update(NewsRequest $request, $id)
     {
+
         $news = News::findOrFail($id);
-        $news->update([
-            'name' => $request->input('name'),
-            'content' => $request->input('content'),
-            'slug'=> $request->input('slug'),
-            // Додайте інші поля, які ви хочете оновити
-            
-        ]);       
-        $news->mediaManage($request); 
-    
+
+        // Викликаємо дію NewsUpdateAction і передаємо об'єкт моделі та дані з запиту
+        NewsUpdateAction::run($news, $request->all());
+
+        $news->mediaManage($request);
+
         return redirect()->route('news.index');
-    // Перенаправте користувача на список користувачів
     }
 
     public function destroy($id)

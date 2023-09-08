@@ -17,6 +17,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('news', NewsController::class);
     Route::resource('category', CategoryController::class);
+    Route::get('tree', [CategoryController::class,'showCategories'])->name('tree');
     Route::resource('product', ProductController::class);
     Route::resource('attribut', AttributsController::class);
 });

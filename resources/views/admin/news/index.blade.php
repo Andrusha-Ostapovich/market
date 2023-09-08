@@ -66,7 +66,7 @@
                             {{ $new->content }}
                         </td>
                         <td>
-                            {{ $new->publication_date }}
+                            {{ $new->created_at }}
                         </td>
 
                         <td class="text-right">
