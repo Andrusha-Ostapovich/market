@@ -4,7 +4,7 @@
         data-accordion="false">
         <li class="nav-item">
             <a href="/admin/users" class="nav-link">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>Користувачі<i class="right fas fa-angle"></i></p>
             </a>
 
@@ -39,12 +39,30 @@
         </li>
 
         <li class="nav-item">
+            <a href="/admin/subscriber" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>Розсилка</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/profile" class="nav-link">
+                <i class="nav-icon fas fa-cog"></i>
+                <p>Налаштування</p>
+            </a>
+        </li>
+
+        {{-- <li class="nav-item">
             <a href="/test-policy" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>Test Policy</p>
             </a>
+        </li> --}}
+        <li class="nav-item">
+            <a href="/logout" class="nav-link js-click-submit" data-confirm="Вийти?">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>Вихід</p>
+            </a>
         </li>
 
 
-
-<!-- /.sidebar-menu -->
+        <!-- /.sidebar-menu -->
