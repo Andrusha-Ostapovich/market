@@ -38,6 +38,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="/test-policy" class="nav-link">
+                <i class="nav-icon fas fa-copy"></i>
+                <p>Test Policy</p>
+            </a>
+        </li>
+
 
 
 <!-- /.sidebar-menu -->

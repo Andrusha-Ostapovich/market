@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +22,6 @@ Route::get('/', function () {
 require __DIR__ . '/admin.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/test-policy', [UserController::class, 'testPolicy'])->name('test-policy');
 
 Auth::routes();

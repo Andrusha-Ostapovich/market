@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
@@ -98,5 +99,16 @@ class UserController extends Controller
 
         $user->mediaManage($request);
         return redirect()->route('admin.profile');
+    }
+    public function testPolicy(User $user)
+    {
+
+        if (Gate::allows('view', $user)) {
+            // Користувач з роллю "seller" має доступ
+            return view('user.leyouts.index', compact('user'));
+        } else {
+            // Інші користувачі не мають доступу
+            abort(403);
+        }
     }
 }
