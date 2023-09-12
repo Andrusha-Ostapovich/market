@@ -154,7 +154,6 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
          * Package Service Providers...
@@ -163,6 +162,8 @@ return [
         /*
          * Application Service Providers...
          */
+        NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

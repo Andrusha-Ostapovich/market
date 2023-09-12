@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ea51f3fa7904988180f397f2daa6821",
+    "content-hash": "f7050eb599272f2c1ba16bf244bc9434",
     "packages": [
         {
             "name": "brick/math",
@@ -434,16 +434,16 @@
         },
         {
             "name": "fomvasss/laravel-lte3",
-            "version": "1.8.3",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fomvasss/laravel-lte3.git",
-                "reference": "2e05b6daba1735f097bc9512b0e65d5ace46afc5"
+                "reference": "7c45de34394086299be2c1ee537ae7baae31f051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fomvasss/laravel-lte3/zipball/2e05b6daba1735f097bc9512b0e65d5ace46afc5",
-                "reference": "2e05b6daba1735f097bc9512b0e65d5ace46afc5",
+                "url": "https://api.github.com/repos/fomvasss/laravel-lte3/zipball/7c45de34394086299be2c1ee537ae7baae31f051",
+                "reference": "7c45de34394086299be2c1ee537ae7baae31f051",
                 "shasum": ""
             },
             "require": {
@@ -501,9 +501,9 @@
             ],
             "support": {
                 "issues": "https://github.com/fomvasss/laravel-lte3/issues",
-                "source": "https://github.com/fomvasss/laravel-lte3/tree/1.8.3"
+                "source": "https://github.com/fomvasss/laravel-lte3/tree/1.10.0"
             },
-            "time": "2023-08-21T15:37:32+00:00"
+            "time": "2023-09-08T15:30:38+00:00"
         },
         {
             "name": "fomvasss/laravel-medialibrary-extension",
@@ -564,6 +564,69 @@
                 "source": "https://github.com/fomvasss/laravel-medialibrary-extension/tree/5.4.0"
             },
             "time": "2023-08-12T11:17:05+00:00"
+        },
+        {
+            "name": "fomvasss/laravel-notification-channel-turbo-sms",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fomvasss/laravel-notification-channel-turbosms.git",
+                "reference": "493e0cb48de99025dd91808c489457403803858f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fomvasss/laravel-notification-channel-turbosms/zipball/493e0cb48de99025dd91808c489457403803858f",
+                "reference": "493e0cb48de99025dd91808c489457403803858f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/notifications": "^5.5|^6|^7|^8|^9|^10",
+                "illuminate/support": "^5.5|^6|^7|^8|^9|^10",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.2",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NotificationChannels\\TurboSms\\TurboSmsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NotificationChannels\\TurboSms\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fomin Vasil",
+                    "email": "fomvasss@gmail.com",
+                    "homepage": "https://github.com/fomvasss",
+                    "role": "Developer"
+                }
+            ],
+            "description": "This package makes it easy to send notifications using [turbosms.ua](https://turbosms.ua) with Laravel 5.5+",
+            "homepage": "https://github.com/fomvasss/laravel-notification-channel-turbo-sms",
+            "keywords": [
+                "laravel",
+                "notifications",
+                "sms",
+                "turbo-sms",
+                "ТурбоСМС"
+            ],
+            "support": {
+                "issues": "https://github.com/fomvasss/laravel-notification-channel-turbosms/issues",
+                "source": "https://github.com/fomvasss/laravel-notification-channel-turbosms/tree/1.1.0"
+            },
+            "time": "2023-05-31T21:48:07+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -1945,16 +2008,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.15.1",
+            "version": "3.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "a141d430414fcb8bf797a18716b09f759a385bed"
+                "reference": "4fdf372ca6b63c6e281b1c01a624349ccb757729"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/a141d430414fcb8bf797a18716b09f759a385bed",
-                "reference": "a141d430414fcb8bf797a18716b09f759a385bed",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4fdf372ca6b63c6e281b1c01a624349ccb757729",
+                "reference": "4fdf372ca6b63c6e281b1c01a624349ccb757729",
                 "shasum": ""
             },
             "require": {
@@ -1963,6 +2026,8 @@
                 "php": "^8.0.2"
             },
             "conflict": {
+                "async-aws/core": "<1.19.0",
+                "async-aws/s3": "<1.14.0",
                 "aws/aws-sdk-php": "3.209.31 || 3.210.0",
                 "guzzlehttp/guzzle": "<7.0",
                 "guzzlehttp/ringphp": "<1.1.1",
@@ -1982,7 +2047,7 @@
                 "microsoft/azure-storage-blob": "^1.1",
                 "phpseclib/phpseclib": "^3.0.14",
                 "phpstan/phpstan": "^0.12.26",
-                "phpunit/phpunit": "^9.5.11",
+                "phpunit/phpunit": "^9.5.11|^10.0",
                 "sabre/dav": "^4.3.1"
             },
             "type": "library",
@@ -2017,7 +2082,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.15.1"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.16.0"
             },
             "funding": [
                 {
@@ -2029,20 +2094,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-04T09:04:26+00:00"
+            "time": "2023-09-07T19:22:17+00:00"
         },
         {
             "name": "league/flysystem-local",
-            "version": "3.15.0",
+            "version": "3.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "543f64c397fefdf9cfeac443ffb6beff602796b3"
+                "reference": "ec7383f25642e6fd4bb0c9554fc2311245391781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/543f64c397fefdf9cfeac443ffb6beff602796b3",
-                "reference": "543f64c397fefdf9cfeac443ffb6beff602796b3",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/ec7383f25642e6fd4bb0c9554fc2311245391781",
+                "reference": "ec7383f25642e6fd4bb0c9554fc2311245391781",
                 "shasum": ""
             },
             "require": {
@@ -2077,7 +2142,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem-local/issues",
-                "source": "https://github.com/thephpleague/flysystem-local/tree/3.15.0"
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.16.0"
             },
             "funding": [
                 {
@@ -2089,7 +2154,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-05-02T20:02:14+00:00"
+            "time": "2023-08-30T10:23:59+00:00"
         },
         {
             "name": "league/glide",
@@ -2543,16 +2608,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.69.0",
+            "version": "2.70.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4308217830e4ca445583a37d1bf4aff4153fa81c"
+                "reference": "d3298b38ea8612e5f77d38d1a99438e42f70341d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4308217830e4ca445583a37d1bf4aff4153fa81c",
-                "reference": "4308217830e4ca445583a37d1bf4aff4153fa81c",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d3298b38ea8612e5f77d38d1a99438e42f70341d",
+                "reference": "d3298b38ea8612e5f77d38d1a99438e42f70341d",
                 "shasum": ""
             },
             "require": {
@@ -2645,7 +2710,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-08-03T09:00:52+00:00"
+            "time": "2023-09-07T16:43:50+00:00"
         },
         {
             "name": "nette/schema",
@@ -3725,6 +3790,69 @@
                 }
             ],
             "time": "2023-04-15T23:01:58+00:00"
+        },
+        {
+            "name": "rap2hpoutre/laravel-log-viewer",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rap2hpoutre/laravel-log-viewer.git",
+                "reference": "c4148ec364d78be13eb2ab81ce860946bfd91c4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rap2hpoutre/laravel-log-viewer/zipball/c4148ec364d78be13eb2ab81ce860946bfd91c4c",
+                "reference": "c4148ec364d78be13eb2ab81ce860946bfd91c4c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.2.*|5.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.7.*|^7.0",
+                "phpunit/phpunit": "^7|^9.5.10"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Rap2hpoutre\\LaravelLogViewer\\LaravelLogViewerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Rap2hpoutre\\LaravelLogViewer\\": "src/"
+                },
+                "classmap": [
+                    "src/controllers"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "rap2hpoutre",
+                    "email": "raphaelht@gmail.com"
+                }
+            ],
+            "description": "A Laravel log reader",
+            "keywords": [
+                "laravel",
+                "log",
+                "log-reader",
+                "log-viewer",
+                "logging",
+                "lumen"
+            ],
+            "support": {
+                "issues": "https://github.com/rap2hpoutre/laravel-log-viewer/issues",
+                "source": "https://github.com/rap2hpoutre/laravel-log-viewer/tree/v2.3.0"
+            },
+            "time": "2023-02-15T07:36:34+00:00"
         },
         {
             "name": "spatie/image",
@@ -8553,16 +8681,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "1.23.1",
+            "version": "1.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "846ae76eef31c6d7790fac9bc399ecee45160b26"
+                "reference": "3510b0a6274cc42f7219367cb3abfc123ffa09d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/846ae76eef31c6d7790fac9bc399ecee45160b26",
-                "reference": "846ae76eef31c6d7790fac9bc399ecee45160b26",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/3510b0a6274cc42f7219367cb3abfc123ffa09d6",
+                "reference": "3510b0a6274cc42f7219367cb3abfc123ffa09d6",
                 "shasum": ""
             },
             "require": {
@@ -8594,9 +8722,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.23.1"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/1.24.0"
             },
-            "time": "2023-08-03T16:32:59+00:00"
+            "time": "2023-09-07T20:46:32+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9509,16 +9637,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "5.0.0",
+            "version": "5.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "f3ec4bf931c0b31e5b413f5b4fc970a7d03338c0"
+                "reference": "32ff03d078fed1279c4ec9a407d08c5e9febb480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/f3ec4bf931c0b31e5b413f5b4fc970a7d03338c0",
-                "reference": "f3ec4bf931c0b31e5b413f5b4fc970a7d03338c0",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/32ff03d078fed1279c4ec9a407d08c5e9febb480",
+                "reference": "32ff03d078fed1279c4ec9a407d08c5e9febb480",
                 "shasum": ""
             },
             "require": {
@@ -9574,7 +9702,8 @@
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/5.0.0"
+                "security": "https://github.com/sebastianbergmann/exporter/security/policy",
+                "source": "https://github.com/sebastianbergmann/exporter/tree/5.0.1"
             },
             "funding": [
                 {
@@ -9582,7 +9711,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-03T07:06:49+00:00"
+            "time": "2023-09-08T04:46:58+00:00"
         },
         {
             "name": "sebastian/global-state",

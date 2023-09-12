@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Events\Registered;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -68,6 +70,15 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Order::class, 'user_id', 'id');
     }
+    // public static function boot()
+    // {
+    //     parent::boot();
+
+    //     // Викликайте подію Registered при створенні нового користувача
+    //     static::created(function ($user) {
+    //         event(new Registered($user));
+    //     });
+    // }
     // public static function boot()
     // {
     //     parent::boot();
