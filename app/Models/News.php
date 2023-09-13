@@ -13,11 +13,6 @@ class News extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia,SlugTrait;
     protected $mediaSingleCollections = ['photo'];
-    protected $fillable = [
-        'name',
-        'content',
-        'created_at',
-        'slug',
-    ];
+    protected $guarded = ['id'];
 
 }

@@ -163,7 +163,7 @@ return [
          * Application Service Providers...
          */
         NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -185,6 +185,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

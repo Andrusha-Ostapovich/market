@@ -8,10 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class StaticPage extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'title',
-        'content',
-        'slug',
-
-    ];
+    protected $guarded = ['id'];
 }

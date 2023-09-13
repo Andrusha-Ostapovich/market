@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/export', [ProductController::class, 'export']);
+    Route::get('/import', [ProductController::class, 'import']);
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
     Route::view('/', 'admin.examples.home');
     Route::get('profile', [UserController::class, 'showProfile'])->name('admin.profile');

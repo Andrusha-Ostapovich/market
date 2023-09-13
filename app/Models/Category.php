@@ -18,4 +18,8 @@ class Category extends Model
     {
         return $this->hasMany(Attribute::class);
     }
+    public function product()
+    {
+       return $this->hasMany(Product::class);
+    }
 }

@@ -67,7 +67,7 @@
                             {{ $product->id }}
                         </td>
                         <td>
-                            {{ $product->mainCategory->name }}
+                            {{ $product->categories->name }}
                         </td>
                         <td>
                             {{ $product->brand }}

@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('phone')->nullable();
+        Schema::table('products', function (Blueprint $table) {
+            $table->unsignedBigInteger('attribute_value_id')->nullable();
+            $table->foreign('attribute_value_id')->references('id')->on('attribute_values');
         });
     }
 

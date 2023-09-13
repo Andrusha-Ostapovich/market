@@ -3,7 +3,7 @@
 @section('content')
 
 @include('admin.parts.content-header', [
-'page_title' => 'Новини',
+'page_title' => 'Атрибути',
 'url_create' => route('attribut.create')
 ])
 
@@ -37,7 +37,7 @@
                             Категорія
                         </th>
 
-                        
+
 
                     </tr>
                 </thead>

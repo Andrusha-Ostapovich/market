@@ -34,7 +34,7 @@
         <li class="nav-item">
             <a href="/admin/attribut" class="nav-link">
                 <i class="nav-icon fas fa-file"></i>
-                <p>Артрибути</p>
+                <p>Атрибути</p>
             </a>
         </li>
 

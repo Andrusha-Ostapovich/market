@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-
+            $table->nestedSet();
             $table->timestamps();
         });
     }
@@ -25,5 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('categories');
+        Schema::table('table', function (Blueprint $table) {
+            $table->dropNestedSet();
+        });
     }
 };

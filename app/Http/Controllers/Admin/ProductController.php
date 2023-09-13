@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ProductsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
-
+use App\Imports\ProductsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Product;
 
 use App\Models\User;
@@ -36,10 +38,11 @@ class ProductController extends Controller
             'price',
             'old_price',
             'article',
-            'main_category_id',
+            'category_id',
             'brand',
             'seller_id',
-            'slug'
+            'slug',
+            'attribute_value_id'
         ));
 
 
@@ -66,17 +69,17 @@ class ProductController extends Controller
     {
 
         $product = Product::findOrFail($id);
-        $product->update([
-            'name' => $request->input('name'),
-            'description' => $request->input('description'),
-            'price' => $request->input('price'),
-            'old_price' => $request->input('old_price'),
-            'article' => $request->input('article'),
-            'main_category_id' => $request->input('main_category_id'),
-            'brand' => $request->input('brand'),
-            'slug'=> $request->input('slug'),
-
-        ]);
+        $product->update($request->only(
+            'name',
+            'description',
+            'price',
+            'old_price',
+            'article',
+            'category_id',
+            'brand',
+            'slug',
+            'attribute_value_id'
+        ));
         $product->mediaManage($request);
 
         return redirect()->route('product.index');
@@ -87,5 +90,15 @@ class ProductController extends Controller
         $product = product::findOrFail($id);
         $product->delete();
         return redirect()->route('product.index');
+    }
+    public function export()
+    {
+        return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+    public function import()
+    {
+        Excel::import(new ProductsImport, 'export-market.xlsx');
+
+        return redirect()->back()->with('success', 'All good!');
     }
 }

@@ -13,33 +13,21 @@ class Product extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia, SlugTrait;
     protected $mediaMultipleCollections = ['product_photo'];
-    protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'old_price',
-        'article',
-        'brand',
-        'main_category_id',
-        'seller_id',
-        'slug'
-    ];
-  
-    public function mainCategory()
+    protected $guarded = ['id'];
+
+    public function categories()
     {
-        return $this->belongsTo(Category::class, 'main_category_id', 'id', 'name');
+        return $this->belongsTo(Category::class, 'category_id', 'id', 'name');
     }
 
-    public function additionalCategories()
-    {
-        return $this->belongsToMany(Category::class, 'product_categories', 'product_id', 'category_id');
-    }
     public function seller()
     {
         return $this->belongsTo(Seller::class);
     }
-
-
+    public function AttributeValue()
+    {
+        return $this->belongsTo(AttributeValue::class);
+    }
     public function orders()
     {
         return $this->hasMany(Order::class, 'product_id', 'id');

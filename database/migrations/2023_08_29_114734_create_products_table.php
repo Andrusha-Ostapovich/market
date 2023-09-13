@@ -17,15 +17,17 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 10, 2);
-            $table->decimal('old_price', 10, 2);
+            $table->decimal('old_price', 10, 2)->nullable();
             $table->string('article');
-            $table->unsignedBigInteger('main_category_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('attribute_value_id')->nullable();
             $table->string('brand');
             $table->string('slug');
             $table->timestamps();
 
             $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->foreign('main_category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('attribute_value_id')->references('id')->on('attribute_values');
         });
     }
 
