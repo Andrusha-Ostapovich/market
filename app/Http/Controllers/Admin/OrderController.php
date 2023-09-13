@@ -11,13 +11,16 @@ class OrderController extends Controller
 {
 
 
-public function confirmOrder(Order $order)
-{
-    // Логіка підтвердження замовлення
-$order = Order::all();
-    // Відправка події ConfirmOrder
-    event(new ConfirmOrder($order));
+    public function confirmOrder($id)
+    {
+        // Отримайте конкретне замовлення за його ідентифікатором
+        $order = Order::findOrFail($id);
 
-    return redirect()->back()->with('success', 'Замовлення успішно підтверджено.');
-}
+        // Логіка підтвердження замовлення
+
+        // Відправка події ConfirmOrder
+        event(new ConfirmOrder($order));
+
+        return redirect()->back()->with('success', 'Замовлення успішно підтверджено.');
+    }
 }

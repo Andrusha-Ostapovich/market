@@ -18,29 +18,28 @@ class NewsletterMail extends Mailable
      */
 
 
-        protected $title;
-        protected $description;
+    protected $title;
+    protected $description;
 
-        /**
-         * Create a new message instance.
-         */
-        public function __construct($title, $description)
-        {
-            $this->title = $title;
-            $this->description = $description;
-        }
+    /**
+     * Create a new message instance.
+     */
+    public function __construct($title, $description)
+    {
+        $this->title = $title;
+        $this->description = $description;
+    }
 
-        /**
-         * Build the message.
-         */
-        public function build(): NewsletterMail
-        {
-            return $this->subject('Новий лист розсилки')
-                        ->view('emails.newsletter')
-                        ->with([
-                            'title' => $this->title,
-                            'description' => $this->description,
-                        ]);
-        }
-
+    /**
+     * Build the message.
+     */
+    public function build(): NewsletterMail
+    {
+        return $this->subject('Новий лист розсилки')
+            ->view('emails.newsletter')
+            ->with([
+                'title' => $this->title,
+                'description' => $this->description,
+            ]);
+    }
 }

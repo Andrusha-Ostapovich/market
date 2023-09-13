@@ -13,7 +13,11 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-
+    'turbosms' => [
+        'api_token'  => env('TURBOSMS_API_TOKEN'),
+        'sender'  => env('TURBOSMS_SENDER'),
+        'is_test'  => env('TURBOSMS_IS_TEST'),
+    ],
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

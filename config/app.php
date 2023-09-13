@@ -163,6 +163,7 @@ return [
          * Application Service Providers...
          */
         NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
+
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,

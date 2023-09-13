@@ -24,5 +24,5 @@ require __DIR__ . '/admin.php';
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/test-policy', [UserController::class, 'testPolicy'])->name('test-policy');
-Route::get('/start-work', [OrderController::class, 'confirmOrder'])->name('confirmOrder');
+Route::get('/confirm-order/{іd}', [OrderController::class, 'confirmOrder']);
 Auth::routes();
