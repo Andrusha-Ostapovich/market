@@ -16,7 +16,7 @@ class AttributRequest extends FormRequest
     {
         return [
             'name' => 'required|min:2|max:255',
-            'category_id'=>'required',
+            'categories'=>'required',
         ];
     }
 }

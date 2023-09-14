@@ -7,9 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Imports\ProductsImport;
+use App\Models\Attribute;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Product;
-
+use App\Models\Property;
 use App\Models\User;
 
 class ProductController extends Controller
@@ -19,8 +20,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::with('seller.user')->get();
-        return view('admin.product.index', compact('product'));
+        $attributs = Attribute::pluck('name', 'id');
+
+        $products = Product::all();
+        return view('admin.product.index', compact('products', 'attributs'));
     }
 
     public function create()
@@ -42,7 +45,7 @@ class ProductController extends Controller
             'brand',
             'seller_id',
             'slug',
-            'attribute_value_id'
+
         ));
 
 
@@ -55,10 +58,9 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        $seller = User::where('role', 'seller')->pluck('name', 'id')->toArray();
         $categories = Category::all()->pluck('name', 'id')->toArray();
         $product = Product::findOrFail($id);
-        return view('admin.product.edit', compact('categories', 'product', 'seller'));
+        return view('admin.product.edit', compact('product','categories'));
     }
 
     public function edit()
@@ -78,7 +80,7 @@ class ProductController extends Controller
             'category_id',
             'brand',
             'slug',
-            'attribute_value_id'
+
         ));
         $product->mediaManage($request);
 

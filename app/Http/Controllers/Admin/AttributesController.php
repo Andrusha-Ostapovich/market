@@ -8,48 +8,56 @@ use App\Models\Attribute;
 
 use App\Models\Category;
 
-class AttributsController extends Controller
+class AttributesController extends Controller
 {
     public function index()
     {
 
         $attribute = Attribute::all();
-        return view('admin.attribut.index',compact('attribute'));
+        return view('admin.attribut.index', compact('attribute'));
     }
 
     public function create()
     {
-        $category = Category::all()->pluck('name', 'id')->toArray();
-        return view('admin.attribut.create',compact('category'));
+        $categories = Category::with('categories')->pluck('name', 'id')->toArray();
+        // dd($categories);
+        return view('admin.attribut.create', compact('categories'));
     }
 
     public function store(AttributRequest $request)
     {
         $attribute = Attribute::create([
             'name' => $request->input('name'),
-            'category_id' => $request->input('category_id'),
         ]);
+
+        $categories = $request->input('categories');
+
+        $attribute->categories()->attach($categories);
+
         return redirect()->route('attribut.index');
     }
     public function show($id)
     {
         $attribute = Attribute::findOrFail($id);
-        $category = Category::all()->pluck('name', 'id')->toArray();
-        
-        return view('admin.attribut.edit', compact('attribute', 'category'));
+        $categories = Category::with('categories')->pluck('name', 'id')->toArray();
+
+        return view('admin.attribut.edit', compact('attribute','categories'));
     }
 
     public function edit()
     {
-        // 
+        //
     }
     public function update(AttributRequest $request, $id)
     {
         $attribute = Attribute::findOrFail($id);
         $attribute->update([
             'name' => $request->input('name'),
-            'category_id' => $request->input('category_id'),
+
         ]);
+        $categories = $request->input('categories');
+
+        $attribute->categories()->attach($categories);
 
 
         return redirect()->route('attribut.index');

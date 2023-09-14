@@ -9,11 +9,14 @@
 @endif
 {!! Lte3::text('name') !!}
 
-{!! Lte3::select2('category_id', isset($attributs) ? $attributs->category_id : null, $category, [
-    'label' => 'Категорії:',
-    'field_name' => 'category_id',
-    'placeholder_value' => 'Title',
+
+{!! Lte3::select2('categories', 'new', $categories, [
+    'label' => 'Категорії',
+    'multiple' => 1,
+    'id' => 'categories',
 ]) !!}
+
+
 
 
 

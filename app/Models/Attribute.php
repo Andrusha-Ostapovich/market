@@ -10,13 +10,23 @@ class Attribute extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
-    public function value()
+    public function properties()
     {
-        return $this->hasMany(Category::class);
-
+        return $this->hasMany(Property::class);
+    }
+    protected static function boot()
+    {
+        parent::boot();
+        static::saving(function ($attribute) {
+            $attribute->categories()->detach();
+        });
+        static::deleting(function ($attribute) {
+            // Видалення зв'язків атрибуту з категоріями
+            $attribute->categories()->detach();
+        });
     }
 }

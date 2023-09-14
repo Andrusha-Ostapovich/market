@@ -24,12 +24,13 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(Seller::class);
     }
-    public function AttributeValue()
+    public function properties()
     {
-        return $this->belongsTo(AttributeValue::class);
+        return $this->belongsToMany(Property::class);
     }
     public function orders()
     {
         return $this->hasMany(Order::class, 'product_id', 'id');
     }
+
 }

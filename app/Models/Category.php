@@ -14,7 +14,7 @@ class Category extends Model
 
     protected $guarded = ['id'];
 
-    public function attribute()
+    public function attributes()
     {
         return $this->hasMany(Attribute::class);
     }

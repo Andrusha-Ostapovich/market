@@ -15,18 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->nestedSet();
             $table->timestamps();
+            $table->nestedSet();
         });
     }
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('categories');
-        Schema::table('table', function (Blueprint $table) {
-            $table->dropNestedSet();
-        });
     }
 };

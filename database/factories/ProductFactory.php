@@ -32,7 +32,7 @@ class ProductFactory extends Factory
             'old_price' => $oldPrice,
             'article' => $this->faker->unique()->numberBetween(1000, 9999),
             'seller_id' => Seller::factory(),
-            'main_category_id' => Category::factory(),
+            'category_id' => Category::factory(),
             'brand' => $this->faker->word,
         ];
     }

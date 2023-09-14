@@ -13,11 +13,11 @@
                 <h3 class="card-title">Редагувати {{  $attribute->name }}</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('attribut.update', $attribute->id), 'model' => $attribute, 'method' => 'PUT']) !!}
-    @include('admin.attribut.inc.form', ['attribute' => $attribute])
+            {!! Lte3::formOpen(['action' => route('attribut.update', $attribute->id), 'model' => null, 'method' => 'PUT']) !!}
+    @include('admin.attribut.inc.form',compact('categories','attribute'))
             {!! Lte3::formClose() !!}
             </div>
-          
+
         </div>
 
         </section>

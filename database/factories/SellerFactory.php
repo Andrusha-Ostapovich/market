@@ -31,4 +31,5 @@ class SellerFactory extends Factory
       'contact_info' => $this->faker->address,
     ];
   }
+//
 }

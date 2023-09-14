@@ -11,23 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('attribute_category', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('seller_id');
-            $table->string('name');
-            $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->decimal('old_price', 10, 2)->nullable();
-            $table->string('article');
             $table->unsignedBigInteger('category_id');
-
-            $table->string('brand');
-            $table->string('slug');
+            $table->unsignedBigInteger('attribute_id');
             $table->timestamps();
 
-            $table->foreign('seller_id')->references('id')->on('sellers');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('attribute_id')->references('id')->on('attributes');
         });
+
     }
 
     /**
@@ -35,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('category_attributes');
     }
 };

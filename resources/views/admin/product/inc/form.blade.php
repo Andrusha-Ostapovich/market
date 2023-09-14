@@ -14,9 +14,9 @@
 
 
 
-{!! Lte3::select2('main_category_id', isset($product) ? $product->main_category_id : null, $categories, [
+{!! Lte3::select2('category_id', isset($product) ? $product->category_id : null, $categories, [
 'label' => 'Категорії:',
-'field_name' => 'main_category_id',
+'field_name' => 'category_id',
 'placeholder_value' => 'Title',
 ]) !!}
 

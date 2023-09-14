@@ -21,19 +21,21 @@ class DummySeeder extends Seeder
         // News::factory(10)->create();
         // Category::factory(10)->create();
         // Attribute::factory(10)->create();
-        //   Seller::factory(1)->create()->each(function(Seller $seller) {
-           
-        //       $products = Product::factory(rand(4, 10))->create([
-        //           'seller_id' => $seller->id
-        //       ]);
-  
-        //       // Створюємо категорії та пов'язуємо їх з продуктами
-        //       $categories = Category::factory(rand(2, 5))->create();
-        //       foreach ($products as $product) {
-        //           $product->categories()->attach($categories->random());
-        //       }
-        //   });
-  
+          Seller::factory(3)->create()
+          ->each(function(Seller $seller) {
+
+              $products = Product::factory(rand(4, 10))->create([
+                  'seller_id' => $seller->id
+              ]);
+
+              // Створюємо категорії та пов'язуємо їх з продуктами
+              $categories = Category::factory(rand(2, 5))->create();
+              foreach ($products as $product) {
+                  $product->categories()->attach($categories->random());
+              }
+          })
+          ;
+
 
 }
 }
