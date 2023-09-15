@@ -7,14 +7,14 @@
         </ul>
     </div>
 @endif
-{!! Lte3::text('name') !!}
+{!! Lte3::text('name',$attributs->name) !!}
 
-
-{!! Lte3::select2('categories', 'new', $categories, [
+{!! Lte3::select2('categories',$attributs->categories->pluck('id')->toArray(), $categories, [
     'label' => 'Категорії',
     'multiple' => 1,
     'id' => 'categories',
 ]) !!}
+
 
 
 

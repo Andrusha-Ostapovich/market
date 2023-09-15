@@ -28,9 +28,10 @@ class ProductController extends Controller
 
     public function create()
     {
+        $attributs = Attribute::pluck('name', 'id')->toArray();
         $seller = User::where('role', 'seller')->pluck('name', 'id')->toArray();
         $categories = Category::all()->pluck('name', 'id')->toArray();
-        return view('admin.product.create', compact('categories', 'seller'));
+        return view('admin.product.create', compact('categories', 'seller', 'attributs'));
     }
 
     public function store(ProductRequest $request)
@@ -47,20 +48,25 @@ class ProductController extends Controller
             'slug',
 
         ));
+        $attribut = $request->input('attributs');
+        $value = $request->input('value');
 
-
-
-        $product->mediaManage($request);
-
+        // За допомогою зв'язку "properties" створюємо новий запис у таблиці "properties"
+        $property = $product->properties()->create([
+            'attribute_id' => $attribut,
+            'value' => $value, // Використовуємо значення для атрибуту
+        ]);
 
         return redirect()->route('product.index');
     }
 
     public function show($id)
     {
+        $attributs = Attribute::pluck('name', 'id')->toArray();
+        $seller = User::where('role', 'seller')->pluck('name', 'id')->toArray();
         $categories = Category::all()->pluck('name', 'id')->toArray();
         $product = Product::findOrFail($id);
-        return view('admin.product.edit', compact('product','categories'));
+        return view('admin.product.edit', compact('product', 'categories', 'seller', 'attributs'));
     }
 
     public function edit()
@@ -82,6 +88,15 @@ class ProductController extends Controller
             'slug',
 
         ));
+        $attribut = $request->input('attributs');
+        $value = $request->input('value');
+
+        // За допомогою зв'язку "properties" створюємо новий запис у таблиці "properties"
+        $property = $product->properties()->create([
+            'attribute_id' => $attribut,
+            'values' => $value, // Використовуємо значення для атрибуту
+        ]);
+
         $product->mediaManage($request);
 
         return redirect()->route('product.index');

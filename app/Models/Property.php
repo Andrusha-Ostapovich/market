@@ -11,7 +11,7 @@ class Property extends Model
 
     protected $guarded = ['id'];
 
-    public function attributes()
+    public function attributs()
     {
         return $this->belongsTo(Attribute::class);
     }

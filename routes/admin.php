@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\admin\AttributesController;
+use App\Http\Controllers\admin\AttributsController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubscriberController;
 use Illuminate\Support\Facades\Auth;
@@ -23,6 +23,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::post('/categories/order', [CategoryController::class,'order'])->name('categories.order');
     Route::resource('product', ProductController::class);
-    Route::resource('attribut', AttributesController::class);
+    Route::resource('attribut', AttributsController::class);
     Route::resource('subscriber', SubscriberController::class);
 });

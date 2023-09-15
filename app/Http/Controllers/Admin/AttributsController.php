@@ -8,13 +8,13 @@ use App\Models\Attribute;
 
 use App\Models\Category;
 
-class AttributesController extends Controller
+class AttributsController extends Controller
 {
     public function index()
     {
 
-        $attribute = Attribute::all();
-        return view('admin.attribut.index', compact('attribute'));
+        $attributs = Attribute::all();
+        return view('admin.attribut.index', compact('attributs'));
     }
 
     public function create()
@@ -26,22 +26,22 @@ class AttributesController extends Controller
 
     public function store(AttributRequest $request)
     {
-        $attribute = Attribute::create([
+        $attributs = Attribute::create([
             'name' => $request->input('name'),
         ]);
 
         $categories = $request->input('categories');
 
-        $attribute->categories()->attach($categories);
+        $attributs->categories()->attach($categories);
 
         return redirect()->route('attribut.index');
     }
     public function show($id)
     {
-        $attribute = Attribute::findOrFail($id);
+        $attributs = Attribute::findOrFail($id);
         $categories = Category::with('categories')->pluck('name', 'id')->toArray();
 
-        return view('admin.attribut.edit', compact('attribute','categories'));
+        return view('admin.attribut.edit', compact('attributs','categories'));
     }
 
     public function edit()
@@ -50,14 +50,14 @@ class AttributesController extends Controller
     }
     public function update(AttributRequest $request, $id)
     {
-        $attribute = Attribute::findOrFail($id);
-        $attribute->update([
+        $attributs = Attribute::findOrFail($id);
+        $attributs->update([
             'name' => $request->input('name'),
 
         ]);
         $categories = $request->input('categories');
 
-        $attribute->categories()->attach($categories);
+        $attributs->categories()->attach($categories);
 
 
         return redirect()->route('attribut.index');
@@ -65,8 +65,8 @@ class AttributesController extends Controller
 
     public function destroy($id)
     {
-        $attribute = Attribute::findOrFail($id);
-        $attribute->delete();
+        $attributs = Attribute::findOrFail($id);
+        $attributs->delete();
         return redirect()->route('attribut.index');
     }
 }

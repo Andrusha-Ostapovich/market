@@ -15,14 +15,14 @@ class ProductRequest extends FormRequest
                 'name' => 'required|min:2|max:255',
                 'brand' => 'required|max:255',
                 'article' => 'required|max:15',
-                'old_price' => 'required|max:7',
+                'old_price' => 'max:7',
                 'price' => 'required|max:7',
                 'description' => 'required|max:255',
-                'main_category_id' => 'required',
+                'category_id' => 'required',
                 'product_photo' => [new Imagerule],
                 'product_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:10048'
-           
-            
+
+
         ];
     }
 }

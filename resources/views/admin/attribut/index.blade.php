@@ -40,16 +40,16 @@
                         </tr>
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                        @foreach ($attribute as $attributs)
+                        @foreach ($attributs as $attribut)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>
-                                    {{ $attributs->id }}
+                                    {{ $attribut->id }}
                                 </td>
                                 <td>
-                                    {{ $attributs->name }}
+                                    {{ $attribut->name }}
                                 </td>
                                 <td>
-                                    @foreach ($attributs->categories as $category)
+                                    @foreach ($attribut->categories as $category)
                                         {{ $category->name }}
                                     @endforeach
                                 </td>
@@ -57,9 +57,9 @@
 
 
                                 <td class="text-right">
-                                    <a href="{{ route('attribut.update', $attributs->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ route('attribut.update', $attribut->id) }}" class="btn btn-info btn-sm"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('attribut.destroy', $attributs->id) }}"
+                                    <a href="{{ route('attribut.destroy', $attribut->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>
