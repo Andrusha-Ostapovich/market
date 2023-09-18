@@ -17,7 +17,7 @@ class ProductRequest extends FormRequest
                 'article' => 'required|max:15',
                 'old_price' => 'max:7',
                 'price' => 'required|max:7',
-                'description' => 'required|max:255',
+                'description' => 'required|max:6000',
                 'category_id' => 'required',
                 'product_photo' => [new Imagerule],
                 'product_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:10048'

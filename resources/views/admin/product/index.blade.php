@@ -15,11 +15,26 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"></h3>
 
-                <div class="card-tools">
+
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="{{ route('product.export') }}" class="btn btn-success">
+                        <i class="fas fa-file-excel"></i> Експорт
+                    </a>
+                    <form action="{{ route('product.import') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="import_file" class="d-none" id="import_file">
+                        <label for="import_file" class="btn btn-warning">Виберіть файл</label>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> Імпорт</button>
+
+                    </form>
 
                 </div>
+
+
+
+
             </div>
             <div class="card-body">
 
@@ -117,7 +132,7 @@
                         @endforeach
                     </tbody>
                 </table>
-
+                {!! Lte3::pagination($products) !!}
 
             </div>
 

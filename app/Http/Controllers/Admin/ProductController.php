@@ -10,8 +10,9 @@ use App\Imports\ProductsImport;
 use App\Models\Attribute;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Product;
-use App\Models\Property;
 use App\Models\User;
+
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -22,7 +23,7 @@ class ProductController extends Controller
     {
         $attributs = Attribute::pluck('name', 'id');
 
-        $products = Product::all();
+        $products = Product::paginate(10);
         return view('admin.product.index', compact('products', 'attributs'));
     }
 
@@ -112,10 +113,23 @@ class ProductController extends Controller
     {
         return Excel::download(new ProductsExport, 'products.xlsx');
     }
-    public function import()
+    public function import(Request $request)
     {
-        Excel::import(new ProductsImport, 'export-market.xlsx');
 
-        return redirect()->back()->with('success', 'All good!');
+        // Перевіряємо, чи був відправлений файл
+        if ($request->hasFile('import_file')) {
+            $file = $request->file('import_file');
+
+            // Перевіряємо, чи файл є файлом Excel (наприклад, формат xlsx)
+            if ($file->getClientOriginalExtension() === 'xlsx') {
+                // Завантажуємо файл і викликаємо імпорт
+                Excel::import(new ProductsImport, $file);
+
+                return redirect()->back()->with('success', 'All good!');
+            }
+        }
+
+        // Якщо файл не було завантажено або формат невірний, повертаємо назад з повідомленням про помилку
+        return redirect()->back()->with('error', 'Invalid file or no file uploaded.');
     }
 }

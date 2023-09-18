@@ -15,17 +15,17 @@ class Product extends Model implements HasMedia
     protected $mediaMultipleCollections = ['product_photo'];
     protected $guarded = ['id'];
 
-    protected static function boot()
-    {
-    //     parent::boot();
-    //     static::saving(function ($product) {
+    // protected static function boot()
+    // {
+    // //     parent::boot();
+    // //     static::saving(function ($product) {
+    // //         $product->properties()->detach();
+    // //     });
+    //     static::deleting(function ($product) {
+    //         // Видалення зв'язків атрибуту з категоріями
     //         $product->properties()->detach();
     //     });
-        static::deleting(function ($product) {
-            // Видалення зв'язків атрибуту з категоріями
-            $product->properties()->detach();
-        });
-    }
+    // }
     public function categories()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id', 'name');
