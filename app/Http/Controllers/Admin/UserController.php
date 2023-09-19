@@ -6,17 +6,50 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
-        return view('admin.users.index', ['users' => $users]);
+
+        $query = User::query();
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $roles = $request->input('role', []);
+        $date = $request->input('date');
+        $sortField = $request->input('sort', 'name');
+
+        if ($name) {
+            $query->where('name', 'like', '%' . $name . '%');
+        }
+
+        if ($email) {
+            $query->where('email', 'like', '%' . $email . '%');
+        }
+
+        if (!empty($roles)) {
+            $query->whereIn('role', $roles);
+        }
+
+        if ($date) {
+            $query->whereDate('created_at', $date);
+        }
+
+        if ($request->has('reset_sort')) {
+            $users = $query->latest()->paginate(10);
+        } else {
+            $users = $query->orderBy($sortField)->paginate(10);
+        }
+
+        return view('admin.users.index', compact('users','roles'));
     }
+
 
     public function create()
     {

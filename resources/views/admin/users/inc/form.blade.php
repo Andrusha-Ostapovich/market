@@ -11,11 +11,7 @@
     'is_image' => true,
 ]) !!}
 
-{!! Lte3::select2('role', 'user' , [
-    'user' => 'user',
-    'seller' => 'seller',
-    'admin' => 'admin'
-], [
+{!! Lte3::select2('role', 'user', \App\Models\User::rolesList('name', 'key'), [
     'label' => 'Роль',
 ]) !!}
 

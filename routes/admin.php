@@ -8,13 +8,13 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\SubscriberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\admin\MainController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/',[MainController::class, 'index']);
     Route::get('/export', [ProductController::class, 'export'])->name('product.export');
     Route::post('/import', [ProductController::class, 'import'])->name('product.import');
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
-    Route::view('/', 'admin.examples.home');
     Route::get('profile', [UserController::class, 'showProfile'])->name('admin.profile');
     Route::get('profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::put('profile/{id}/update', [UserController::class, 'updateProfile'])->name('profile.update');

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 
 class Order extends Model
 {
@@ -17,5 +18,15 @@ class Order extends Model
     public function products()
     {
         return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+    public static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($user) {
+            Cache::forget('order_count');
+        });
+        static::saved(function ($user) {
+            Cache::forget('order_count');
+        });
     }
 }

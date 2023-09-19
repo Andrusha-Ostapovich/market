@@ -7,6 +7,7 @@ use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia
@@ -26,6 +27,16 @@ class Product extends Model implements HasMedia
     //         $product->properties()->detach();
     //     });
     // }
+    public static function boot()
+    {
+        parent::boot();
+        static::deleted(function ($user) {
+            Cache::forget('product_count');
+        });
+        static::saved(function ($user) {
+            Cache::forget('product_count');
+        });
+    }
     public function categories()
     {
         return $this->belongsTo(Category::class, 'category_id', 'id', 'name');
