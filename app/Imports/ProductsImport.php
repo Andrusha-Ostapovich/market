@@ -27,38 +27,13 @@ class ProductsImport implements ToModel, WithStartRow
         $photoUrls = explode(', ', $row[8]);
 
 
-        // Перевірка наявності атрибутів у колонці "attribute"
-        if (!empty($row[4])) {
-            // Розділіть колонку "attribute" на окремі атрибути та їх значення
-            $attributeColumn = $row[4]; // Припустимо, що це колонка "attribute" у вашому файлі Excel
-            $attributePairs = explode(' | ', $attributeColumn);
-
-            // Створіть порожні масиви для атрибутів та їх значень
-            $attributes = [];
-            $values = [];
-
-            // Пройдіться по кожній парі атрибут:значення
-            foreach ($attributePairs as $pair) {
-                // Розділіть пару на атрибут та значення
-                list($attribute, $value) = explode(': ', $pair);
-
-                // Додайте атрибут та значення до відповідних масивів
-                $attributes[] = $attribute;
-                $values[] = $value;
-            }
-        } else {
-            // Якщо атрибути відсутні, залиште масиви порожніми
-            $attributes = [];
-            $values = [];
-        }
 
         // Шукаємо категорію за назвою
         $category = Category::firstOrCreate(['name' => $row[7]]);
 
-        // Створюємо продукт
+        $category = Category::firstOrCreate(['name' => $row[7]]);
+        // Створюємо продукт і зберігаємо його
         $product = new Product([
-            'attributes' => implode(', ', $attributes), // Зберігаємо атрибути у вигляді рядка
-            'values' => implode(', ', $values),  // Зберігаємо ID значень атрибутів у вигляді рядка
             'name' => $row[0],
             'description' => $row[9],
             'price' => $row[2],
@@ -68,7 +43,33 @@ class ProductsImport implements ToModel, WithStartRow
             'category_id' => $category->id,
             'seller_id' => $row[10], // Замініть це на правильне поле продавця
         ]);
+        $product->save();
 
+        // Перевірка наявності атрибутів у колонці "attribute"
+        if (!empty($row[4])) {
+            // Розділіть колонку "attribute" на окремі атрибути та їх значення
+            $attributeColumn = $row[4]; // Припустимо, що це колонка "attribute" у вашому файлі Excel
+            $attributePairs = explode(' | ', $attributeColumn);
+
+            foreach ($attributePairs as $pair) {
+                // Розділіть пару на атрибут та значення
+                list($attributeName, $attributeValue) = explode(': ', $pair);
+
+                // Створюємо атрибут, якщо його ще немає
+                $attribute = Attribute::firstOrCreate(['name' => $attributeName]);
+
+                // Створюємо властивість для цього атрибута і зберігаємо його
+                $property = new Property(['values' => $attributeValue]);
+
+                // Зберігаємо зв'язок між властивістю і атрибутом
+                $property->attribute()->associate($attribute);
+
+                $property->save();
+
+                // Додаємо зв'язок між продуктом і властивістю через проміжну таблицю product_property
+                $product->properties()->attach($property->id);
+            }
+        }
         $product->save();
 
         foreach ($photoUrls as $photoUrl) {

@@ -29,7 +29,9 @@
                         <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> Імпорт</button>
 
                     </form>
-
+                    <a href="{{ route('product.index', ['reset_sort' => true]) }}" class="btn btn-success">
+                       Прибрати сортування
+                    </a>
                 </div>
 
 
@@ -37,7 +39,6 @@
 
             </div>
             <div class="card-body">
-
                 <table class="table table-hover">
                     <thead>
                         <tr>
@@ -51,7 +52,8 @@
                                 Бренд
                             </th>
                             <th style="width: 10%">
-                                Назва
+                                <a
+                                    href="{{ route('product.index', ['sort_field' => 'name', 'sort_direction' => 'asc']) }}">Назва</a>
                             </th>
                             <th>
                                 Фото
@@ -60,23 +62,25 @@
                                 Атрибут
                             </th>
                             <th>
-                                Ціна
+                                <a
+                                    href="{{ route('product.index', ['sort_field' => 'price', 'sort_direction' => 'asc']) }}">Ціна</a>
                             </th>
                             <th>
-                                Стара ціна
+                                <a
+                                    href="{{ route('product.index', ['sort_field' => 'old_price', 'sort_direction' => 'asc']) }}">Стара
+                                    ціна</a>
                             </th>
-
                             <th>
                                 Продавець
                             </th>
-
                             <th>
-                                Артикул
+                                <a
+                                    href="{{ route('product.index', ['sort_field' => 'article', 'sort_direction' => 'asc']) }}">Артикул</a>
                             </th>
-
                         </tr>
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
+
                         @foreach ($products as $productes)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>

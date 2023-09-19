@@ -19,13 +19,55 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $attributs = Attribute::pluck('name', 'id');
+        $nameFilter = $request->input('name');
+        $minPriceFilter = $request->input('min_price');
+        $maxPriceFilter = $request->input('max_price');
+        $categoryFilter = $request->input('categories');
+        $withPhotoFilter = $request->input('with_photo');
+        $sortField = $request->input('sort_field', 'name'); // За замовчуванням сортувати за назвою
+        $sortDirection = $request->input('sort_direction', 'asc'); // За замовчуванням сортувати за зростанням
 
-        $products = Product::paginate(10);
-        return view('admin.product.index', compact('products', 'attributs'));
+        $products = Product::query();
+
+        if ($nameFilter) {
+            $products->where('name', 'like', '%' . $nameFilter . '%');
+        }
+
+        if ($minPriceFilter && $maxPriceFilter) {
+            $products->whereBetween('price', [$minPriceFilter, $maxPriceFilter]);
+        }
+
+        if ($categoryFilter) {
+            $products->whereHas('categories', function ($query) use ($categoryFilter) {
+                $query->whereIn('id', $categoryFilter);
+            });
+        }
+
+
+        if ($withPhotoFilter) {
+            $products->whereHas('media', function ($query) {
+                $query->where('collection_name', 'product_photo');
+            });
+        }
+
+
+        // Додати сортування
+        $products->orderBy($sortField, $sortDirection);
+        if ($request->has('reset_sort')) {
+            // Якщо присутній параметр reset_sort, скиньте сортування
+            $products = $products->latest()->paginate(10);
+        } else {
+            // В іншому випадку продовжуйте з поточним сортуванням
+            $products = $products->paginate(10);
+        }
+
+        $attributs = Attribute::pluck('name', 'id');
+        $categories = Category::all()->pluck('name', 'id')->toArray();
+        return view('admin.product.index', compact('products', 'attributs', 'categories', 'categoryFilter', 'sortField', 'sortDirection'));
     }
+
 
     public function create()
     {
@@ -125,11 +167,11 @@ class ProductController extends Controller
                 // Завантажуємо файл і викликаємо імпорт
                 Excel::import(new ProductsImport, $file);
 
-                return redirect()->back()->with('success', 'All good!');
+                return redirect()->back()->with('success', 'Все добре!');
             }
         }
 
         // Якщо файл не було завантажено або формат невірний, повертаємо назад з повідомленням про помилку
-        return redirect()->back()->with('error', 'Invalid file or no file uploaded.');
+        return redirect()->back()->with('error', 'Файл не завантажено');
     }
 }

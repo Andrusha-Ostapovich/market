@@ -16,8 +16,8 @@
         @yield('body')
     </div>
     <div class="card-footer text-right">
-        {!! Lte3::btnReset('Reset') !!}
-        {!! Lte3::btnSubmit('Submit') !!}
+        {!! Lte3::btnReset('Відмінити') !!}
+        {!! Lte3::btnSubmit('Фільтрувати') !!}
     </div>
 </div>
 {!! Lte3::formClose() !!}
