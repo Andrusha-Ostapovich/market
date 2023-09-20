@@ -37,7 +37,8 @@ class MainController extends Controller
         $clientCount = Cache::remember('client_count', 300, function () {
             return User::whereIn('role', ['user', 'seller'])->count();
         });
-$orders =Order::all();
-        return view('home', compact('orders','productCount', 'orderCount', 'subscriberCount', 'clientCount'));
+        $orders = Order::all();
+        return view('home', compact('orders', 'productCount', 'orderCount', 'subscriberCount', 'clientCount'));
     }
+
 }

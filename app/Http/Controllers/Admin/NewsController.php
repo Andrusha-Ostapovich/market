@@ -46,10 +46,9 @@ class NewsController extends Controller
         return view('admin.news.edit', compact('news'));
     }
 
-    public function edit($id)
+    public function edit()
     {
-        $news = News::findOrFail($id);
-        return view('admin.news.edit', compact('news'));
+
     }
     public function update(NewsRequest $request, $id)
     {

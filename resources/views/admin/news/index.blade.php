@@ -10,8 +10,7 @@
 <!-- Main content -->
 <section class="content">
 
-    <!-- FILTER -->
-    @include('admin.news.inc.filter')
+
 
     <!-- Default box -->
     <div class="card">

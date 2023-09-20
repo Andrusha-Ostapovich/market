@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('static_pages', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->text('content');
+            $table->string('slug');
+            $table->string('template');
             $table->timestamps();
         });
     }

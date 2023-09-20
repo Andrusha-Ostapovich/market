@@ -9,9 +9,11 @@ use App\Http\Controllers\admin\SubscriberController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\MainController;
+use App\Http\Controllers\admin\StaticPageController;
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/',[MainController::class, 'index']);
+    Route::resource('static-pages', StaticPageController::class);
     Route::get('/export', [ProductController::class, 'export'])->name('product.export');
     Route::post('/import', [ProductController::class, 'import'])->name('product.import');
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);

@@ -13,6 +13,7 @@ use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ProductCategory;
+use App\Models\StaticPage;
 
 class DummySeeder extends Seeder
 {
@@ -21,6 +22,8 @@ class DummySeeder extends Seeder
      */
     public function run(): void
     {
+        // StaticPage::factory(10)->create();
+        // Order::factory(10)->create();
         // OrderItem::factory(10)->create();
         // News::factory(10)->create();
         // Category::factory(10)->create();
@@ -41,5 +44,5 @@ class DummySeeder extends Seeder
         //   ;
 
 
-}
+    }
 }
