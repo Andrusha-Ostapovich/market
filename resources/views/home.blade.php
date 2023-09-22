@@ -75,6 +75,64 @@
                 <!-- Left col -->
                 <section class="col-lg-7 connectedSortable">
                     <!-- Custom tabs (Charts with tabs)-->
+
+                    <!-- /.card -->
+                    <div class="row">
+                        <!-- Left col -->
+                        <section class="col-lg-12 connectedSortable">
+                            <!-- Custom tabs (Charts with tabs)-->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-shopping-basket mr-1"></i>
+                                        Останні замовлення
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 1%">
+                                                    №
+                                                </th>
+                                                <th style="width: 20%">
+                                                    Покупець
+                                                </th>
+                                                <th style="width: 20%">
+                                                    Сума
+                                                </th>
+                                                <th style="width: 20%">
+                                                    Статус
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
+                                            @foreach ($orders as $order)
+                                                <tr id="{{ $loop->index }}" class="va-center">
+                                                    <td style="width: 1%">
+                                                        {{ $order->id }}
+                                                    </td>
+                                                    <td style="width: 20%">
+                                                        {{ $order->user->name }}
+                                                    </td>
+                                                    <td style="width: 20%">
+                                                        {{ $order->total_amount }}
+                                                    </td>
+                                                    <td style="width: 20%">
+                                                        {{ $order->status }}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                        </section>
+                    </div>
+                </section>
+
+
+                <section class="col-lg-5 connectedSortable">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
@@ -129,163 +187,6 @@
                             </div>
                         </div><!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-12 connectedSortable">
-                            <!-- Custom tabs (Charts with tabs)-->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-                                        <i class="fas fa-shopping-basket mr-1"></i>
-                                        Останні замовлення
-                                    </h3>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th style="width: 1%">
-                                                    №
-                                                </th>
-                                                <th style="width: 20%">
-                                                    Покупець
-                                                </th>
-                                                <th style="width: 20%">
-                                                    Сума
-                                                </th>
-                                                <th style="width: 20%">
-                                                    Статус
-                                                </th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                                            @foreach ($orders as $order)
-                                                <tr id="{{ $loop->index }}" class="va-center">
-                                                    <th style="width: 1%">
-                                                        {{ $order->id }}
-                                                    </th>
-                                                    <th style="width: 20%">
-                                                        {{ $order->user->name }}
-                                                    </th>
-                                                    <th style="width: 20%">
-                                                        {{ $order->total_amount }}
-                                                    </th>
-                                                    <th style="width: 20%">
-                                                        {{ $order->status }}
-                                                    </th>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                        </section>
-                    </div>
-                </section>
-
-                <!-- /.Left col -->
-                <!-- right col (We are only adding the ID to make the widgets sortable)-->
-                <section class="col-lg-5 connectedSortable">
-
-                    <!-- Map card -->
-                    <div class="card bg-gradient-primary">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-map-marker-alt mr-1"></i>
-                                Visitors
-                            </h3>
-                            <!-- card tools -->
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-primary btn-sm daterange" title="Date range">
-                                    <i class="far fa-calendar-alt"></i>
-                                </button>
-                                <button type="button" class="btn btn-primary btn-sm" data-card-widget="collapse"
-                                    title="Collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <div class="card-body">
-                            <div id="world-map" style="height: 250px; width: 100%;"></div>
-                        </div>
-                        <!-- /.card-body-->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-1"></div>
-                                    <div class="text-white">Visitors</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-2"></div>
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <div id="sparkline-3"></div>
-                                    <div class="text-white">Sales</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                    </div>
-                    <!-- /.card -->
-
-                    <!-- solid sales graph -->
-                    <div class="card bg-gradient-info">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">
-                                <i class="fas fa-th mr-1"></i>
-                                Sales Graph
-                            </h3>
-
-                            <div class="card-tools">
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn bg-info btn-sm" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <canvas class="chart" id="line-chart"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer bg-transparent">
-                            <div class="row">
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="20"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Mail-Orders</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="50"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">Online</div>
-                                </div>
-                                <!-- ./col -->
-                                <div class="col-4 text-center">
-                                    <input type="text" class="knob" data-readonly="true" value="30"
-                                        data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                                    <div class="text-white">In-Store</div>
-                                </div>
-                                <!-- ./col -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.card-footer -->
-                    </div>
-                    <!-- /.card -->
-
 
                 </section>
                 <!-- right col -->
@@ -300,8 +201,7 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="/vendor/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <link rel="stylesheet" href="/vendor/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="/vendor/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->

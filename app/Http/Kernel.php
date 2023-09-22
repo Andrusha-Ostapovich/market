@@ -31,7 +31,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         // ...
-        'admin' => \App\Http\Middleware\CheckAdminRole::class,
+        'checkRole' => \App\Http\Middleware\CheckRole::class,
     ];
     protected $middlewareGroups = [
 

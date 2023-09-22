@@ -10,7 +10,7 @@ use Kalnoy\Nestedset\NodeTrait as NestedsetNodeTrait;
 
 class Category extends Model
 {
-    use HasFactory, SlugTrait, NestedsetNodeTrait, SlugTrait;
+    use HasFactory, SlugTrait, NestedsetNodeTrait;
 
     protected $guarded = ['id'];
 
@@ -22,4 +22,5 @@ class Category extends Model
     {
        return $this->hasMany(Product::class);
     }
+
 }

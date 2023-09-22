@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('static_pages', function (Blueprint $table) {
+        Schema::create('page', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('content');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('static_pages');
+        Schema::dropIfExists('page');
     }
 };

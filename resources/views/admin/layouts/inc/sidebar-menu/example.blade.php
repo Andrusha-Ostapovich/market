@@ -56,9 +56,15 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/admin/static-pages" class="nav-link">
+            <a href="/admin/page" class="nav-link">
                 <i class="nav-icon fas fa-clipboard"></i>
                 <p>Статичні сторінки</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/admin/log" class="nav-link">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>Логи</p>
             </a>
         </li>
 

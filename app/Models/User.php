@@ -14,10 +14,10 @@ use App\Models\Traits\HasStaticLists;
 use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Support\Facades\Cache;
-
+use Spatie\Permission\Traits\HasRoles;
 class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasStaticLists;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasStaticLists, HasRoles;
 
     const ROLE_ADMIN = 'admin';
     const ROLE_USER = 'user';
