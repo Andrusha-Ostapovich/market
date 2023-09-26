@@ -9,7 +9,7 @@
 
       <!-- Sidebar -->
       <div class="sidebar">
-          @auth 
+          @auth
           @php
           $user = auth()->user();
           @endphp
@@ -21,25 +21,13 @@
                   @else
                   <p>Аватар не був доданий</p>
                   @endif
-              
+
               <div class="info">
                   <a href="/admin/profile" class="d-block"> {{ Lte3::user('name') }} </a>
               </div>
           </div>
           @endauth
-          @if(config('lte3.view.sidebar.search'))
-          <!-- SidebarSearch Form -->
-          <div class="form-inline">
-              <div class="input-group" data-widget="sidebar-search">
-                  <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-                  <div class="input-group-append">
-                      <button class="btn btn-sidebar">
-                          <i class="fas fa-search fa-fw"></i>
-                      </button>
-                  </div>
-              </div>
-          </div>
-          @endif
+
 
           @include('admin.layouts.inc.sidebar-menu.example')
 

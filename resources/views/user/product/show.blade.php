@@ -21,6 +21,7 @@
                         <hr>
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
+                                <p class="card-text"><strong>Оцінка:</strong> {{ isset($currentProduct->review->rating) ??  '' }}</p>
                                 <p class="card-text"><strong>Бренд:</strong> {{ $currentProduct->brand }}</p>
                                 <p class="card-text"><strong>Продавець:</strong> {{ $currentProduct->seller->store_name }}
                                 </p>

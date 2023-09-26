@@ -62,6 +62,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="/admin/review" class="nav-link">
+                <i class="nav-icon fas fa-star"></i>
+                <p>Відгуки</p>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="/admin/log" class="nav-link">
                 <i class="nav-icon fas fa-tasks"></i>
                 <p>Логи</p>

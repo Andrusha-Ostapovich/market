@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\SubscriberController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\PageController;
-
+use App\Http\Controllers\Admin\ReviewController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as'=>'admin.'], function () {
     Route::get('/', [MainController::class, 'index']);
@@ -29,4 +29,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as'=>'adm
     Route::resource('product', ProductController::class);
     Route::resource('attribut', AttributController::class);
     Route::resource('subscriber', SubscriberController::class);
+    Route::resource('review', ReviewController::class);
 });

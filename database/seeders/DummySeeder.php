@@ -13,6 +13,7 @@ use Database\Factories\OrderItemFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\ProductCategory;
+use App\Models\Review;
 use App\Models\StaticPage;
 
 class DummySeeder extends Seeder
@@ -22,6 +23,7 @@ class DummySeeder extends Seeder
      */
     public function run(): void
     {
+        // Review::factory(10)->create();
         // StaticPage::factory(10)->create();
         // Order::factory(10)->create();
         // OrderItem::factory(10)->create();

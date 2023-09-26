@@ -15,6 +15,7 @@ use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia, HasStaticLists, HasRoles;
@@ -62,6 +63,10 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Seller::class);
     }
 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
     public function orders()
     {
         return $this->hasMany(Order::class, 'user_id', 'id');

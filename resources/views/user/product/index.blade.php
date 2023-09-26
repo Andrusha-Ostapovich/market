@@ -13,26 +13,18 @@
             </div>
         </div>
     </div>
-
     <div class="untree_co-section product-section before-footer-section">
         <div class="container">
-            <div class="row">
-                {{ Breadcrumbs::render('category.products', $category) }}
-                @foreach ($subcategories ?? [] as $subcategory)
-                    <div class="col-12 col-md-4 col-lg-3 mb-5">
-                        <a class="product-item" href="{{ route('category.products', ['slug' => $subcategory->slug]) }}">
-                            <img src="https://www.meme-arsenal.com/memes/b909e44245f9f63523dadbede21661e4.jpg"
-                                width="300px">
-                            <h3 class="product-title">{{ $subcategory->name }}</h3>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+            {{ Breadcrumbs::render('category.products', $category) }}
+            <br>
+            @foreach ($subcategories ?? [] as $subcategory)
+                <div class="col-12 col-md-4 col-lg-3 mb-5">
+                    <a class="product-item" href="{{ route('category.products', ['slug' => $subcategory->slug]) }}">
 
-    <div class="untree_co-section product-section before-footer-section">
-        <div class="container">
+                        <h3 class="product-title">{{ $subcategory->name }}</h3>
+                    </a>
+                </div>
+            @endforeach
             <div class="row">
                 @foreach ($products ?? [] as $product)
                     <div class="col-12 col-md-4 col-lg-3 mb-5">

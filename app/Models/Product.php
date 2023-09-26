@@ -49,7 +49,6 @@ class Product extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-
     public function seller()
     {
         return $this->belongsTo(Seller::class);
@@ -61,5 +60,9 @@ class Product extends Model implements HasMedia
     public function orders()
     {
         return $this->hasMany(Order::class, 'product_id', 'id');
+    }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
 }
