@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
 'page_title' => 'Новини',
-'url_create' => route('news.create')
+'url_create' => route('admin.news.create')
 ])
 
 <!-- Main content -->
@@ -69,8 +69,8 @@
                         </td>
 
                         <td class="text-right">
-                            <a href="{{ route('news.update', $new->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="{{ route('news.destroy', $new->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('admin.news.update', $new->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('admin.news.destroy', $new->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach

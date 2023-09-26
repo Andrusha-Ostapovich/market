@@ -8,7 +8,7 @@ use App\Models\Attribute;
 
 use App\Models\Category;
 
-class AttributsController extends Controller
+class AttributController extends Controller
 {
     public function index()
     {
@@ -19,6 +19,7 @@ class AttributsController extends Controller
 
     public function create()
     {
+
         $categories = Category::with('categories')->pluck('name', 'id')->toArray();
         // dd($categories);
         return view('admin.attribut.create', compact('categories'));
@@ -34,7 +35,7 @@ class AttributsController extends Controller
 
         $attributs->categories()->attach($categories);
 
-        return redirect()->route('attribut.index');
+        return redirect()->route('admin.attribut.index');
     }
     public function show($id)
     {
@@ -60,13 +61,13 @@ class AttributsController extends Controller
         $attributs->categories()->attach($categories);
 
 
-        return redirect()->route('attribut.index');
+        return redirect()->route('admin.attribut.index');
     }
 
     public function destroy($id)
     {
         $attributs = Attribute::findOrFail($id);
         $attributs->delete();
-        return redirect()->route('attribut.index');
+        return redirect()->route('admin.attribut.index');
     }
 }

@@ -5,6 +5,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                {{ Breadcrumbs::render('news.show', $news) }}
                 <div class="card">
                     <img src="{{ $news->getFirstMediaUrl('photo') }}" class="card-img-top" alt="{{ $news->name }}">
                     <div class="card-body">

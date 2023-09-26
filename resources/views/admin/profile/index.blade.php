@@ -25,7 +25,7 @@
                 <h4>Емайл: {{ $user->email }}</h4>
                 <h4>Пароль: {{ $user->password }}</h4>
                 <h4>Роль: {{ $user->role }}</h4>
-                <a class="btn btn-danger" href="{{ route('profile.edit') }}">Редагувати</a>
+                <a class="btn btn-danger" href="{{ route('admin.profile.edit') }}">Редагувати</a>
             </div>
 
         </div>

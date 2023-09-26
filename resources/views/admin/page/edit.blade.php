@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Редагувати сторінку',
-        'url_back' => route('page.index'),
+        'url_back' => route('admin.page.index'),
     ])
 
     <section class="content">
@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 {!! Lte3::formOpen([
-                    'action' => route('page.update',$pages->id),
+                    'action' => route('admin.page.update',$pages->id),
                     'model' =>$pages,
                     'method' => 'PUT',
                 ]) !!}

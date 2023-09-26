@@ -44,7 +44,7 @@ class SubscriberController extends Controller
 
     public function edit()
     {
-        //
+
     }
     public function update()
     {
@@ -54,6 +54,6 @@ class SubscriberController extends Controller
     {
         $subscriber = Subscriber::findOrFail($id);
         $subscriber->delete();
-        return redirect()->route('subscriber.index');
+        return redirect()->route('admin.subscriber.index');
     }
 }

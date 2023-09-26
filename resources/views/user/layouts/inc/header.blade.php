@@ -28,9 +28,10 @@
 
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/cart">
-                        <i class="fas fas fa-search fa-lg text-white"></i>
-                    </a>
+                    <form action="{{ route('products.search') }}" method="GET">
+                        <input type="text" name="query" placeholder="Пошук товарів">
+                        <button type="submit">Пошук</button>
+                    </form>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/cart">

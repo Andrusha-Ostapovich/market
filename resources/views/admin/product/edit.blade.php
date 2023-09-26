@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
 'page_title' => 'Товари',
-'url_back' => route('product.index'),
+'url_back' => route('admin.product.index'),
 ])
 
 <section class="content">
@@ -22,7 +22,7 @@
         </div>
         @endif
         <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('product.update', $product), 'model' => $product, 'method' => 'PUT']) !!}
+            {!! Lte3::formOpen(['action' => route('admin.product.update', $product), 'model' => $product, 'method' => 'PUT']) !!}
             @include('admin.product.inc.form', ['product' => $product])
             {!! Lte3::formClose() !!}
         </div>

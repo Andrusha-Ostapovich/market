@@ -17,7 +17,7 @@
         <div class="card-header">
 
             <div class="card-body">
-                {!! Lte3::formOpen(['action' => route('profile.update', $user->id), 'model' => $user, 'method' => 'PUT']) !!}
+                {!! Lte3::formOpen(['action' => route('admin.profile.update', $user->id), 'model' => $user, 'method' => 'PUT']) !!}
                 {!! Lte3::text('name') !!}
 
                 {!! Lte3::email('email') !!}

@@ -32,7 +32,7 @@ class PageController extends Controller
             )
         );
 
-        return redirect()->route('page.index');
+        return redirect()->route('admin.page.index');
     }
 
     public function show()
@@ -62,13 +62,13 @@ class PageController extends Controller
         // Зберігаємо зміни в базі даних
         $pages->save();
 
-        return redirect()->route('page.index');
+        return redirect()->route('admin.page.index');
     }
 
     public function destroy($id)
     {
         $pages = Page::findOrFail($id);
         $pages->delete();
-        return redirect()->route('page.index');
+        return redirect()->route('admin.page.index');
     }
 }

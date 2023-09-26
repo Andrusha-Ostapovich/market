@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
     'page_title' => 'Редагувати Атрибут',
-    'url_back' => route('attribut.index'),
+    'url_back' => route('admin.attribut.index'),
 ])
 
     <section class="content">
@@ -13,7 +13,7 @@
                 <h3 class="card-title">Редагувати {{  $attributs->name }}</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('attribut.update', $attributs->id), 'model' => null, 'method' => 'PUT']) !!}
+            {!! Lte3::formOpen(['action' => route('admin.attribut.update', $attributs->id), 'model' => null, 'method' => 'PUT']) !!}
     @include('admin.attribut.inc.form',compact('categories','attributs'))
             {!! Lte3::formClose() !!}
             </div>

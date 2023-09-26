@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
     'page_title' => 'Створити розсилку',
-    'url_back' => route('subscriber.index'),
+    'url_back' => route('admin.subscriber.index'),
 ])
 <section class="content">
         <div class="card">
@@ -12,7 +12,7 @@
                 <h3 class="card-title">Створити</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('subscriber.store'), 'model' => null, 'method' => 'POST']) !!}
+            {!! Lte3::formOpen(['action' => route('admin.subscriber.store'), 'model' => null, 'method' => 'POST']) !!}
     @include('admin.subscriber.inc.form')
             {!! Lte3::formClose() !!}
             </div>

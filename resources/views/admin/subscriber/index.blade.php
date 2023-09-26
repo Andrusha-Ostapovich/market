@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Розсилка',
-        'url_create' => route('subscriber.create'),
+        'url_create' => route('admin.subscriber.create'),
     ])
 
     <!-- Main content -->
@@ -44,7 +44,7 @@
 
                                 <td class="text-right">
 
-                                    <a href="{{ route('subscriber.destroy', $subscribers->id) }}"
+                                    <a href="{{ route('admin.subscriber.destroy', $subscribers->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>

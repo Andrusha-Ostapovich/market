@@ -4,6 +4,7 @@
     <br>
     <div class="container">
         <div class="row">
+            {{ Breadcrumbs::render('news.index') }}
             @foreach ($news as $new)
                 <div class="col-md-4">
                     <div class="card mb-4">
@@ -11,7 +12,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $new->name }}</h5>
                             <p class="card-text">{{ Str::limit($new->content, 100) }}</p>
-                            <a href="{{ route('show.news', $new->slug) }}" class="stretched-link"></a>
+                            <a href="{{ route('news.show', $new->slug) }}" class="stretched-link"></a>
                             <p class="card-text"><small class="text-muted">{{ $new->created_at->format('Y-m-d') }}</small>
                             </p>
                         </div>

@@ -2,49 +2,38 @@
 
 namespace App\Services;
 
+
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+
 class CurrencyConversionService
 {
+    // Отримати курси валют з API та кешувати їх на годину
     public function getExchangeRates()
     {
-        $url = 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11';
+        return Cache::remember('exchange-rates', now()->addHour(), function () {
+            $response = Http::get('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11');
 
-        // Отримати JSON-відповідь з API ПриватБанку
-        $response = file_get_contents($url);
+            if (!$response->successful()) {
+                throw new \RuntimeException('Failed to fetch exchange rates from PrivatBank API.');
+            }
 
-        if (!$response) {
-            throw new \RuntimeException('Failed to fetch exchange rates from PrivatBank API.');
-        }
-
-        // Розпарсити JSON-відповідь
-        $rates = json_decode($response, true);
-
-        if (!$rates || empty($rates)) {
-            throw new \RuntimeException('Failed to parse exchange rates data.');
-        }
-
-        // Повернути курси обміну валют у вигляді асоціативного масиву
-        $exchangeRates = [];
-
-        foreach ($rates as $rate) {
-            $exchangeRates[$rate['ccy']] = [
-                'buy' => $rate['buy'],
-                'sale' => $rate['sale'],
-            ];
-        }
-
-        return $exchangeRates;
+            return $response->json();
+        });
     }
 
+    // Конвертувати ціну в обрану валюту
     public function convertToCurrency($price, $targetCurrency)
     {
         $exchangeRates = $this->getExchangeRates();
 
-        if (!isset($exchangeRates[$targetCurrency])) {
-            throw new \InvalidArgumentException("Invalid target currency: $targetCurrency");
+        foreach ($exchangeRates as $rate) {
+            if ($rate['ccy'] === $targetCurrency) {
+                $exchangeRate = $rate['buy'];
+                return number_format($price / $exchangeRate, 2);
+            }
         }
 
-        $exchangeRate = $exchangeRates[$targetCurrency]['buy'];
-
-        return number_format($price / $exchangeRate, 2); // Округлення до двох знаків після коми
+        throw new \InvalidArgumentException("Invalid target currency: $targetCurrency");
     }
 }

@@ -71,7 +71,7 @@ class UserController extends Controller
         // }
 
 
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     public function show($id)
@@ -99,7 +99,7 @@ class UserController extends Controller
         //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
         // }
 
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
         // Перенаправте користувача на список користувачів
     }
 
@@ -131,7 +131,7 @@ class UserController extends Controller
         ]);
 
         $user->mediaManage($request);
-        return redirect()->route('admin.profile');
+        return redirect()->route('profile');
     }
     public function testPolicy(User $user)
     {

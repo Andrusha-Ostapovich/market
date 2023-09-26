@@ -100,7 +100,7 @@ class ProductController extends Controller
             'value' => $value, // Використовуємо значення для атрибуту
         ]);
 
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     public function show($id)
@@ -142,14 +142,14 @@ class ProductController extends Controller
 
         $product->mediaManage($request);
 
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
 
     public function destroy($id)
     {
         $product = product::findOrFail($id);
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('admin.product.index');
     }
     public function export()
     {

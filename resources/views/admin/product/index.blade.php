@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Товари',
-        'url_create' => route('product.create'),
+        'url_create' => route('admin.product.create'),
     ])
 
     <!-- Main content -->
@@ -19,17 +19,17 @@
 
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="{{ route('product.export') }}" class="btn btn-success">
+                    <a href="{{ route('admin.product.export') }}" class="btn btn-success">
                         <i class="fas fa-file-excel"></i> Експорт
                     </a>
-                    <form action="{{ route('product.import') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.product.import') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <input type="file" name="import_file" class="d-none" id="import_file">
                         <label for="import_file" class="btn btn-warning">Виберіть файл</label>
                         <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> Імпорт</button>
 
                     </form>
-                    <a href="{{ route('product.index', ['reset_sort' => true]) }}" class="btn btn-success">
+                    <a href="{{ route('admin.product.index', ['reset_sort' => true]) }}" class="btn btn-success">
                        Прибрати сортування
                     </a>
                 </div>
@@ -53,7 +53,7 @@
                             </th>
                             <th style="width: 10%">
                                 <a
-                                    href="{{ route('product.index', ['sort_field' => 'name', 'sort_direction' => 'asc']) }}">Назва</a>
+                                    href="{{ route('admin.product.index', ['sort_field' => 'name', 'sort_direction' => 'asc']) }}">Назва</a>
                             </th>
                             <th>
                                 Фото
@@ -63,11 +63,11 @@
                             </th>
                             <th>
                                 <a
-                                    href="{{ route('product.index', ['sort_field' => 'price', 'sort_direction' => 'asc']) }}">Ціна</a>
+                                    href="{{ route('admin.product.index', ['sort_field' => 'price', 'sort_direction' => 'asc']) }}">Ціна</a>
                             </th>
                             <th>
                                 <a
-                                    href="{{ route('product.index', ['sort_field' => 'old_price', 'sort_direction' => 'asc']) }}">Стара
+                                    href="{{ route('admin.product.index', ['sort_field' => 'old_price', 'sort_direction' => 'asc']) }}">Стара
                                     ціна</a>
                             </th>
                             <th>
@@ -75,7 +75,7 @@
                             </th>
                             <th>
                                 <a
-                                    href="{{ route('product.index', ['sort_field' => 'article', 'sort_direction' => 'asc']) }}">Артикул</a>
+                                    href="{{ route('admin.product.index', ['sort_field' => 'article', 'sort_direction' => 'asc']) }}">Артикул</a>
                             </th>
                         </tr>
                     </thead>
@@ -126,9 +126,9 @@
 
 
                                 <td class="text-right">
-                                    <a href="{{ route('product.update', $productes->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ route('admin.product.update', $productes->id) }}" class="btn btn-info btn-sm"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('product.destroy', $productes->id) }}"
+                                    <a href="{{ route('admin.product.destroy', $productes->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>

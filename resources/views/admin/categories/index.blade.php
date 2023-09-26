@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Категорії',
-        'url_create' => route('categories.create'),
+        'url_create' => route('admin.categories.create'),
     ])
 
 
@@ -46,9 +46,9 @@
                                 </td>
 
                                 <td class="text-right">
-                                    <a href="{{ route('categories.update', $category->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ route('admin.categories.update', $category->id) }}" class="btn btn-info btn-sm"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('categories.destroy', $category->id) }}"
+                                    <a href="{{ route('admin.categories.destroy', $category->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -67,10 +67,10 @@
             'label' => 'Категорії',
             'has_nested' => true,
             'routes' => [
-                'edit' => 'categories.show',
-                'create' => 'categories.create',
-                'delete' => 'categories.destroy',
-                'order' => 'categories.order',
+                'edit' => 'admin.categories.show',
+                'create' => 'admin.categories.create',
+                'delete' => 'admin.categories.destroy',
+                'order' => 'admin.categories.order',
                 'params' => [],
             ],
         ]) !!}

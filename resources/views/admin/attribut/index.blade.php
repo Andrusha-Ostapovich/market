@@ -3,7 +3,7 @@
 @section('content')
     @include('admin.parts.content-header', [
         'page_title' => 'Атрибути',
-        'url_create' => route('attribut.create'),
+        'url_create' => route('admin.attribut.create'),
     ])
 
     <!-- Main content -->
@@ -57,9 +57,9 @@
 
 
                                 <td class="text-right">
-                                    <a href="{{ route('attribut.update', $attribut->id) }}" class="btn btn-info btn-sm"><i
+                                    <a href="{{ route('admin.attribut.update', $attribut->id) }}" class="btn btn-info btn-sm"><i
                                             class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('attribut.destroy', $attribut->id) }}"
+                                    <a href="{{ route('admin.attribut.destroy', $attribut->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>

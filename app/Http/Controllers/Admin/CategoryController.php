@@ -17,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::paginate(20);
         return view('admin.categories.index', ['categories' => $categories]);
     }
 
@@ -32,7 +32,7 @@ class CategoryController extends Controller
             'name' => $request->input('name'),
             'slug' => $request->input('slug'),
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     public function show($id)
@@ -54,7 +54,7 @@ class CategoryController extends Controller
         ]);
 
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
         // Перенаправте користувача на список користувачів
     }
 
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     {
         $categories = Category::findOrFail($id);
         $categories->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
     public function order(Request $request)
     {

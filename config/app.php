@@ -162,6 +162,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Diglactic\Breadcrumbs\ServiceProvider::class,
         NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
@@ -184,6 +185,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'Example' => App\Facades\Example::class,

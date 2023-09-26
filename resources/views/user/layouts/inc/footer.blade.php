@@ -1,22 +1,32 @@
 <footer class="footer-section">
     <div class="container relative">
+        <form method="POST" action="{{ route('mailing') }}">
+            @csrf
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="subscription-form">
+                        <h3 class="d-flex align-items-center">
+                            <i class="fas fa-envelope me-3 fa-3x"></i>
+                            <span class="fs-4">Хочеш знати про оновлення першим?</span>
+                        </h3>
+                        {!! Lte3::text('name') !!}
+                        {!! Lte3::text('email') !!}
+                        <br>
+                        {!! Lte3::btnSubmit(null, null, null, ['class' => 'fa fa-paper-plane']) !!}
+                        <br><br>
 
+                        @if($message = Session::get('success'))
+                        <div class="alert alert-success alert-dismissible">
+                            <h5><i class="icon fas fa-check"></i> Excellent!</h5>
+                            {{ $message }}
+                        </div>
+                        @endif
 
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="subscription-form">
-                    <h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg"
-                                alt="Image" class="img-fluid"></span><span>Хочеш знати першим ?</span></h3>
-
-                    {!! Lte3::text('name') !!}
-                    {!! Lte3::text('email') !!}
-                    <br>
-                    {!! Lte3::btnSubmit(null, null, null, ['class' => 'fa fa-paper-plane']) !!}
-
-
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
+
 
         <div class="row g-5 mb-5">
             <div class="col-lg-4">

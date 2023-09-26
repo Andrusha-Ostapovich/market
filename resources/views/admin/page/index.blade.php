@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
 'page_title' => 'Статичні сторінки',
-'url_create' => route('page.create')
+'url_create' => route('admin.page.create')
 ])
 
 <!-- Main content -->
@@ -51,8 +51,8 @@
                             {{ $page->content }}
                         </td>
                         <td class="text-right">
-                            <a href="{{ route('page.edit', $page->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="{{ route('page.destroy', $page->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('admin.page.edit', $page->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('admin.page.destroy', $page->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach

@@ -27,6 +27,13 @@ class Product extends Model implements HasMedia
     //         $product->properties()->detach();
     //     });
     // }
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where(function ($query) use ($keyword) {
+            $query->where('name', 'like', "%$keyword%")
+                ->orWhere('description', 'like', "%$keyword%");
+        });
+    }
     public static function boot()
     {
         parent::boot();
@@ -39,8 +46,9 @@ class Product extends Model implements HasMedia
     }
     public function categories()
     {
-        return $this->belongsTo(Category::class, 'category_id', 'id', 'name');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
 
     public function seller()
     {

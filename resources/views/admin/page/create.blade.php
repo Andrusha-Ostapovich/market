@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
     'page_title' => 'Створити сторінку',
-    'url_back' => route('page.store'),
+    'url_back' => route('admin.page.store'),
 ])
 <section class="content">
         <div class="card">
@@ -12,7 +12,7 @@
                 <h3 class="card-title">Створити</h3>
             </div>
             <div class="card-body">
-            {!! Lte3::formOpen(['action' => route('page.store'), 'model' => null, 'method' => 'POST']) !!}
+            {!! Lte3::formOpen(['action' => route('admin.page.store'), 'model' => null, 'method' => 'POST']) !!}
     @include('admin.page.inc.form')
             {!! Lte3::formClose() !!}
             </div>
