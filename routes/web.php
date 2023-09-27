@@ -10,6 +10,7 @@ use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\MailingController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ProductController;
+use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\UserController;
 
 Route::get('/search', [CategoryController::class, 'search'])->name('products.search');
@@ -26,7 +27,7 @@ Route::get('/my/{id}/edit', [UserController::class, 'edit'])->name('my.edit');
 Route::put('/my/{id}/update', [UserController::class, 'update'])->name('my.update');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/mailing', [MailingController::class, 'mailing'])->name('mailing');
-
+Route::post('/{productSlug}/review/create', [ReviewController::class, 'create'])->name('review.create')->middleware('auth');
 
 Auth::routes();
 

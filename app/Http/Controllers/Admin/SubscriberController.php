@@ -13,8 +13,8 @@ class SubscriberController extends Controller
     public function index()
     {
 
-        $subscriber = Subscriber::all();
-        return view('admin.subscriber.index', compact('subscriber'));
+        $subscribers = Subscriber::paginate(20);
+        return view('admin.subscriber.index', compact('subscribers'));
     }
 
     public function create()

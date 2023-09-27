@@ -13,7 +13,7 @@ class AttributController extends Controller
     public function index()
     {
 
-        $attributs = Attribute::all();
+        $attributs = Attribute::paginate(10);
         return view('admin.attribut.index', compact('attributs'));
     }
 
@@ -21,7 +21,7 @@ class AttributController extends Controller
     {
 
         $categories = Category::with('categories')->pluck('name', 'id')->toArray();
-        // dd($categories);
+        //  dd($categories);
         return view('admin.attribut.create', compact('categories'));
     }
 

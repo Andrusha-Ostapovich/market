@@ -81,6 +81,7 @@
         </div>
 
     </div>
+    {!! Lte3::pagination($news) !!}
     <!-- /.card -->
 
 </section>

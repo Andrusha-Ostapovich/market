@@ -75,7 +75,7 @@
         </li>
 
         <li class="nav-item">
-            <a href="/admin/profile" class="nav-link">
+            <a href="/admin/setting" class="nav-link">
                 <i class="nav-icon fas fa-cog"></i>
                 <p>Налаштування</p>
             </a>

@@ -15,11 +15,11 @@
                         {!! Lte3::btnSubmit(null, null, null, ['class' => 'fa fa-paper-plane']) !!}
                         <br><br>
 
-                        @if($message = Session::get('success'))
-                        <div class="alert alert-success alert-dismissible">
-                            <h5><i class="icon fas fa-check"></i> Excellent!</h5>
-                            {{ $message }}
-                        </div>
+                        @if ($message = Session::get('success'))
+                            <div class="alert alert-success alert-dismissible">
+                                <h5><i class="icon fas fa-check"></i> Excellent!</h5>
+                                {{ $message }}
+                            </div>
                         @endif
 
                     </div>
@@ -36,10 +36,10 @@
                     Pellentesque habitant</p>
 
                 <ul class="list-unstyled custom-social">
-                    <li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-                    <li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+                    <li><a href="{{ \Variable::get('facebook') }}"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+                    <li><a href="{{ \Variable::get('twitter') }}"><span class="fa fa-brands fa-twitter"></span></a></li>
+                    <li><a href="{{ \Variable::get('instagram') }}"><span class="fa fa-brands fa-instagram"></span></a></li>
+                    <li><a href="{{ \Variable::get('linkedin') }}"><span class="fa fa-brands fa-linkedin"></span></a></li>
                 </ul>
             </div>
 
@@ -47,37 +47,14 @@
                 <div class="row links-wrap">
                     <div class="col-6 col-sm-6 col-md-3">
                         <ul class="list-unstyled">
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <li><a href="/about">Про нас</a></li>
+                            <li><a href="/catalog">Каталог</a></li>
+                            <li><a href="/news">Новини</a></li>
+                            <li><a href="/contacts">Контакти</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Support</a></li>
-                            <li><a href="#">Knowledge base</a></li>
-                            <li><a href="#">Live chat</a></li>
-                        </ul>
-                    </div>
 
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Jobs</a></li>
-                            <li><a href="#">Our team</a></li>
-                            <li><a href="#">Leadership</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col-6 col-sm-6 col-md-3">
-                        <ul class="list-unstyled">
-                            <li><a href="#">Nordic Chair</a></li>
-                            <li><a href="#">Kruzo Aero</a></li>
-                            <li><a href="#">Ergonomic Chair</a></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
 

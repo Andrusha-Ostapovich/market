@@ -79,7 +79,7 @@
 
         </div>
         <!-- /.card -->
-
+        {!! Lte3::pagination($reviews) !!}
     </section>
     <!-- /.content -->
 @endsection

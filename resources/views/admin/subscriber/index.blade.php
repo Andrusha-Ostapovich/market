@@ -32,19 +32,19 @@
                         </tr>
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                        @foreach ($subscriber as $subscribers)
+                        @foreach ($subscribers as $subscriber)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>
-                                    {{ $subscribers->id }}
+                                    {{ $subscriber->id }}
                                 </td>
                                 <td>
-                                    {{ $subscribers->email }}
+                                    {{ $subscriber->email }}
                                 </td>
 
 
                                 <td class="text-right">
 
-                                    <a href="{{ route('admin.subscriber.destroy', $subscribers->id) }}"
+                                    <a href="{{ route('admin.subscriber.destroy', $subscriber->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>
@@ -58,7 +58,7 @@
 
         </div>
         <!-- /.card -->
-
+        {!! Lte3::pagination($subscribers) !!}
     </section>
     <!-- /.content -->
 @endsection

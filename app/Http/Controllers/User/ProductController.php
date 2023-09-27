@@ -19,7 +19,9 @@ class ProductController extends Controller
             ->where('category_id', $category->id)
             ->firstOrFail();
 
-        return view('user.product.show', compact('category', 'currentProduct'));
+        $rating = $currentProduct->review->avg('rating');
+        $reviews = $currentProduct->review;
+        // dd($reviews);
+        return view('user.product.show', compact('category', 'currentProduct', 'reviews', 'rating'));
     }
-
 }
