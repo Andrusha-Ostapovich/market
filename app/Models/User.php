@@ -87,7 +87,24 @@ class User extends Authenticatable implements HasMedia
     //         dd('create', $user);
     //     });
     // }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 
+    public function favoriteProducts()
+    {
+        return $this->favorites()
+            ->where('model_type', 'product')
+            ->with('model');
+    }
+
+    public function favoriteArticles()
+    {
+        return $this->favorites()
+            ->where('model_type', 'article')
+            ->with('model');
+    }
     public static function rolesList(string $columnKey = null, string $indexKey = null): array
     {
         $status = [

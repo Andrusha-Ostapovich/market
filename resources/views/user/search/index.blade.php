@@ -22,17 +22,31 @@
                             <a class="product-item"
                                 href="{{ route('products.show', ['categorySlug' => $product->categories->slug, 'productSlug' => $product->slug, 'product' => $product->id]) }}">
                                 @if ($product->hasMedia('product_photo'))
-                                    <img src="{{ $product->getFirstMediaUrl('product_photo') }}" width="300px">
+                                    <img src="{{ $product->getFirstMediaUrl('product_photo') }}" width="260px">
                                 @else
                                     <img src="https://www.meme-arsenal.com/memes/b909e44245f9f63523dadbede21661e4.jpg"
                                         width="300px">
                                 @endif
                                 <h3 class="product-title">{{ $product->name }}</h3>
                                 <strong class="product-price">${{ number_format($product->price, 2) }}</strong>
+                                <form method="POST" action="{{ route('favorite.toggle', $product) }}">
+                                    @csrf <!-- Додайте цей токен CSRF для безпеки -->
+                                    <button type="submit" style="background: none; border: none;">
+                                        @if (\Favorite::isFavorite($product))
+                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                <i class="fas fa-heart"></i>
+                                            </span>
+                                        @else
+                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                <i class="far fa-heart"></i>
+                                        @endif
+                                    </button>
+                                </form>
                                 <span class="icon-cross">
                                     <img src="{{ asset('images/cross.svg') }}" class="img-fluid">
                                 </span>
                             </a>
+
                         </div>
                     @endforeach
                 @else

@@ -3,19 +3,19 @@
 namespace App\Actions;
 
 use Lorisleiva\Actions\Concerns\AsAction;
-use App\Models\News;
+use App\Models\Article;
 use Illuminate\Support\Arr;
 
-class NewsCreateAction
+class ArticleCreateAction
 {
     use AsAction;
 
 
-    public function handle(array $data): News
+    public function handle(array $data): Article
     {
         // Ваша логіка для створення або оновлення новини
 
-        $news = News::create(
+        $articles = Article::create(
             Arr::only($data, [
                 'name',
                 'content',
@@ -23,8 +23,8 @@ class NewsCreateAction
                 'publication_date',
             ]),
         );
-        $news['publication_date'] = now();
+        $articles['publication_date'] = now();
 
-        return $news;
+        return $articles;
     }
 }

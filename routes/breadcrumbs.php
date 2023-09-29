@@ -9,14 +9,14 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
 });
 
 // Home > Blog
-Breadcrumbs::for('news.index', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
     $trail->parent('home');
-    $trail->push('Новини', route('news.index'));
+    $trail->push('Новини', route('article.index'));
 });
 
-Breadcrumbs::for('news.show', function (BreadcrumbTrail $trail, $news) {
-    $trail->parent('news.index');
-    $trail->push($news->name, route('news.show', $news));
+Breadcrumbs::for('article.show', function (BreadcrumbTrail $trail, $articles) {
+    $trail->parent('article.index');
+    $trail->push($articles->name, route('article.show', $articles));
 });
 
 // Home > Catalog

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AttributController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -26,7 +26,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as'=>'adm
     Route::get('profile/edit', [UserController::class, 'editProfile'])->name('profile.edit');
     Route::put('profile/{id}/update', [UserController::class, 'updateProfile'])->name('profile.update');
     Route::resource('users', UserController::class);
-    Route::resource('news', NewsController::class);
+    Route::resource('article', ArticleController::class);
     Route::resource('categories', CategoryController::class);
     Route::post('/categories/order', [CategoryController::class, 'order'])->name('categories.order');
     Route::resource('product', ProductController::class);

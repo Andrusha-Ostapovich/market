@@ -29,7 +29,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/admin/news" class="nav-link">
+            <a href="/admin/article" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>Новини</p>
             </a>

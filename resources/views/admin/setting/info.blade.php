@@ -9,23 +9,19 @@
             'field_name' => 'phone',
             'placeholder_value' => 'Title',
         ]) !!}
-        @foreach ($values as $variable)
-            @if ($variable->key === 'phones')
-            @break
 
-        @elseif ($variable->key === 'email')
-            {!! Lte3::text($variable->key, $variable->value) !!}
-        @elseif ($variable->key === 'address')
-            {!! Lte3::text($variable->key, $variable->value) !!}
-        @else
-            {!! Lte3::url($variable->key, $variable->value) !!}
-        @endif
-    @endforeach
+        {!! Lte3::url('facebook', \Variable::get('facebook')) !!}
+        {!! Lte3::url('twitter', \Variable::get('twitter')) !!}
+        {!! Lte3::url('instagram', \Variable::get('instagram')) !!}
+        {!! Lte3::url('linkedin', \Variable::get('linkedin')) !!}
+        {!! Lte3::text('address', \Variable::get('address')) !!}
+        {!! Lte3::text('email', \Variable::get('email')) !!}
 
 
-    {!! Lte3::btnSubmit('Зберегти', null, null, ['add' => 'fixed']) !!}
-    <br>
-    <br>
-    {!! Lte3::formClose() !!}
-</div>
+
+        {!! Lte3::btnSubmit('Зберегти', null, null, ['add' => 'fixed']) !!}
+        <br>
+        <br>
+        {!! Lte3::formClose() !!}
+    </div>
 @endsection

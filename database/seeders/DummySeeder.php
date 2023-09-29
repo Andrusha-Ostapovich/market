@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Attribute;
-use App\Models\News;
+use App\Models\Article;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
@@ -27,7 +27,7 @@ class DummySeeder extends Seeder
         // StaticPage::factory(10)->create();
         // Order::factory(10)->create();
         // OrderItem::factory(10)->create();
-        // News::factory(10)->create();
+        // Article::factory(10)->create();
         // Category::factory(10)->create();
         // Attribute::factory(10)->create();
         //   Seller::factory(3)->create()

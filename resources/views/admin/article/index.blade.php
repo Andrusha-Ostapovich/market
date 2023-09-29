@@ -4,7 +4,7 @@
 
 @include('admin.parts.content-header', [
 'page_title' => 'Новини',
-'url_create' => route('admin.news.create')
+'url_create' => route('admin.article.create')
 ])
 
 <!-- Main content -->
@@ -45,32 +45,32 @@
                     </tr>
                 </thead>
                 <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                    @foreach($news as $new)
+                    @foreach($articles as $article)
                     <tr id="{{ $loop->index }}" class="va-center">
                         <td>
-                            {{ $new->id }}
+                            {{ $article->id }}
                         </td>
 
                         <td>
-                            {{ $new->name}}
+                            {{ $article->name}}
                         </td>
                         <td>
-                        @if($new->hasMedia('photo'))
-                            <img src="{{ $new->getFirstMediaUrl('photo') }}" width="150px">
+                        @if($article->hasMedia('photo'))
+                            <img src="{{ $article->getFirstMediaUrl('photo') }}" width="150px">
                             @else
                             <p>Фото не було додано</p>
                             @endif
                         </td>
                         <td>
-                            {{ $new->content }}
+                            {{ $article->content }}
                         </td>
                         <td>
-                            {{ $new->created_at }}
+                            {{ $article->created_at }}
                         </td>
 
                         <td class="text-right">
-                            <a href="{{ route('admin.news.update', $new->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                            <a href="{{ route('admin.news.destroy', $new->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
+                            <a href="{{ route('admin.article.update', $article->id) }}" class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
+                            <a href="{{ route('admin.article.destroy', $article->id) }}" class="btn btn-danger btn-sm js-click-submit" data-method="DELETE" data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -81,7 +81,7 @@
         </div>
 
     </div>
-    {!! Lte3::pagination($news) !!}
+    {!! Lte3::pagination($article) !!}
     <!-- /.card -->
 
 </section>

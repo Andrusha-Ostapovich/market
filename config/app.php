@@ -162,6 +162,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\FavoriteServiceProvider::class,
         Diglactic\Breadcrumbs\ServiceProvider::class,
         NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -185,6 +186,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Favorite' => \App\Facades\FavoriteFacade::class,
         'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,

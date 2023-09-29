@@ -4,11 +4,11 @@ namespace Database\Factories;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
-Use App\Models\News;
+Use App\Models\Article;
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\News>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
  */
-class NewsFactory extends Factory
+class ArticleFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -28,12 +28,12 @@ class NewsFactory extends Factory
 
     public function configure()
     {
-        return $this->afterMaking(function (news $news) {
+        return $this->afterMaking(function (Article $articles) {
             //
-        })->afterCreating(function (news $news) {
+        })->afterCreating(function (Article $article) {
 
             // Media
-            $news->addMediaFromUrl('https://picsum.photos/920/460')
+            $article->addMediaFromUrl('https://picsum.photos/920/460')
                 ->toMediaCollection('photo');
         });
     }
