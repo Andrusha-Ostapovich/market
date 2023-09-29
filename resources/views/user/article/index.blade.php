@@ -18,22 +18,24 @@
                             <p class="card-text"><small
                                     class="text-muted">{{ $article->created_at->format('Y-m-d') }}</small>
                             </p>
+                            @if (auth()->user())
+                                <form method="POST" action="{{ route('favorites.articles.toggle', $article) }}">
+                                    @csrf <!-- Додайте цей токен CSRF для безпеки -->
+                                    <button type="submit"
+                                        style="background: none; border: none; position: absolute; bottom: 0; right: 0;">
+                                        @if (\Favorite::isFavorite($article))
+                                            <span style="font-size: 2em;">
+                                                <i class="fas fa-heart text-danger"></i>
 
-                            <form method="POST" action="{{ route('favorites.articles.toggle', $article) }}">
-                                @csrf <!-- Додайте цей токен CSRF для безпеки -->
-                                <button type="submit"
-                                    style="background: none; border: none; position: absolute; bottom: 0; right: 0;">
-                                    @if (\Favorite::isFavorite($article))
-                                        <span style="font-size: 2em;">
-                                            <i class="fas fa-heart text-danger"></i>
-                                        </span>
-                                    @else
-                                        <span style="font-size: 2em;">
-                                            <i class="far fa-heart text-danger"></i>
-                                        </span>
-                                    @endif
-                                </button>
-                            </form>
+                                            </span>
+                                        @else
+                                            <span style="font-size: 2em;">
+                                                <i class="far fa-heart text-danger"></i>
+                                            </span>
+                                        @endif
+                                    </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>

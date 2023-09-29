@@ -9,4 +9,8 @@ class Cart extends Model
 {
     use HasFactory;
 
+    public function model()
+    {
+        return $this->morphTo();
+    }
 }

@@ -30,7 +30,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/mailing', [MailingController::class, 'mailing'])->name('mailing');
 Route::post('/{productSlug}/review/create', [ReviewController::class, 'create'])->name('review.create')->middleware('auth');
 
-
+Route::post('/cart/add/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');
+Route::get('/my/favorites/products', [FavoriteController::class, 'listFavorites'])->name('favorites.show');
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/my/favorites/products/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');

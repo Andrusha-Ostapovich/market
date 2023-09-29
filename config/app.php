@@ -1,7 +1,9 @@
 <?php
 
+use App\Providers\CurrencyServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard\Currency;
 
 return [
 
@@ -162,6 +164,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\CurrencyServiceProvider::class,
         App\Providers\FavoriteServiceProvider::class,
         Diglactic\Breadcrumbs\ServiceProvider::class,
         NotificationChannels\TurboSms\TurboSmsServiceProvider::class,
@@ -186,6 +189,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Currency' => \App\Facades\CurrencyFacade::class,
         'Favorite' => \App\Facades\FavoriteFacade::class,
         'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,

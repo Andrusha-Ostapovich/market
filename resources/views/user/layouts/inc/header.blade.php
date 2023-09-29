@@ -41,6 +41,7 @@
                 @if (Route::has('login'))
                     @auth
                         <li class="nav-item">
+
                             <a class="nav-link" href="/my/favorites/products">
                                 <i class="fas fa-heart fa-lg text-white"></i>
 

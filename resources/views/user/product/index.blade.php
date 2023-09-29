@@ -39,20 +39,26 @@
                                     width="300px" class="img-fluid product-thumbnail">
                             @endif
                             <h3 class="product-title">{{ $product->name }}</h3>
-                            <strong class="product-price">${{ number_format($product->price, 2) }}</strong>
-                            <form method="POST" action="{{ route('favorite.toggle', $product) }}">
-                                @csrf <!-- Додайте цей токен CSRF для безпеки -->
-                                <button type="submit" style="background: none; border: none;">
-                                    @if (\Favorite::isFavorite($product))
-                                        <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                            <i class="fas fa-heart text-warning"></i>
-                                        </span>
-                                    @else
-                                        <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                            <i class="far fa-heart text-warning"></i>
-                                    @endif
-                                </button>
-                            </form>
+
+                            <strong
+                                class="product-price">${{ \Currency::convertToCurrency($product->price, 'USD')  }}</strong>
+                            <strong class="product-price">₴{{ $product->price }}</strong>
+                            <strong class="product-price">€{{  \Currency::convertToCurrency($product->price, 'EUR') }}</strong>
+                            @if (auth()->user())
+                                <form method="POST" action="{{ route('favorite.toggle', $product) }}">
+                                    @csrf <!-- Додайте цей токен CSRF для безпеки -->
+                                    <button type="submit" style="background: none; border: none;">
+                                        @if (\Favorite::isFavorite($product))
+                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                <i class="fas fa-heart text-warning"></i>
+                                            </span>
+                                        @else
+                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                <i class="far fa-heart text-warning"></i>
+                                        @endif
+                                    </button>
+                                </form>
+                            @endif
                             <span class="icon-cross">
                                 <img src="{{ asset('images/cross.svg') }}" class="img-fluid">
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Facades;
 
 
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
-class CurrencyConversionService
+class Currency
 {
     // Отримати курси валют з API та кешувати їх на годину
     public function getExchangeRates()

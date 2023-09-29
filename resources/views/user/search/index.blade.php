@@ -29,19 +29,21 @@
                                 @endif
                                 <h3 class="product-title">{{ $product->name }}</h3>
                                 <strong class="product-price">${{ number_format($product->price, 2) }}</strong>
-                                <form method="POST" action="{{ route('favorite.toggle', $product) }}">
-                                    @csrf <!-- Додайте цей токен CSRF для безпеки -->
-                                    <button type="submit" style="background: none; border: none;">
-                                        @if (\Favorite::isFavorite($product))
-                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                                <i class="fas fa-heart"></i>
-                                            </span>
-                                        @else
-                                            <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                                <i class="far fa-heart"></i>
-                                        @endif
-                                    </button>
-                                </form>
+                                @if (auth()->user())
+                                    <form method="POST" action="{{ route('favorite.toggle', $product) }}">
+                                        @csrf <!-- Додайте цей токен CSRF для безпеки -->
+                                        <button type="submit" style="background: none; border: none;">
+                                            @if (\Favorite::isFavorite($product))
+                                                <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                    <i class="fas fa-heart"></i>
+                                                </span>
+                                            @else
+                                                <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
+                                                    <i class="far fa-heart"></i>
+                                            @endif
+                                        </button>
+                                    </form>
+                                @endif
                                 <span class="icon-cross">
                                     <img src="{{ asset('images/cross.svg') }}" class="img-fluid">
                                 </span>

@@ -69,4 +69,8 @@ class Product extends Model implements HasMedia
     {
         return $this->morphMany(Favorite::class, 'model');
     }
+    public function carts()
+    {
+        return $this->morphMany(Cart::class, 'model');
+    }
 }
