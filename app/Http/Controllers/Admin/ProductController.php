@@ -21,6 +21,16 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
+        $product = Product::with('seo')->first();
+
+        $product->seo()->updateOrCreate([], [
+            'tags' => [$request->only([
+                'title',
+                'description',
+                'keywords',
+            ])]
+        ]);
+
         $nameFilter = $request->input('name');
         $minPriceFilter = $request->input('min_price');
         $maxPriceFilter = $request->input('max_price');

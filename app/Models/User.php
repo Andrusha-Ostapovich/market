@@ -105,6 +105,11 @@ class User extends Authenticatable implements HasMedia
             ->where('model_type', 'article')
             ->with('model');
     }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
     public static function rolesList(string $columnKey = null, string $indexKey = null): array
     {
         $status = [

@@ -189,6 +189,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Cart' => \App\Facades\CartFacade::class,
         'Currency' => \App\Facades\CurrencyFacade::class,
         'Favorite' => \App\Facades\FavoriteFacade::class,
         'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,

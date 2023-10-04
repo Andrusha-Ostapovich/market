@@ -35,18 +35,25 @@
                                         <button type="submit" style="background: none; border: none;">
                                             @if (\Favorite::isFavorite($product))
                                                 <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                                    <i class="fas fa-heart"></i>
+                                                    <i class="fas fa-heart text-warning"></i>
                                                 </span>
                                             @else
                                                 <span style="font-size: 3em;" class="d-flex align-items-center flex-column">
-                                                    <i class="far fa-heart"></i>
+                                                    <i class="far fa-heart text-warning"></i>
                                             @endif
                                         </button>
                                     </form>
                                 @endif
-                                <span class="icon-cross">
-                                    <img src="{{ asset('images/cross.svg') }}" class="img-fluid">
-                                </span>
+                                <form method="POST" action="{{ route('addToCart', $product->slug) }}">
+                                    @csrf
+                                    <button type="submit" style="background: none; border: none;">
+                                        <span class="icon-cross">
+                                            <span style="font-size: 32px;" class="d-flex align-items-center flex-column">
+                                                <i class="far fa-plus text-white"></i>
+                                            </span>
+                                        </span>
+                                    </button>
+                                </form>
                             </a>
 
                         </div>

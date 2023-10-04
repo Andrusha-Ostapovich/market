@@ -9,8 +9,17 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $page = Page::with('seo')->first();
+
+        $page->seo()->updateOrCreate([], [
+            'tags' => [$request->only([
+                'title',
+                'description',
+                'keywords',
+            ])]
+        ]);
         $pages = Page::all();
         return view('admin.page.index', ['pages' => $pages]);
     }

@@ -7,15 +7,23 @@ use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
+use Fomvasss\Seo\Models\HasSeo;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, SlugTrait;
+    use HasFactory, InteractsWithMedia, SlugTrait, HasSeo;
     protected $mediaMultipleCollections = ['product_photo'];
     protected $guarded = ['id'];
+    public function registerSeoDefaultTags(): array
+    {
+        return [
+            'title' => $this->name,
+            'description' => $this->description,
 
+        ];
+    }
     // protected static function boot()
     // {
     // //     parent::boot();
@@ -69,8 +77,8 @@ class Product extends Model implements HasMedia
     {
         return $this->morphMany(Favorite::class, 'model');
     }
-    public function carts()
+    public function cartItems()
     {
-        return $this->morphMany(Cart::class, 'model');
+        return $this->hasMany(CartItems::class);
     }
 }

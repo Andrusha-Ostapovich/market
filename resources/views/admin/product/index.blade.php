@@ -8,6 +8,7 @@
 
     <!-- Main content -->
     <section class="content">
+        @include('admin.seo.metatag')
 
         <!-- FILTER -->
         @include('admin.product.inc.filter')
@@ -30,7 +31,7 @@
 
                     </form>
                     <a href="{{ route('admin.product.index', ['reset_sort' => true]) }}" class="btn btn-success">
-                       Прибрати сортування
+                        Прибрати сортування
                     </a>
                 </div>
 
@@ -126,8 +127,8 @@
 
 
                                 <td class="text-right">
-                                    <a href="{{ route('admin.product.update', $productes->id) }}" class="btn btn-info btn-sm"><i
-                                            class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('admin.product.update', $productes->id) }}"
+                                        class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{ route('admin.product.destroy', $productes->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>

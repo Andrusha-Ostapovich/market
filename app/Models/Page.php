@@ -6,13 +6,21 @@ use App\Models\Traits\HasStaticLists;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
+use Fomvasss\Seo\Models\HasSeo;
 use Illuminate\Support\Str;
 
 class Page extends Model
 {
-    use HasFactory, SlugTrait, HasStaticLists;
+    use HasFactory, SlugTrait, HasStaticLists,HasSeo;
     protected $guarded = ['id'];
 
+    public function registerSeoDefaultTags(): array
+    {
+        return [
+            'title' => $this->name,
+            'description' => $this->description,
+        ];
+    }
     public static function templatesList(string $columnKey = null, string $indexKey = null): array
     {
         $status = [

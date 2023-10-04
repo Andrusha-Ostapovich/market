@@ -10,7 +10,7 @@
 <!-- Main content -->
 <section class="content">
 
-
+    @include('admin.seo.metatag')
 
     <!-- Default box -->
     <div class="card">

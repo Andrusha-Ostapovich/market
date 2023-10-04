@@ -10,6 +10,7 @@
         "fomvasss/laravel-lte3": "^1.8",
         "fomvasss/laravel-medialibrary-extension": "^5.4",
         "fomvasss/laravel-notification-channel-turbo-sms": "^1.1",
+        "fomvasss/laravel-seo": "^1.5",
         "fomvasss/laravel-variables": "^5.2",
         "guzzlehttp/guzzle": "^7.2",
         "kalnoy/nestedset": "^6.0",

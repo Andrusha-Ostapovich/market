@@ -35,7 +35,7 @@
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span style="font-size: 2em;"
                                                         class="d-flex align-items-center flex-column">
-                                                        <i class="fas fa-trash"></i>
+                                                        <i class="fas fa-trash text-danger"></i>
                                                     </span>
                                                 </button>
                                             </form>
@@ -73,8 +73,8 @@
                                                 @csrf
                                                 <button type="submit" style="background: none; border: none;">
                                                     <span style="font-size: 2em;"
-                                                        class="d-flex align-items-center flex-column">
-                                                        <i class="fas fa-trash"></i>
+                                                        class="d-flex align-items-center flex-column ">
+                                                        <i class="fas fa-trash text-danger"></i>
                                                     </span>
                                                 </button>
                                             </form>

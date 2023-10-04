@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
@@ -43,11 +45,11 @@ class LoginController extends Controller
         if (auth()->user()->role === 'admin') {
             return redirect('/admin');
         }
-
         return redirect('/');
     }
     public function showLoginForm()
     {
         return view('admin.auth.login');
     }
+
 }

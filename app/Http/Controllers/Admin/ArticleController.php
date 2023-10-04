@@ -7,14 +7,24 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Actions\ArticleCreateAction;
 use App\Actions\ArticleUpdateAction;
+use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $article = Article::with('seo')->first();
+
+        $article->seo()->updateOrCreate([], [
+            'tags' => [$request->only([
+                'title',
+                'description',
+                'keywords',
+            ])]
+        ]);
         $articles = Article::paginate(10);
         return view('admin.article.index', ['articles' => $articles]);
     }

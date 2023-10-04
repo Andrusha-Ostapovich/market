@@ -17,23 +17,43 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-
-                                </tr>
+                                @foreach ($cartItems as $cartItem)
+                                    <tr>
+                                        <td class="product-thumbnail">
+                                            <img src="{{ $cartItem->product->getFirstMediaUrl('product_photo') }}"
+                                                width="150px">
+                                        </td>
+                                        <td class="product-name">
+                                            {{ $cartItem->product->name }}
+                                        </td>
+                                        <td class="product-price">
+                                            {{ $cartItem->product->price }}
+                                        </td>
+                                        <td class="product-quantity">
+                                            {{ $cartItem->quantity }}
+                                        </td>
+                                        <td class="product-total">
+                                            {{ $cartItem->product->price * $cartItem->quantity }}
+                                        </td>
+                                        <td class="product-remove">
+                                            <a href="{{ route('cart.remove', $cartItem) }}" class="text-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                 </form>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="row mb-5">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <button class="btn btn-black btn-sm btn-block">Оновити кошик</button>
-                        </div>
                         <div class="col-md-6">
-                            <button class="btn btn-outline-black btn-sm btn-block">Продовжити покупки</button>
+                            <a href="/catalog">
+                                <button class="btn btn-outline-black btn-sm btn-block">Продовжити покупки</button>
+                            </a>
                         </div>
                     </div>
 
@@ -43,15 +63,7 @@
                         <div class="col-md-7">
                             <div class="row">
                                 <div class="col-md-12 text-right border-bottom mb-5">
-                                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <span class="text-black">Subtotal</span>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
+                                    <h3 class="text-black h4 text-uppercase">Загальна сума</h3>
                                 </div>
                             </div>
                             <div class="row mb-5">
@@ -59,14 +71,14 @@
                                     <span class="text-black">Total</span>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
+                                    <strong class="text-black">{{ number_format(\Cart::total($cartItems), 2) }}</strong>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-black btn-lg py-3 btn-block"
-                                        onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                                        onclick="window.location='checkout.html'">Оплатити</button>
                                 </div>
                             </div>
                         </div>

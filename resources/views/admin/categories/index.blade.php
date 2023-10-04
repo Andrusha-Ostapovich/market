@@ -9,8 +9,8 @@
 
     <!-- Main content -->
     <section class="content">
+        @include('admin.seo.metatag')
 
-        @include('admin.categories.inc.filter')
 
 
         <div hidden class="card">
@@ -46,8 +46,8 @@
                                 </td>
 
                                 <td class="text-right">
-                                    <a href="{{ route('admin.categories.update', $category->id) }}" class="btn btn-info btn-sm"><i
-                                            class="fas fa-pencil-alt"></i></a>
+                                    <a href="{{ route('admin.categories.update', $category->id) }}"
+                                        class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
                                     <a href="{{ route('admin.categories.destroy', $category->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
@@ -61,7 +61,7 @@
             </div>
 
         </div>
-{{-- @dd($categories); --}}
+        {{-- @dd($categories); --}}
 
         {!! Lte3::nestedset($categories, [
             'label' => 'Категорії',
@@ -75,7 +75,7 @@
             ],
         ]) !!}
 
-    {!! Lte3::pagination($categories) !!}
+        {!! Lte3::pagination($categories) !!}
 
 
     </section>

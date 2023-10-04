@@ -15,23 +15,33 @@ use App\Http\Controllers\User\ReviewController;
 use App\Http\Controllers\User\UserController;
 
 Route::get('/search', [CategoryController::class, 'search'])->name('products.search');
+
 Route::get('/article', [ArticleController::class, 'index'])->name('article.index');
 Route::get('/article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 Route::get('/article/{slug}/previous', [ArticleController::class, 'previous'])->name('article.previous');
 Route::get('/article/{slug}/next', [ArticleController::class, 'next'])->name('article.next');
+
 Route::get('/catalog', [CategoryController::class, 'index'])->name('catalog');
 Route::get('/catalog/{slug}', [CategoryController::class, 'show'])->name('category.products');
 Route::get('/catalog/{categorySlug}/{productSlug}', [ProductController::class, 'show'])->name('products.show');
-Route::get('/cart', [CartController::class, 'index']);
+
 Route::get('/my', [UserController::class, 'index'])->name('my');
 Route::get('/my/{id}/edit', [UserController::class, 'edit'])->name('my.edit');
 Route::put('/my/{id}/update', [UserController::class, 'update'])->name('my.update');
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 Route::post('/mailing', [MailingController::class, 'mailing'])->name('mailing');
+
 Route::post('/{productSlug}/review/create', [ReviewController::class, 'create'])->name('review.create')->middleware('auth');
 
-Route::post('/cart/add/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');
-Route::get('/my/favorites/products', [FavoriteController::class, 'listFavorites'])->name('favorites.show');
+
+
+Route::post('/add-product/{slug}', [CartController::class, 'addToCart'])->name('addToCart');
+Route::post('/add/{slug}', [CartController::class, 'addToCart'])->name('add');
+Route::get('/remove-product/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
+Route::get('/cart', [CartController::class, 'index']);
+
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/my/favorites/products/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');

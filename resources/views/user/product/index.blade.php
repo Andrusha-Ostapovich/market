@@ -41,9 +41,10 @@
                             <h3 class="product-title">{{ $product->name }}</h3>
 
                             <strong
-                                class="product-price">${{ \Currency::convertToCurrency($product->price, 'USD')  }}</strong>
+                                class="product-price">${{ \Currency::convertToCurrency($product->price, 'USD') }}</strong>
                             <strong class="product-price">₴{{ $product->price }}</strong>
-                            <strong class="product-price">€{{  \Currency::convertToCurrency($product->price, 'EUR') }}</strong>
+                            <strong
+                                class="product-price">€{{ \Currency::convertToCurrency($product->price, 'EUR') }}</strong>
                             @if (auth()->user())
                                 <form method="POST" action="{{ route('favorite.toggle', $product) }}">
                                     @csrf <!-- Додайте цей токен CSRF для безпеки -->
@@ -59,16 +60,17 @@
                                     </button>
                                 </form>
                             @endif
-                            <span class="icon-cross">
-                                <img src="{{ asset('images/cross.svg') }}" class="img-fluid">
-
-                            </span>
-
+                            <form method="POST" action="{{ route('addToCart', $product->slug) }}">
+                                @csrf
+                                <button type="submit" style="background: none; border: none;">
+                                    <span class="icon-cross">
+                                        <span style="font-size: 32px;" class="d-flex align-items-center flex-column">
+                                            <i class="far fa-plus text-white"></i>
+                                        </span>
+                                    </span>
+                                </button>
+                            </form>
                         </a>
-
-
-
-
                     </div>
                 @endforeach
 

@@ -2,21 +2,22 @@
 
 namespace App\Models;
 
-use Fomvasss\Seo\Models\HasSeo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class CartItem extends Model
 {
-    use HasFactory,HasSeo;
-    protected $guarded = ['id'];
+    use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $guarded = [];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
 }

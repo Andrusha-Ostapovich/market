@@ -15,8 +15,17 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $category = Category::with('seo')->first();
+
+        $category->seo()->updateOrCreate([], [
+            'tags' => [$request->only([
+                'title',
+                'description',
+                'keywords',
+            ])]
+        ]);
         $categories = Category::paginate(20);
         return view('admin.categories.index', ['categories' => $categories]);
     }
