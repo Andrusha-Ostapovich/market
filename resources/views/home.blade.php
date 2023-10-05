@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    @include('admin.parts.content-header', ['page_title' => 'Dashboard v1'])
+    @include('admin.parts.content-header', ['page_title' => 'Головна'])
 
     <!-- Main content -->
     <section class="content">
@@ -95,13 +95,11 @@
                                                 <th style="width: 1%">
                                                     №
                                                 </th>
-                                                <th style="width: 20%">
-                                                    Покупець
-                                                </th>
-                                                <th style="width: 20%">
+
+                                                <th>
                                                     Сума
                                                 </th>
-                                                <th style="width: 20%">
+                                                <th>
                                                     Статус
                                                 </th>
 
@@ -113,13 +111,10 @@
                                                     <td style="width: 1%">
                                                         {{ $order->id }}
                                                     </td>
-                                                    <td style="width: 20%">
-                                                        {{ $order->user->name }}
-                                                    </td>
-                                                    <td style="width: 20%">
+                                                    <td>
                                                         {{ $order->total_amount }}
                                                     </td>
-                                                    <td style="width: 20%">
+                                                    <td>
                                                         {{ $order->status }}
                                                     </td>
                                                 </tr>

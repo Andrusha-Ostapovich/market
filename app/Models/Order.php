@@ -10,7 +10,7 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function carts()
+    public function cart()
     {
         return $this->belongsTo(Cart::class);
     }

@@ -44,7 +44,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="/admin/subscriber" class="nav-link">
+            <a href="/admin/orders" class="nav-link">
                 <i class="nav-icon fas fa-shopping-basket"></i>
                 <p>Замовлення</p>
             </a>

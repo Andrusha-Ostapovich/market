@@ -2,17 +2,12 @@
 
 @section('content')
     @include('admin.parts.content-header', [
-        'page_title' => 'Розсилка',
-        'url_create' => route('admin.subscriber.create'),
+        'page_title' => 'Замовлення',
     ])
-
     <!-- Main content -->
     <section class="content">
-
-        <!-- Default box -->
-        <div class="card">
-
-            <div class="card-body">
+        <div class="container">
+            <div class="card">
 
                 <table class="table table-hover">
                     <thead>
@@ -20,28 +15,35 @@
                             <th style="width: 1%">
                                 №
                             </th>
-                            <th>
-                                Емейл
+                            <th style="width: 20%">
+                                Загальна ціна
+                            </th>
+
+                            <th style="width: 20%">
+                                Статус
+                            </th>
+                            <th style="width: 20%">
+                                Дата та час
                             </th>
                         </tr>
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
-                        @foreach ($subscribers as $subscriber)
+                        @foreach ($orders as $order)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>
-                                    {{ $subscriber->id }}
+                                    {{ $order->id }}
+                                </td>
+
+                                <td>
+                                    {{ $order->total_amount }}
                                 </td>
                                 <td>
-                                    {{ $subscriber->email }}
+                                    {{ $order->status }}
+                                </td>
+                                <td>
+                                    {{ $order->created_at }}
                                 </td>
 
-
-                                <td class="text-right">
-
-                                    <a href="{{ route('admin.subscriber.destroy', $subscriber->id) }}"
-                                        class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
-                                        data-confirm="Delete?"><i class="fas fa-trash"></i></a>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -51,8 +53,10 @@
             </div>
 
         </div>
-        <!-- /.card -->
-        {!! Lte3::pagination($subscribers) !!}
+
+        {!! Lte3::pagination($orders) !!}
+        </div>
+
     </section>
     <!-- /.content -->
 @endsection

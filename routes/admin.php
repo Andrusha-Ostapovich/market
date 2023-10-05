@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\ProductController;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 
-Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as'=>'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as' => 'admin.'], function () {
     Route::get('/', [MainController::class, 'index']);
     Route::resource('page', PageController::class);
     Route::get('/export', [ProductController::class, 'export'])->name('product.export');
@@ -33,4 +34,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as'=>'adm
     Route::resource('attribut', AttributController::class);
     Route::resource('subscriber', SubscriberController::class);
     Route::resource('review', ReviewController::class);
+    Route::get('orders', [OrderController::class, 'index']);
 });
