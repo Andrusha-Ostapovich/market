@@ -3,6 +3,11 @@
     <div class="untree_co-section before-footer-section">
         <div class="container">
             <div class="row mb-5">
+                <a href="/order-history">
+                    <h4><i class="fas fa-archive text-primary">
+                            Історія замовлень
+                        </i></h4>
+                </a>
                 <form class="col-md-12" method="post">
                     <div class="site-blocks-table">
                         <table class="table">
@@ -68,7 +73,7 @@
                             </div>
                             <div class="row mb-5">
                                 <div class="col-md-6">
-                                    <span class="text-black">Total</span>
+                                    <span class="text-black">Сума</span>
                                 </div>
                                 <div class="col-md-6 text-right">
                                     <strong class="text-black">{{ number_format(\Cart::total($cartItems), 2) }}</strong>
@@ -77,8 +82,11 @@
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-black btn-lg py-3 btn-block"
-                                        onclick="window.location='checkout.html'">Оплатити</button>
+                                    <a href="/checkout">
+                                        <button class="btn btn-black btn-lg py-3 btn-block">
+                                            Оплатити
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

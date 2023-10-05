@@ -13,11 +13,6 @@ return [
     | a conventional file to locate the various service credentials.
     |
     */
-    'turbosms' => [
-        'api_token'  => env('TURBOSMS_API_TOKEN'),
-        'sender'  => env('TURBOSMS_SENDER'),
-        'is_test'  => env('TURBOSMS_IS_TEST'),
-    ],
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),
@@ -34,5 +29,13 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'turbosms' => [
+        'api_token'  => env('TURBOSMS_API_TOKEN'),
+        'sender'  => env('TURBOSMS_SENDER'),
+        'is_test'  => env('TURBOSMS_IS_TEST'),
+    ],
+    'fondy' => [
+        'merchId' => env('FONDY_MERCH_ID'),
+        'secret' => env('FONDY_SECRET'),
+    ]
 ];

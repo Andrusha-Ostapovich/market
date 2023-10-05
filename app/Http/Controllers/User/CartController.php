@@ -30,6 +30,7 @@ class CartController extends Controller
             // Знаходимо корзину користувача (якщо вона існує)
             $userCart = Cart::firstOrCreate([
                 'user_id' => $userId,
+                'id'=> $cartId,
             ]);
 
             $updateCart = CartItem::where('cart_id', $cartId)->update(['cart_id' => $userCart->id]);
@@ -59,7 +60,6 @@ class CartController extends Controller
         if (auth()->check()) {
             $cart = Cart::firstOrCreate([
                 'user_id' => Auth::id(),
-                'id' => request()->cookie('cart_id'),
             ]);
         } else {
             $cart = Cart::firstOrCreate([

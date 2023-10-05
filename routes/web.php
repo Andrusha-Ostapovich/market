@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\User\CheckOutController;
 use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ArticleController;
 use Illuminate\Support\Facades\Route;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\FavoriteController;
+use App\Http\Controllers\User\HistoryController;
 use App\Http\Controllers\User\MailingController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ProductController;
@@ -42,6 +44,11 @@ Route::post('/add/{slug}', [CartController::class, 'addToCart'])->name('add');
 Route::get('/remove-product/{itemId}', [CartController::class, 'remove'])->name('cart.remove');
 Route::get('/cart', [CartController::class, 'index']);
 
+Route::get('/checkout', [CheckOutController::class, 'checkOut']);
+Route::get('/place', [CheckOutController::class, 'place']);
+Route::get('/thanks', [CheckOutController::class, 'thanks'])->name('thanks');
+
+Route::get('/order-history',[HistoryController::class, 'orders']);
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/my/favorites/products/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');

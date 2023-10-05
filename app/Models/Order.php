@@ -10,12 +10,12 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function user()
+    public function carts()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Cart::class);
     }
 
-    public function products()
+    public function product()
     {
         return $this->hasMany(Product::class, 'id', 'product_id');
     }
