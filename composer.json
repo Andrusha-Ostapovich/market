@@ -21,6 +21,7 @@
         "laravel/ui": "^4.2",
         "lorisleiva/laravel-actions": "^2.7",
         "maatwebsite/excel": "^3.1",
+        "orchestra/parser": "^8.0",
         "rap2hpoutre/laravel-log-viewer": "^2.3",
         "spatie/laravel-medialibrary": "^10.11",
         "spatie/laravel-permission": "^5.11"

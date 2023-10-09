@@ -175,6 +175,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Orchestra\Parser\XmlServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -195,6 +196,7 @@ return [
         'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'XmlParser' => Orchestra\Parser\Xml\Facade::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
