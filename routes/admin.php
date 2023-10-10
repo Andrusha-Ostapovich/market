@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\SitemapController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as' => 'admin.'], function () {
     Route::get('/', [MainController::class, 'index']);
@@ -35,4 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as' => 'a
     Route::resource('subscriber', SubscriberController::class);
     Route::resource('review', ReviewController::class);
     Route::get('orders', [OrderController::class, 'index']);
+
+    Route::get('sitemap.xml', [SitemapController::class, 'viewSitemap'])->name('sitemap');
+
 });

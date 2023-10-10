@@ -6,10 +6,10 @@ use App\Http\Controllers\User\CategoryController;
 use App\Http\Controllers\User\ArticleController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\FavoriteController;
-use App\Http\Controllers\User\HistoryController;
+
 use App\Http\Controllers\User\MailingController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ProductController;
@@ -45,10 +45,13 @@ Route::get('/remove-product/{itemId}', [CartController::class, 'remove'])->name(
 Route::get('/cart', [CartController::class, 'index']);
 
 Route::get('/checkout', [CheckOutController::class, 'checkOut']);
-Route::get('/place', [CheckOutController::class, 'place']);
+Route::post('/place', [CheckOutController::class, 'place'])->name('place');
 Route::get('/thanks', [CheckOutController::class, 'thanks'])->name('thanks');
 
-Route::get('/order-history',[HistoryController::class, 'orders']);
+Route::get('/order-history', [OrderController::class, 'orders']);
+
+Route::get('/suggest/settlements', [OrderController::class, 'cityName']);
+Route::get('/suggest/street', [OrderController::class, 'street']);
 
 Route::middleware(['auth'])->group(function () {
     Route::post('/my/favorites/products/{product}', [FavoriteController::class, 'toggleProduct'])->name('favorite.toggle');
@@ -57,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/my/favorites/articles/{article}', [FavoriteController::class, 'toggleArticle'])->name('favorites.articles.toggle');
     Route::get('/my/favorites/articles', [FavoriteController::class, 'listFavorites'])->name('favorites.articles.list');
 });
+
 
 
 Auth::routes();
@@ -68,4 +72,4 @@ require __DIR__ . '/admin.php';
 // Route::get('/confirm-order/{іd}', [OrderController::class, 'confirmOrder']);
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/{slug}', [PageController::class, 'show']);
+Route::get('/{slug}', [PageController::class, 'show'])->name('page');

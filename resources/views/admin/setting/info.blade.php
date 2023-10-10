@@ -4,6 +4,7 @@
     <div class="container mt-4">
         <div class="card">
             <div class="card-body">
+                <a class='btn btn-info' href="/admin/sitemap.xml"> Карта сайту </a>
 
 
                 {!! Lte3::formOpen(['action' => route('admin.setting.create'), 'method' => 'PUT']) !!}

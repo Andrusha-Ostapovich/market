@@ -15,7 +15,7 @@ class CheckOutController extends Controller
         $cartItems = CartItem::where('cart_id', request()->cookie('cart_id'))->get();
         return view('user.cart.checkout', compact('cartItems'));
     }
-    public function place()
+    public function place(Request $request)
     {
         $cartId = request()->cookie('cart_id');
         $cartItems = CartItem::where('cart_id', $cartId)->get();
@@ -23,10 +23,26 @@ class CheckOutController extends Controller
 
         $order = Order::firstOrCreate([
             'cart_id' => $cartId,
-            'status'=>'pending',
-            'total_amount'=>$total,
+            'status' => 'pending',
+            'total_amount' => $total,
+            'user_name'=>$request->user_name,
+            'surname'=>$request->surname,
+            'settlement'=>$request->settlement,
+
         ]);
-        cookie()->queue('order_id', $order->id, 60 * 24 * 30);
+        // Отримати поточний масив значень куки 'order_id', або ініціювати новий масив, якщо куки ще не існує
+        // Отримуємо рядок з куків та розбираємо його в масив
+        $orderIds = json_decode(request()->cookie('order_id', '[]'), true);
+
+        // Конвертуємо $order->id у рядок
+        $string = strval($order->id);
+
+        // Додаємо рядок до масиву
+        $orderIds[] = $string;
+
+        // Перетворюємо масив назад у рядок і зберігаємо у куках
+        cookie()->queue('order_id', json_encode($orderIds), 60 * 24 * 30);
+
         Cookie::queue(Cookie::forget('cart_id'));
 
         $total = (int) ($total * 100);

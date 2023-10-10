@@ -16,7 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('cart_id');
             $table->decimal('total_amount', 10, 2);
             $table->enum('status', ['pending', 'processed', 'shipped', 'delivered']);
+            $table->text('user_name');
+            $table->text('surname');
+            $table->text('settlement');
             $table->timestamps();
+
             $table->foreign('cart_id')->references('id')->on('carts');
         });
     }
