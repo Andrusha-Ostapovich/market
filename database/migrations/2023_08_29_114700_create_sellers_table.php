@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('contact_info');
             $table->timestamps();
+
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

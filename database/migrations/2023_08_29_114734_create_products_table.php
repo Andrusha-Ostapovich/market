@@ -20,7 +20,6 @@ return new class extends Migration
             $table->decimal('old_price', 10, 2)->nullable();
             $table->string('article');
             $table->unsignedBigInteger('category_id');
-
             $table->string('brand');
             $table->string('slug');
             $table->timestamps();

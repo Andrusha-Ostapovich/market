@@ -16,7 +16,7 @@ class PrimarySeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@app.com',
-            'password' => '12345678',
+            'password' => 'password',
             'role' => 'admin',
         ]);
     }
