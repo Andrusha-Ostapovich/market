@@ -8,28 +8,28 @@ use App\Models\Seller;
 
 class SellerFactory extends Factory
 {
-  /**
-   * The name of the factory's corresponding model.
-   *
-   * @var string
-   */
-  protected $model = Seller::class;
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Seller::class;
 
-  /**
-   * Define the model's default state.
-   *
-   * @return array
-   */
-  public function definition()
-  {
-    $sellerUser = User::where('role', 'seller')->inRandomOrder()->first();
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        static $userId = 0; // Початкове значення для user_id
 
-    return [
-      'user_id' => $sellerUser->id,
-      'store_name' => $this->faker->company,
-      'description' => $this->faker->paragraph,
-      'contact_info' => $this->faker->address,
-    ];
-  }
-//
+        return [
+            'user_id' => $userId++,
+            'store_name' => $this->faker->company,
+            'description' => $this->faker->paragraph,
+            'contact_info' => $this->faker->address,
+        ];
+    }
+    //
 }

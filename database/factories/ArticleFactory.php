@@ -21,8 +21,6 @@ class ArticleFactory extends Factory
             'name' => $this->faker->word,
             'slug' => Str::slug($this->faker->word, '-'),
             'content' => $this->faker->text,
-
-
         ];
     }
 

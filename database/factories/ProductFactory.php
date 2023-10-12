@@ -22,6 +22,7 @@ class ProductFactory extends Factory
 
     public function definition(): array
     {
+        static $id = 0;
         $currentPrice = $this->faker->randomFloat(2, 5, 100);
         $oldPrice = $this->faker->randomFloat(2, $currentPrice + 1, $currentPrice + 20);
         return [
@@ -31,8 +32,8 @@ class ProductFactory extends Factory
             'price' => $currentPrice,
             'old_price' => $oldPrice,
             'article' => $this->faker->unique()->numberBetween(1000, 9999),
-            'seller_id' => Seller::factory(),
-            'category_id' => Category::factory(),
+            'seller_id' => $id,
+            'category_id' => $id,
             'brand' => $this->faker->word,
         ];
     }

@@ -5,21 +5,19 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+
 class PrimarySeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Створення Адміна
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
-        
         User::create([
             'name' => 'Admin',
             'email' => 'admin@app.com',
             'password' => '12345678',
             'role' => 'admin',
         ]);
-        
     }
 }
