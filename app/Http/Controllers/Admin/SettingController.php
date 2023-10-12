@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\View;
 class SettingController extends Controller
 {
 
-
-
-
     public function info()
     {
         $values = \Variable::all();

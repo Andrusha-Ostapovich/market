@@ -2,37 +2,77 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Events\Registered;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
+
 
 class UserController extends Controller
 {
+    /**
+     * @api {post} /api/login Авторизація користувача
+     * @apiName Авторизація
+     * @apiGroup Користувачі
+     *
+     * @apiParam {String} email Email адреса користувача.
+     * @apiParam {String} password Пароль користувача.
+     *
+     * @apiSuccess {String} token Токен для доступу до API.
+     *
+     * @apiSuccessExample {json} Успішна відповідь:
+     *     HTTP/1.1 200 OK
+     *     {
+     *         "token": "example_token_value"
+     *     }
+     *
+     * @apiErrorExample {json} Помилка:
+     *     HTTP/1.1 401 Unauthorized
+     *     {
+     *         "message": "Невірний логін або пароль"
+     *     }
+     */
+
     public function login(LoginRequest $request)
     {
-        $user = auth()->user();
-        $token = $user->createToken('oken')->accessToken;
-        $email = $request->email;
-        $password = $request->password;
+        // Аутентифікація користувача
+        $user = User::where('email', $request->email)->first();
 
-        $user = User::where('email', $email)->first();
-
-        if (!$user) {
-            return response()->json(['message' => 'Користувача не знайдено'], 404);
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json(['message' => 'Невірний логін або пароль'], 401);
         }
 
-        if (Hash::check($password, $user->password)) {
-            return new UserResource($user);
-        } else {
-            return response()->json(['message' => 'Невірний пароль'], 401);
-        }
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json(['token' => $token]);
     }
+    /**
+     * @api {post} /api/register Реєстрація користувача
+     * @apiName Реєстрація
+     * @apiGroup Користувачі
+     *
+     * @apiParam {String} name Ім'я користувача.
+     * @apiParam {String} email Email адреса користувача.
+     * @apiParam {String} password Пароль користувача.
+     *
+     * @apiSuccess {String} token Токен для доступу до API.
+     *
+     * @apiSuccessExample {json} Успішна відповідь:
+     *     HTTP/1.1 200 OK
+     *     {
+     *         "token": "example_token_value"
+     *     }
+     *
+     * @apiErrorExample {json} Помилка:
+     *     HTTP/1.1 422 Unprocessable Entity
+     *     {
+     *         "error": "Користувач з таким емайлом існує"
+     *     }
+     */
+
     public function register(RegisterRequest $request)
     {
 
