@@ -12,15 +12,11 @@ class ReviewController extends Controller
 
     public function index()
     {
-
-        $reviews = Review::paginate(20);
-
-        return view('admin.review.index', ['reviews' => $reviews]);
+        $reviews = Review::with(['product', 'user'])->paginate(20);
+        return view('admin.review.index', compact('reviews'));
     }
-
     public function create()
     {
-
         $products = Product::pluck('name', 'id')->toArray();
         return view('admin.review.create', compact('products'));
     }
@@ -33,17 +29,13 @@ class ReviewController extends Controller
             'user_id' => $user->id, // Встановити ID користувача
             'product_id' => $request->input('product_id'), // Отримати ID продукту з запиту
             'content' => $request->input('content'),
-            'rating'=>$request->input('rating'),
+            'rating' => $request->input('rating'),
         ]);
-
         return redirect()->route('admin.review.index');
     }
-
-
     public function show()
     {
     }
-
     public function edit($id)
     {
         $reviews = Review::findOrFail($id);
@@ -52,7 +44,6 @@ class ReviewController extends Controller
     }
     public function update(Request $request, $id)
     {
-
         $reviews = Review::findOrFail($id);
         $reviews->update(
             $request->only(
@@ -61,7 +52,6 @@ class ReviewController extends Controller
                 'rating'
             )
         );
-
         // Зберігаємо зміни в базі даних
         $reviews->save();
 

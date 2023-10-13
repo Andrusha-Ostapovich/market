@@ -5,27 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
-use App\Actions\ArticleCreateAction;
-use App\Actions\ArticleUpdateAction;
+use App\Actions\Admin\Article\ArticleCreateAction;
+use App\Actions\Admin\Article\ArticleUpdateAction;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    public function index()
     {
-        $article = Article::with('seo')->first();
-
-        $article->seo()->updateOrCreate([], [
-            'tags' => [$request->only([
-                'title',
-                'description',
-                'keywords',
-            ])]
-        ]);
-        $articles = Article::paginate(10);
+        $articles = Article::with('media')->paginate(10);
         return view('admin.article.index', ['articles' => $articles]);
     }
 
@@ -36,17 +24,8 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        // $article = Article::create([
-        //     'name' => $request->input('name'),
-        //     'content' => $request->input('content'),
-        //     'publication_date'=>now(),
-        //     'slug'=> $request->input('slug'),
-        // ]);
-
         $article = ArticleCreateAction::run($request->all());
         $article->mediaManage($request);
-
-
         return redirect()->route('admin.article.index');
     }
 
@@ -58,16 +37,11 @@ class ArticleController extends Controller
 
     public function edit()
     {
-
     }
     public function update(ArticleRequest $request, $id)
     {
-
         $article = Article::findOrFail($id);
-
-        // Викликаємо дію ArticleUpdateAction і передаємо об'єкт моделі та дані з запиту
         ArticleUpdateAction::run($article, $request->all());
-
         $article->mediaManage($request);
 
         return redirect()->route('admin.article.index');

@@ -12,16 +12,13 @@ class AttributController extends Controller
 {
     public function index()
     {
-
-        $attributs = Attribute::paginate(10);
+        $attributs = Attribute::with('categories')->paginate(10);
         return view('admin.attribut.index', compact('attributs'));
     }
 
     public function create()
     {
-
         $categories = Category::with('categories')->pluck('name', 'id')->toArray();
-        //  dd($categories);
         return view('admin.attribut.create', compact('categories'));
     }
 
@@ -30,7 +27,6 @@ class AttributController extends Controller
         $attributs = Attribute::create([
             'name' => $request->input('name'),
         ]);
-
         $categories = $request->input('categories');
 
         $attributs->categories()->attach($categories);
@@ -42,7 +38,7 @@ class AttributController extends Controller
         $attributs = Attribute::findOrFail($id);
         $categories = Category::with('categories')->pluck('name', 'id')->toArray();
 
-        return view('admin.attribut.edit', compact('attributs','categories'));
+        return view('admin.attribut.edit', compact('attributs', 'categories'));
     }
 
     public function edit()

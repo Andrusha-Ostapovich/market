@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Admin\Users\FilterAction;
+use App\Actions\Admin\Users\SortAction;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
@@ -14,39 +16,13 @@ use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, FilterAction $filterAction, SortAction $sortAction)
     {
-
-        $query = User::query();
-
-        $name = $request->input('name');
-        $email = $request->input('email');
+        $filters = $request->all();
+        $query = $filterAction->run($filters);
+        $query = $sortAction->run($request, $query);
+        $users = $query->paginate(10);
         $roles = $request->input('role', []);
-        $date = $request->input('date');
-        $sortField = $request->input('sort', 'name');
-
-        if ($name) {
-            $query->where('name', 'like', '%' . $name . '%');
-        }
-
-        if ($email) {
-            $query->where('email', 'like', '%' . $email . '%');
-        }
-
-        if (!empty($roles)) {
-            $query->whereIn('role', $roles);
-        }
-
-        if ($date) {
-            $query->whereDate('created_at', $date);
-        }
-
-        if ($request->has('reset_sort')) {
-            $users = $query->latest()->paginate(10);
-        } else {
-            $users = $query->orderBy($sortField)->paginate(10);
-        }
-
         return view('admin.users.index', compact('users', 'roles'));
     }
 
@@ -67,11 +43,6 @@ class UserController extends Controller
             ['password' => Hash::make($request->input('password'))]
         ));
         $user->mediaManage($request);
-        // if ($request->hasFile('image')) {
-        //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
-        // }
-
-
         return redirect()->route('admin.users.index');
     }
 
@@ -96,26 +67,19 @@ class UserController extends Controller
             )
         );
         $user->mediaManage($request);
-        // if ($request->hasFile('image')) {
-        //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
-        // }
-
         return redirect()->route('admin.users.index');
     }
-
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
         return redirect()->route('admin.users.index');
     }
-    public function showProfile(User $user)
+    public function showProfile()
     {
         $user = Auth::user();
-
         return view('admin.profile.index', compact('user'));
     }
-
     public function editProfile()
     {
         $user = Auth::user();
@@ -132,7 +96,7 @@ class UserController extends Controller
             )
         );
         $user->mediaManage($request);
-        return redirect()->route('profile');
+        return redirect()->route('admin.profile');
     }
     // public function testPolicy(User $user)
     // {

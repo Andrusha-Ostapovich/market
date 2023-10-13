@@ -11,15 +11,6 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-        $page = Page::with('seo')->first();
-
-        $page->seo()->updateOrCreate([], [
-            'tags' => [$request->only([
-                'title',
-                'description',
-                'keywords',
-            ])]
-        ]);
         $pages = Page::all();
         return view('admin.page.index', ['pages' => $pages]);
     }
@@ -31,7 +22,6 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-
         $pages = Page::create(
             $request->only(
                 'name',
@@ -43,11 +33,9 @@ class PageController extends Controller
 
         return redirect()->route('admin.page.index');
     }
-
     public function show()
     {
     }
-
     public function edit($id)
     {
         $pages = Page::findOrFail($id);
@@ -56,7 +44,6 @@ class PageController extends Controller
     }
     public function update(Request $request, $id)
     {
-
         $pages = Page::findOrFail($id);
         $pages->update(
             $request->only(
@@ -67,13 +54,10 @@ class PageController extends Controller
 
             )
         );
-
         // Зберігаємо зміни в базі даних
         $pages->save();
-
         return redirect()->route('admin.page.index');
     }
-
     public function destroy($id)
     {
         $pages = Page::findOrFail($id);

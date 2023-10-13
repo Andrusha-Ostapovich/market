@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Fomvasss\Seo\Models\HasSeo;
+use App\Models\Traits\SeoUpdateOrCreate;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory,HasSeo;
+    use HasFactory,SeoUpdateOrCreate;
     protected $guarded = ['id'];
 
     public function user()

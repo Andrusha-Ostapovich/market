@@ -7,13 +7,13 @@ use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
-use Fomvasss\Seo\Models\HasSeo;
+use App\Models\Traits\SeoUpdateOrCreate;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, SlugTrait, HasSeo;
+    use HasFactory, InteractsWithMedia, SlugTrait, SeoUpdateOrCreate;
     protected $mediaMultipleCollections = ['product_photo'];
     protected $guarded = ['id'];
     public function registerSeoDefaultTags(): array

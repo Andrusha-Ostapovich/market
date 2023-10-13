@@ -11,25 +11,11 @@ use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(Request $request)
+    public function index()
     {
-        $category = Category::with('seo')->first();
-
-        $category->seo()->updateOrCreate([], [
-            'tags' => [$request->only([
-                'title',
-                'description',
-                'keywords',
-            ])]
-        ]);
         $categories = Category::paginate(20);
         return view('admin.categories.index', ['categories' => $categories]);
     }
-
     public function create()
     {
         return view('admin.categories.create');

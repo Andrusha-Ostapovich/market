@@ -21,8 +21,6 @@ class OrderController extends Controller
         // Отримайте конкретне замовлення за його ідентифікатором
         $order = Order::findOrFail($id);
 
-        // Логіка підтвердження замовлення
-
         // Відправка події ConfirmOrder
         event(new ConfirmOrder($order));
 

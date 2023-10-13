@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Admin\Article;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 use App\Models\Article;

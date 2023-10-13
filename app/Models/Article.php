@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Fomvasss\MediaLibraryExtension\HasMedia\HasMedia;
 use Fomvasss\MediaLibraryExtension\HasMedia\InteractsWithMedia;
 use App\Models\Traits\SlugTrait;
-use Fomvasss\Seo\Models\HasSeo;
+use App\Models\Traits\SeoUpdateOrCreate;
 use Illuminate\Support\Str;
 
 class Article extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia, SlugTrait, HasSeo;
+    use HasFactory, InteractsWithMedia, SlugTrait, SeoUpdateOrCreate;
     protected $mediaSingleCollections = ['photo'];
     protected $guarded = ['id'];
 

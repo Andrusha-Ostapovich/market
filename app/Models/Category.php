@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
-use Fomvasss\Seo\Models\HasSeo;
-use Illuminate\Support\Str;
+use App\Models\Traits\SeoUpdateOrCreate;
 use Kalnoy\Nestedset\NodeTrait as NestedsetNodeTrait;
 
 class Category extends Model
 {
-    use HasFactory, SlugTrait, NestedsetNodeTrait, HasSeo;
+    use HasFactory, SlugTrait, NestedsetNodeTrait, SeoUpdateOrCreate;
     public function registerSeoDefaultTags(): array
     {
         return [

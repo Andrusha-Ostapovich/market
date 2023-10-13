@@ -16,66 +16,44 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $product = Product::with('seo')->first();
-
-        $product->seo()->updateOrCreate([], [
-            'tags' => [$request->only([
-                'title',
-                'description',
-                'keywords',
-            ])]
-        ]);
-
-        $nameFilter = $request->input('name');
-        $minPriceFilter = $request->input('min_price');
-        $maxPriceFilter = $request->input('max_price');
+        $query = Product::with('categories', 'media');
         $categoryFilter = $request->input('categories');
-        $withPhotoFilter = $request->input('with_photo');
-        $sortField = $request->input('sort_field', 'name'); // За замовчуванням сортувати за назвою
-        $sortDirection = $request->input('sort_direction', 'asc'); // За замовчуванням сортувати за зростанням
 
-        $products = Product::query();
+        $query->when($request->input('name'), function ($q, $nameFilter) {
+            return $q->where('name', 'like', '%' . $nameFilter . '%');
+        });
 
-        if ($nameFilter) {
-            $products->where('name', 'like', '%' . $nameFilter . '%');
-        }
+        $query->when($request->input('min_price') && $request->input('max_price'), function ($q) use ($request) {
+            return $q->whereBetween('price', [$request->input('min_price'), $request->input('max_price')]);
+        });
 
-        if ($minPriceFilter && $maxPriceFilter) {
-            $products->whereBetween('price', [$minPriceFilter, $maxPriceFilter]);
-        }
-
-        if ($categoryFilter) {
-            $products->whereHas('categories', function ($query) use ($categoryFilter) {
-                $query->whereIn('id', $categoryFilter);
+        $query->when($categoryFilter, function ($q) use ($categoryFilter) {
+            return $q->whereHas('categories', function ($subquery) use ($categoryFilter) {
+                $subquery->whereIn('id', $categoryFilter);
             });
-        }
+        });
 
-
-        if ($withPhotoFilter) {
-            $products->whereHas('media', function ($query) {
-                $query->where('collection_name', 'product_photo');
+        $query->when($request->input('with_photo'), function ($q) {
+            return $q->whereHas('media', function ($subquery) {
+                $subquery->where('collection_name', 'product_photo');
             });
-        }
+        });
 
+        $sortField = $request->input('sort_field', 'name');
+        $sortDirection = $request->input('sort_direction', 'asc');
 
-        // Додати сортування
-        $products->orderBy($sortField, $sortDirection);
         if ($request->has('reset_sort')) {
-            // Якщо присутній параметр reset_sort, скиньте сортування
-            $products = $products->latest()->paginate(10);
+            $products = $query->latest()->paginate(10);
         } else {
-            // В іншому випадку продовжуйте з поточним сортуванням
-            $products = $products->paginate(10);
+            $products = $query->orderBy($sortField, $sortDirection)->paginate(10);
         }
 
-        $attributs = Attribute::pluck('name', 'id');
-        $categories = Category::all()->pluck('name', 'id')->toArray();
-        return view('admin.product.index', compact('products', 'attributs', 'categories', 'categoryFilter', 'sortField', 'sortDirection'));
+        $attributes = Attribute::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id')->toArray();
+
+        return view('admin.product.index', compact('products', 'attributes', 'categories', 'categoryFilter', 'sortField', 'sortDirection'));
     }
 
 
@@ -167,7 +145,6 @@ class ProductController extends Controller
     }
     public function import(Request $request)
     {
-
         // Перевіряємо, чи був відправлений файл
         if ($request->hasFile('import_file')) {
             $file = $request->file('import_file');

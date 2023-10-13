@@ -6,12 +6,12 @@ use App\Models\Traits\HasStaticLists;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\SlugTrait;
-use Fomvasss\Seo\Models\HasSeo;
-use Illuminate\Support\Str;
+use App\Models\Traits\SeoUpdateOrCreate;
+
 
 class Page extends Model
 {
-    use HasFactory, SlugTrait, HasStaticLists,HasSeo;
+    use HasFactory, SlugTrait, HasStaticLists,SeoUpdateOrCreate;
     protected $guarded = ['id'];
 
     public function registerSeoDefaultTags(): array

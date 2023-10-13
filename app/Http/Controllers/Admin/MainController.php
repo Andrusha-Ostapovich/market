@@ -18,7 +18,6 @@ class MainController extends Controller
     }
     public function index()
     {
-
         // Отримайте кількість товарів
         $productCount = Cache::remember('product_count', 300, function () {
             return Product::count();
@@ -37,7 +36,7 @@ class MainController extends Controller
         $clientCount = Cache::remember('client_count', 300, function () {
             return User::whereIn('role', ['user', 'seller'])->count();
         });
-        $orders = Order::all();
+        $orders = Order::paginate(10);
         return view('home', compact('orders', 'productCount', 'orderCount', 'subscriberCount', 'clientCount'));
     }
 

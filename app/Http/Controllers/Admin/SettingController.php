@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 
 class SettingController extends Controller
@@ -13,11 +12,8 @@ class SettingController extends Controller
     public function info()
     {
         $values = \Variable::all();
-
         return View::make('admin.setting.info', compact('values'));
     }
-
-
     public function create(Request $request)
     {
         \Variable::save('facebook', $request->input('facebook'));

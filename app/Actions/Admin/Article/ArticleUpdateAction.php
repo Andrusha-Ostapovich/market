@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Admin\Article;
 
 use Lorisleiva\Actions\Concerns\AsAction;
 use App\Models\Article;
@@ -19,7 +19,6 @@ class ArticleUpdateAction
                 'content',
                 'slug',
                 'publication_date',
-                // Додайте інші поля для оновлення
             ])
         );
 

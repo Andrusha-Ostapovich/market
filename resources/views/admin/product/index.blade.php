@@ -106,7 +106,7 @@
                                 <td>
 
                                     @foreach ($productes->properties as $property)
-                                        {{ $attributs[$property->attribute_id] }}: {{ $property->values }}
+                                        {{ $attributes[$property->attribute_id] }}: {{ $property->value }}
                                     @endforeach
 
 
