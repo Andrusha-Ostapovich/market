@@ -22,10 +22,8 @@ class SellerFactory extends Factory
      */
     public function definition()
     {
-        static $userId = 0; // Початкове значення для user_id
-
         return [
-            'user_id' => $userId++,
+            'user_id' =>  User::factory(),
             'store_name' => $this->faker->company,
             'description' => $this->faker->paragraph,
             'contact_info' => $this->faker->address,

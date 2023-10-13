@@ -47,7 +47,7 @@ class UserController extends Controller
             $users = $query->orderBy($sortField)->paginate(10);
         }
 
-        return view('admin.users.index', compact('users','roles'));
+        return view('admin.users.index', compact('users', 'roles'));
     }
 
 
@@ -58,13 +58,14 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-            'role' => $request->input('role'),
-            // Інші поля користувача
-        ]);
+        $user = User::create(array_merge(
+            $request->only([
+                'name',
+                'email',
+                'role',
+            ]),
+            ['password' => Hash::make($request->input('password'))]
+        ));
         $user->mediaManage($request);
         // if ($request->hasFile('image')) {
         //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
@@ -87,27 +88,26 @@ class UserController extends Controller
     {
         /** @var User $user */
         $user = User::findOrFail($id);
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'role' => $request->input('role'),
-            // Додайте інші поля, які ви хочете оновити
-
-        ]);
+        $user->update(
+            $request->only(
+                'name',
+                'email',
+                'role',
+            )
+        );
         $user->mediaManage($request);
         // if ($request->hasFile('image')) {
         //     $user->addMedia($request->file('image'))->toMediaCollection('profile');
         // }
 
         return redirect()->route('admin.users.index');
-        // Перенаправте користувача на список користувачів
     }
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
     public function showProfile(User $user)
     {
@@ -124,24 +124,25 @@ class UserController extends Controller
     public function updateProfile(UserRequest $request, $id)
     {
         $user = User::find($id);
-        $user->update([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ]);
-
+        $user->update(
+            $request->only(
+                'name',
+                'email',
+                'password',
+            )
+        );
         $user->mediaManage($request);
         return redirect()->route('profile');
     }
-    public function testPolicy(User $user)
-    {
+    // public function testPolicy(User $user)
+    // {
 
-        if (Gate::allows('view', $user)) {
-            // Користувач з роллю "seller" має доступ
-            return view('user.leyouts.index', compact('user'));
-        } else {
-            // Інші користувачі не мають доступу
-            abort(403);
-        }
-    }
+    //     if (Gate::allows('view', $user)) {
+    //         // Користувач з роллю "seller" має доступ
+    //         return view('user.leyouts.index', compact('user'));
+    //     } else {
+    //         // Інші користувачі не мають доступу
+    //         abort(403);
+    //     }
+    // }
 }

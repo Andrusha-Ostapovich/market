@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('attribute_id');
-            $table->string('values');
+            $table->string('value');
             $table->timestamps();
 
             $table->foreign('attribute_id')->references('id')->on('attributes');

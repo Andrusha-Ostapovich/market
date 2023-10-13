@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('slug');
             $table->timestamps();
 
-            $table->foreign('seller_id')->references('id')->on('sellers');
-            $table->foreign('category_id')->references('id')->on('categories');
+
+
         });
     }
 
