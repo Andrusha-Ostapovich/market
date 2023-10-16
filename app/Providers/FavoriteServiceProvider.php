@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Facades\Favorite;
+use App\Services\Favorite;
 use Illuminate\Support\ServiceProvider;
 
 class FavoriteServiceProvider extends ServiceProvider

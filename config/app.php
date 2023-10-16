@@ -190,9 +190,9 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Cart' => \App\Facades\CartFacade::class,
-        'Currency' => \App\Facades\CurrencyFacade::class,
-        'Favorite' => \App\Facades\FavoriteFacade::class,
+        'Cart' => \App\Services\Facades\CartFacade::class,
+        'Currency' => \App\Services\Facades\CurrencyFacade::class,
+        'Favorite' => \App\Services\Facades\FavoriteFacade::class,
         'Breadcrumbs' => Diglactic\Breadcrumbs\Facade::class,
         'MediaManager' => \Fomvasss\MediaLibraryExtension\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,

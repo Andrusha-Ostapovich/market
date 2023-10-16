@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
-use App\Facades\Cart;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
+use App\Services\Cart;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 use Illuminate\Support\ServiceProvider;

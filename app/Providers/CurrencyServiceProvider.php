@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Facades\Currency;
+use App\Services\Currency;
 use Illuminate\Support\ServiceProvider;
 
 class CurrencyServiceProvider extends ServiceProvider

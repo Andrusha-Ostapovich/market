@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('settlement');
             $table->timestamps();
 
-            $table->foreign('cart_id')->references('id')->on('carts');
+            // $table->foreign('cart_id')->references('id')->on('carts');
         });
     }
 

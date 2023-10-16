@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\ArticleController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\AttributController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\LogController;
-use App\Http\Controllers\Admin\SubscriberController;
+use App\Http\Admin\Controllers\OrderController;
+use App\Http\Admin\Controllers\UserController;
+use App\Http\Admin\Controllers\ArticleController;
+use App\Http\Admin\Controllers\ProductController;
+use App\Http\Admin\Controllers\AttributController;
+use App\Http\Admin\Controllers\CategoryController;
+use App\Http\Admin\Controllers\LogController;
+use App\Http\Admin\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\MainController;
-use App\Http\Controllers\Admin\PageController;
-use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\SitemapController;
+use App\Http\Admin\Controllers\MainController;
+use App\Http\Admin\Controllers\PageController;
+use App\Http\Admin\Controllers\ReviewController;
+use App\Http\Admin\Controllers\SettingController;
+use App\Http\Admin\Controllers\SitemapController;
 
 Route::group(['prefix' => 'admin', 'middleware' => 'checkRole:admin', 'as' => 'admin.'], function () {
     Route::get('/', [MainController::class, 'index']);

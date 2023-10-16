@@ -82,54 +82,58 @@
                     </thead>
                     <tbody class="sortable-y" data-url="{{ route('lte3.data.save') }}">
 
-                        @foreach ($products as $productes)
+                        @foreach ($products as $product)
                             <tr id="{{ $loop->index }}" class="va-center">
                                 <td>
-                                    {{ $productes->id }}
+                                    {{ $product->id }}
                                 </td>
                                 <td>
-                                    {{ $productes->categories->name }}
+                                    @if ($product->categories)
+                                        {{ $product->categories->name }}
+                                    @else
+                                        Не додано
+                                    @endif
                                 </td>
                                 <td>
-                                    {{ $productes->brand }}
+                                    {{ $product->brand }}
                                 </td>
                                 <td>
-                                    {{ $productes->name }}
+                                    {{ $product->name }}
                                 </td>
                                 <td>
-                                    @if ($productes->hasMedia('product_photo'))
-                                        <img src="{{ $productes->getFirstMediaUrl('product_photo') }}" width="150px">
+                                    @if ($product->hasMedia('product_photo'))
+                                        <img src="{{ $product->getFirstMediaUrl('product_photo') }}" width="150px">
                                     @else
                                         <p>Фото не було додано</p>
                                     @endif
                                 </td>
                                 <td>
 
-                                    @foreach ($productes->properties as $property)
+                                    @foreach ($product->properties as $property)
                                         {{ $attributes[$property->attribute_id] }}: {{ $property->value }}
                                     @endforeach
 
 
                                 </td>
                                 <td>
-                                    {{ $productes->price }}
+                                    {{ $product->price }}
                                 </td>
                                 <td>
-                                    {{ $productes->old_price }}
+                                    {{ $product->old_price }}
                                 </td>
                                 <td>
-                                    {{ $productes->seller->user->name }}
+                                    {{ $product->seller->user->name }}
                                 </td>
                                 <td>
-                                    {{ $productes->article }}
+                                    {{ $product->article }}
                                 </td>
 
 
 
                                 <td class="text-right">
-                                    <a href="{{ route('admin.product.update', $productes->id) }}"
+                                    <a href="{{ route('admin.product.update', $product->id) }}"
                                         class="btn btn-info btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                                    <a href="{{ route('admin.product.destroy', $productes->id) }}"
+                                    <a href="{{ route('admin.product.destroy', $product->id) }}"
                                         class="btn btn-danger btn-sm js-click-submit" data-method="DELETE"
                                         data-confirm="Delete?"><i class="fas fa-trash"></i></a>
                                 </td>
