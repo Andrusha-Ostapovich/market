@@ -21,6 +21,8 @@ class OrderFactory extends Factory
             'total_amount' => $this->faker->randomFloat(2, 5, 100),
             'name' => $this->faker->name,
             'surname' => $this->faker->name,
+            'email' => $this->faker->unique()->safeEmail,
+            'phone' => $this->faker->phoneNumber,
             'settlement' => random_int(1, 10000),
             'status' => $this->faker->randomElement(['pending', 'processed', 'shipped', 'delivered']),
             'created_at' => now(),
