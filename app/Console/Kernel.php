@@ -18,6 +18,9 @@ class Kernel extends ConsoleKernel
     {
         // Додайте розклад генерації карти сайту кожні 6 годин (або за вашим бажанням)
         $schedule->command('sitemap:generate')->everyHour();;
+        $schedule->call(function () {
+            // Логіка відправки розсилки
+        })->dailyAt('15:00');
     }
 
 

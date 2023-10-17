@@ -29,25 +29,26 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
         return [
 
             'Name',
-            'Description',
+            'Article',
             'Price',
             'Old Price',
-            'Article',
-            'Category',
-            'Brand',
             'Attribute',
-            'Value',
+            'Brand',
+            'Category',
             'Image',
+            'Description',
+
             // Додайте інші необхідні колонки
         ];
     }
     public function map($product): array
     {
         $property = $product->properties->first();
+        $category =$product->categories;
         $attribut = $property ? $property->attribute->name : '';
         $mediaFiles = $product->getMedia('product_photo');
         $imageUrls = [];
-
+        $attributAndValue = $attribut ? "$attribut: " . ($property ? $property->value : '') : '';
         foreach ($mediaFiles as $media) {
             // Додайте URL фото до масиву
             $imageUrls[] = $media->getUrl();
@@ -57,15 +58,14 @@ class ProductsExport implements FromCollection, WithHeadings, WithMapping, Shoul
         $image = implode(', ', $imageUrls);
         return [
             $product->name,
-            $product->description,
+            $product->article,
             $product->price,
             $product->old_price,
-            $product->article,
-            $product->categories->name,
+            $attributAndValue,
             $product->brand,
-            $attribut,
-            $property ? $property->values : '',
+            $category ? $category->name : '',
             $image,
+            $product->description,
             // Отримуємо значення атрибуту або залишаємо порожнє значення, якщо відношення порожнє або відсутнє значення 'values'
             // Припускаючи, що це поле містить URL або інші дані про фото
         ];

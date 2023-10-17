@@ -14,9 +14,9 @@ Breadcrumbs::for('article.index', function (BreadcrumbTrail $trail) {
     $trail->push('Новини', route('article.index'));
 });
 
-Breadcrumbs::for('article.show', function (BreadcrumbTrail $trail, $articles) {
+Breadcrumbs::for('article.show', function (BreadcrumbTrail $trail, $article) {
     $trail->parent('article.index');
-    $trail->push($articles->name, route('article.show', $articles));
+    $trail->push($article->name, route('article.show', $article));
 });
 
 // Home > Catalog

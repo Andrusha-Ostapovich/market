@@ -10,42 +10,25 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::orderBy('created_at', 'desc')->paginate(6);
-
-        return view('client.article.index', ['articles' => $articles]);
+        $articles = Article::latest('created_at')->paginate(6);
+        return view('client.article.index', compact('articles'));
     }
 
     public function show($slug)
     {
-        // Здійснюємо пошук новини за slug у базі даних
-        $articles = Article::where('slug', $slug)->first();
-
-        // Перевіряємо, чи була знайдена новина
-        if (!$articles) {
-            // Обробка випадку, коли новину не знайдено
-            abort(404);
-        }
-        return view('client.article.show', ['articles' => $articles]);
+        $article = Article::where('slug', $slug)->firstOrFail();
+        return view('client.article.show', compact('article'));
     }
+
     public function previous($slug)
     {
-        $articles = Article::where('slug', '<', $slug)->orderBy('slug', 'desc')->first();
-
-        if (!$articles) {
-            abort(404);
-        }
-
-        return view('client.article.show', ['articles' => $articles]);
+        $article = Article::where('slug', '<', $slug)->latest('slug')->firstOrFail();
+        return view('client.article.show', compact('article'));
     }
 
     public function next($slug)
     {
-        $articles = Article::where('slug', '>', $slug)->orderBy('slug')->first();
-
-        if (!$articles) {
-            abort(404);
-        }
-
-        return view('client.article.show', ['articles' => $articles]);
+        $article = Article::where('slug', '>', $slug)->oldest('slug')->firstOrFail();
+        return view('client.article.show', compact('article'));
     }
 }

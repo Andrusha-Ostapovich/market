@@ -30,7 +30,6 @@ class EventServiceProvider extends ServiceProvider
         ],
         ConfirmOrder::class => [
             ConfirmOrderClient::class,
-            ConfirmOrderSeller::class,
         ],
     ];
 

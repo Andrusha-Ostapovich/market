@@ -11,7 +11,7 @@ class SubscriberController extends Controller
 {
     public function mailing(SubscriberRequest $request)
     {
-        dd(1);
+
         $mailing = Subscriber::create($request->only('name', 'email'));
         $successMessage = 'Ви успішно додані до розсилки';
 

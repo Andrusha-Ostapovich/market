@@ -15,6 +15,8 @@
 
                         {!! Lte3::email('email') !!}
 
+                        {!! Lte3::text('phone') !!}
+
                         {!! Lte3::password('password') !!}
 
 

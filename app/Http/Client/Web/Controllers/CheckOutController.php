@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Order;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+use App\Http\Client\Web\Requests\OrderRequest;
+use App\Services\ClientServices\OrderService;
+use Illuminate\Support\Facades\Config;
 
 class CheckOutController extends Controller
 {
+    protected $orderService;
+
+    public function __construct(OrderService $orderService)
+    {
+        $this->orderService = $orderService;
+    }
+
     public function checkOut()
     {
         if (auth()->check()) {
@@ -21,57 +29,33 @@ class CheckOutController extends Controller
         }
         return view('client.checkout.checkout', compact('cartItems'));
     }
-    public function place(Request $request)
+
+    public function place(OrderRequest $request)
     {
         if (auth()->check()) {
             $cart = Cart::where('user_id', auth()->user()->id)->first();
             $cartId = $cart->id;
-            $cartItems = CartItem::where('cart_id',  $cartId)->get();
         } else {
             $cartId = request()->cookie('cart_id');
-            $cartItems = CartItem::where('cart_id', $cartId)->get();
         }
+
+        $cartItems = CartItem::where('cart_id', $cartId)->get();
         $total = \Cart::total($cartItems);
 
-        $order = Order::firstOrCreate([
-            'cart_id' => $cartId,
-            'status' => 'pending',
-            'total_amount' => $total,
-            'name' => $request->name,
-            'surname' => $request->surname,
-            'settlement' => $request->settlement,
+        $order = $this->orderService->createOrder($cartId, $total, $request);
+        $this->orderService->updateOrderCookie($order);
+        $this->orderService->deleteCartItems($cartId);
 
-        ]);
-        // Отримати поточний масив значень куки 'order_id', або ініціювати новий масив, якщо куки ще не існує
-        // Отримуємо рядок з куків та розбираємо його в масив
-        $orderIds = json_decode(request()->cookie('order_id', '[]'), true);
-
-        // Конвертуємо $order->id у рядок
-        $string = strval($order->id);
-
-        // Додаємо рядок до масиву
-        $orderIds[] = $string;
-
-        // Перетворюємо масив назад у рядок і зберігаємо у куках
-        cookie()->queue('order_id', json_encode($orderIds), 60 * 24 * 30);
-
-
-        if (auth()->check()) {
-            $cart = Cart::where('user_id', auth()->user()->id)->first();
-            $cartItems = CartItem::where('cart_id', $cart->id)->delete();
-        } else {
-            Cookie::queue(Cookie::forget('cart_id'));
-        }
         $total = (int) ($total * 100);
-        \Cloudipsp\Configuration::setMerchantId(1488822);
-        \Cloudipsp\Configuration::setSecretKey('q1wDJvHsdOGACRBWD1ZeW4Y1Ov91pGQK');
+        \Cloudipsp\Configuration::setMerchantId(Config::get('currency.merchant_id'));
+        \Cloudipsp\Configuration::setSecretKey(Config::get('currency.secret_key'));
         $data = [
             'order_desc' => 'tests SDK',
             'currency' => 'UAH',
             'amount' => $total,
             'response_url' => '/thanks',
             'server_callback_url' => 'http://site.com/callbackurl',
-            'sender_email' => 'gobsecilich@gmail.com',
+            'sender_email' => 'gobsekilich@gmail.com',
             'lang' => 'ua',
             'lifetime' => 36000,
         ];

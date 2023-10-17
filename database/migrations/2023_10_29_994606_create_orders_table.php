@@ -17,6 +17,8 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->enum('status', ['pending', 'processed', 'shipped', 'delivered']);
             $table->text('name');
+            $table->text('email');
+            $table->text('phone');
             $table->text('surname');
             $table->text('settlement');
             $table->timestamps();

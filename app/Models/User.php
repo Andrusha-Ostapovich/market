@@ -67,19 +67,16 @@ class User extends Authenticatable implements HasMedia
     {
         return $this->hasMany(Review::class);
     }
-    public function orders()
-    {
-        return $this->hasMany(Order::class, 'user_id', 'id');
-    }
-    // public static function boot()
-    // {
-    //     parent::boot();
 
-    //     // Викликайте подію Registered при створенні нового користувача
-    //     static::created(function ($user) {
-    //         event(new Registered($user));
-    //     });
-    // }
+    public static function boot()
+    {
+        parent::boot();
+
+        // Викликайте подію Registered при створенні нового користувача
+        static::created(function ($user) {
+            event(new Registered($user));
+        });
+    }
     // public static function boot()
     // {
     //     parent::boot();

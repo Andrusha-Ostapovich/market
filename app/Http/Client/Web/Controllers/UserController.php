@@ -30,6 +30,7 @@ class UserController extends Controller
         $user->update($request->only(
             'name',
             'email',
+            'phone',
             'password'
         ));
         $user->mediaManage($request);

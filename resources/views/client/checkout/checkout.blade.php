@@ -41,6 +41,14 @@
                                 <label for="c_lname" class="text-black">Прізвище <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="c_lname" name="surname">
                             </div>
+                            <div class="col-md-6">
+                                <label for="c_lname" class="text-black">Eмайл <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="c_lname" name="email">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="c_lname" class="text-black">Телефон <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="c_lname" name="phone">
+                            </div>
                         </div>
                         <br>
                         <div class="form-group">

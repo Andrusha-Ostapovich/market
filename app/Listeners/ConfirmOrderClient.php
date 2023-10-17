@@ -2,13 +2,16 @@
 
 namespace App\Listeners;
 
-use App\Notifications\ConfirmOrderClientNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Events\ConfirmOrder;
+use App\Mail\OrderConfirmationMail;
+use App\Notifications\ConfirmOrderClientNotification;
+use Illuminate\Support\Facades\Mail;
 
-class ConfirmOrderClient
+class ConfirmOrderClient implements ShouldQueue
 {
+    use InteractsWithQueue;
     /**
      * Create the event listener.
      */
@@ -24,9 +27,11 @@ class ConfirmOrderClient
     {
 
         $order = $event->order;
-        $user = $order->user;
+        $email = $order->email;
+        // dd($email = $order->email);
 
-        $user->notify(new ConfirmOrderClientNotification($order));
 
+        $order->notify(new ConfirmOrderClientNotification($order));
+        Mail::to($email)->send(new OrderConfirmationMail($order));
     }
 }

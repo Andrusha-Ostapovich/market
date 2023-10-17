@@ -21,34 +21,23 @@ class ConfirmOrderClientNotification extends Notification
     public function via(object $notifiable): array
     {
         // dd('email');
-        // return [TurboSmsChannel::class];
-        return ['mail'];
+
+        return [TurboSmsChannel::class];
     }
     public function __construct(Order $order)
     {
         $this->order = $order;
     }
-
-    public function toMail($notifiable)
+    public function toTurboSms($notifiable)
     {
-        return (new MailMessage)
-            ->subject('Підтвердження замовлення')
-            ->line('Ваше замовлення було успішно підтверджено.')
-            ->line('Номер замовлення: ' . $this->order->id)
-            ->line('Дякуємо за використання наших послуг!');
+        // Перевірте, чи у користувача в профілі є номер телефону.
+        if ($notifiable->phone) {
+
+            // Відправте SMS, якщо номер телефону вказаний.
+            return (new TurboSmsMessage())
+                ->content("Ваше замовлення підтверджено. Номер замовлення: {$this->order->id}");
+        }
+
+        return null;
     }
-    // public function toTurboSms($notifiable)
-    // {
-
-
-    //     // Перевірте, чи у користувача в профілі є номер телефону.
-    //     if ($notifiable->phone) {
-
-    //         // Відправте SMS, якщо номер телефону вказаний.
-    //         return (new TurboSmsMessage())
-    //             ->content("Ваше замовлення підтверджено. Номер замовлення: {$this->order->id}");
-    //     }
-
-    //     return null;
-    // }
 }
