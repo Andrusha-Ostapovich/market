@@ -16,28 +16,28 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-
-
-
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="{{ route('admin.product.export') }}" class="btn btn-success">
-                        <i class="fas fa-file-excel"></i> Експорт
-                    </a>
-                    <form action="{{ route('admin.product.import') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="import_file" class="d-none" id="import_file">
-                        <label for="import_file" class="btn btn-warning">Виберіть файл</label>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> Імпорт</button>
-
-                    </form>
-                    <a href="{{ route('admin.product.index', ['reset_sort' => true]) }}" class="btn btn-success">
-                        Прибрати сортування
-                    </a>
+                    <div class="d-flex"> <!-- Група кнопок "Прибрати сортування" -->
+                        <a href="{{ route('admin.product.index', ['reset_sort' => true]) }}" class="btn btn-success">
+                            Прибрати сортування
+                        </a>
+                    </div>
+                    <div class="card-tools">
+                        <a href="{{ route('admin.product.export') }}" class="btn btn-default btn-xs"><i
+                                class="fas fa-upload"></i>Експорт</a>
+                        {!! Lte3::formOpen([
+                            'action' => route('admin.product.import'),
+                            'files' => true,
+                            'method' => 'POST',
+                            'class' => 'js-form-submit-file-changed',
+                            'style' => 'display: inline-flex',
+                        ]) !!}
+                        <label class="btn btn-default btn-xs"><input type="file" hidden><i class="fas fa-download"></i>
+                            Імпорт
+                        </label>
+                        {!! Lte3::formClose() !!}
+                    </div>
                 </div>
-
-
-
-
             </div>
             <div class="card-body">
                 <table class="table table-hover">
@@ -102,7 +102,9 @@
                                 </td>
                                 <td>
                                     @if ($product->hasMedia('product_photo'))
-                                        <img src="{{ $product->getFirstMediaUrl('product_photo') }}" width="150px">
+                                        <a href="{{ $product->getFirstMediaUrl('product_photo') }}" class="js-popup-image">
+                                            <img src="{{ $product->getFirstMediaUrl('product_photo') }}" width="150px">
+                                        </a>
                                     @else
                                         <p>Фото не було додано</p>
                                     @endif

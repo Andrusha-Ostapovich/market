@@ -36,7 +36,7 @@ class MainController extends Controller
             return User::whereIn('role', ['user', 'seller'])->count();
         });
         $orders = Order::paginate(10);
-        return view('home', compact('orders', 'productCount', 'orderCount', 'subscriberCount', 'clientCount'));
+        return view('admin.home', compact('orders', 'productCount', 'orderCount', 'subscriberCount', 'clientCount'));
     }
 
 }

@@ -58,7 +58,9 @@
                                 </td>
                                 <td>
                                     @if ($user->hasMedia('avatar'))
+                                    <a href="{{ $user->getFirstMediaUrl('avatar') }}" class="js-popup-image">
                                         <img src="{{ $user->getFirstMediaUrl('avatar') }}" width="150px">
+                                    </a>
                                     @else
                                         <p>Аватар не був доданий</p>
                                     @endif
