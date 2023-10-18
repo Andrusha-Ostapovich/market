@@ -11,7 +11,6 @@ use App\Models\Page;
 use App\Models\Product;
 use App\Models\Property;
 use App\Models\Seller;
-use Database\Factories\СategoryAttributesFactory;
 use Illuminate\Database\Seeder;
 use App\Models\Review;
 use App\Models\Subscriber;
@@ -24,13 +23,6 @@ class DummySeeder extends Seeder
      */
     public function run(): void
     {
-        Page::create([
-            'id' => '1',
-            'name' => 'Головна',
-            'content' => 'Вітаємо на сайті',
-            'slug' => 'home',
-            'template' => 'home',
-        ]);
         Page::create([
             'id' => '2',
             'name' => 'Про нас',

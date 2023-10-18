@@ -3,6 +3,8 @@
 /public/build
 /public/hot
 /public/storage
+/public/26-ex_xml_atu.xml
+/public/sitemap.xml
 /public/apidoc/
 /storage/*.key
 /vendor
