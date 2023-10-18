@@ -20,14 +20,7 @@ class Order extends Model
     {
         return $this->hasMany(Product::class, 'id', 'product_id');
     }
-    public static function boot()
-    {
-        parent::boot();
 
-        static::created(function ($order) {
-            event(new ConfirmOrder($order));
-        });
-    }
     // public static function boot()
     // {
     //     parent::boot();

@@ -2,6 +2,7 @@
 
 namespace App\Services\ClientServices;
 
+use App\Events\ConfirmOrder;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Order;
@@ -12,7 +13,7 @@ class OrderService
 {
     public function createOrder($cartId, $total, $request)
     {
-        return Order::firstOrCreate([
+        $order = Order::firstOrCreate([
             'cart_id' => $cartId,
             'status' => 'pending',
             'total_amount' => $total,
@@ -22,8 +23,13 @@ class OrderService
             'surname' => $request->surname,
             'settlement' => $request->settlement,
         ]);
-    }
 
+        // Відправте подію "ConfirmOrder" з об'єктом створеного замовлення
+        event(new ConfirmOrder($order));
+
+        // Поверніть об'єкт створеного замовлення
+        return $order;
+    }
     public function updateOrderCookie($order)
     {
         $orderIds = json_decode(request()->cookie('order_id', '[]'), true);
